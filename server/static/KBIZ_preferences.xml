@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<KBIZ_preferences>
+    <section key="1" name="기본">
+        <item key="1" name="DB IP 주소" value="input"/>
+        <item key="5" name="선후불 설정" value="select">
+            <value name="선불제"/>
+            <value name="후불제"/>
+        </item>
+        <item key="6" name="외상 허용" value="checkbox"/>
+        <item key="10" name="객수객층 관리" value="select">
+            <value name="사용 안 함"/>
+            <value name="객수"/>
+            <value name="객수객층"/>
+        </item>
+        <item key="50" name="주문시 중복상품 처리" value="select">
+            <value name="누적"/>
+            <value name="개별"/>
+        </item>
+    </section>
+    <section key="100" name="영업">
+        <item key="100" name="영업마감 설정" value="select">
+            <value name="수동"/>
+            <value name="자동"/>
+        </item>
+        <item key="110" name="영업준비금 기본값" value="input"/>
+        <item key="400" name="포장 관리" value="select">
+            <value name="사용 안 함"/>
+            <value name="사용"/>
+        </item>
+        <item key="500" name="배달 관리" value="select">
+            <value name="사용 안 함"/>
+            <value name="사용"/>
+        </item>
+    </section>
+    <section key="1000" name="영수증">
+        <item key="1000" name="사용 여부" value="select">
+            <value name="사용 안 함"/>
+
+            <value name="사용"/>
+        </item>
+    </section>
+    <section key="2000" name="고객주문서">
+        <item key="2000" name="사용 여부" value="select">
+            <value name="사용 안 함"/>
+
+            <value name="사용"/>
+        </item>
+        <item key="2500" name="세트메뉴 세부항목 인쇄" value="checkbox"/>
+    </section>
+    <section key="3000" name="주방주문서">
+        <item key="3000" name="사용 여부" value="select">
+            <value name="사용 안 함"/>
+
+            <value name="사용"/>
+        </item>
+        <item key="3500" name="담당자 인쇄" value="checkbox"/>
+        <item key="3510" name="객수 인쇄" value="checkbox"/>
+        <item key="3600" name="메뉴 합계 인쇄" value="checkbox"/>
+        <item key="3650" name="메뉴 개별 절단" value="checkbox"/>
+        <item key="3800" name="테이블 이동시 재인쇄" value="checkbox"/>
+    </section>
+    <section key="9000" name="주변기기">
+        <item key="9000" name="금고 사용 여부" value="checkbox"/>
+        <item key="9010" name="금고 연결 위치" value="select">
+            <value name="단말기"/>
+            <value name="별도프린터"/>
+        </item>
+        <item key="9030" name="금고 연결 방식" value="select">
+            <value name="Connector pin 2"/>
+            <value name="Connector pin 5"/>
+        </item>
+        <item key="9050" name="금고 여는 시점" value="select">
+            <value name="현금 결제시"/>
+            <value name="카드 결제시"/>
+            <value name="현금 및 카드 결제시"/>
+            <value name="결제 완료시"/>
+        </item>
+        <item key="9500" name="발신번호표시 사용 여부" value="select">
+            <value name="사용 안 함"/>
+            <value name="사용 (See ID S1)"/>
+        </item>
+        <item key="9520" name="발신번호표시 포트번호" value="select">
+            <value name="COM01" comment="01"/>
+            <value name="COM02"/>
+            <value name="COM03"/>
+            <value name="COM04"/>
+            <value name="COM05"/>
+            <value name="COM06"/>
+            <value name="COM07"/>
+            <value name="COM08"/>
+            <value name="COM09"/>
+            <value name="COM10"/>
+            <value name="COM11"/>
+            <value name="COM12"/>
+            <value name="COM13"/>
+            <value name="COM14"/>
+            <value name="COM15"/>
+            <value name="COM16"/>
+            <value name="COM17"/>
+            <value name="COM18"/>
+            <value name="COM19"/>
+            <value name="COM20"/>
+        </item>
+        <item key="9530" name="발신번호표시 BaudRate" value="select">
+            <value name="4800"/>
+            <value name="9600"/>
+            <value name="19200"/>
+            <value name="38400"/>
+            <value name="57600"/>
+            <value name="115200"/>
+            <value name="230400"/>
+        </item>
+    </section>
+    <section key="10000" name="결제 관련">
+        <item key="10000" name="밴(VAN)사업자 방식" value="select">
+            <value name="NHN KCP 단말기"/>
+            <value name="NHN KCP SecurePOS"/>
+        </item>
+        <item key="10010" name="통신 모드" value="select">
+            <value name="SERIAL"/>
+        </item>
+        <item key="10020" name="통신 포트번호" value="select">
+            <value name="COM01" comment="01"/>
+            <value name="COM02"/>
+            <value name="COM03"/>
+            <value name="COM04"/>
+            <value name="COM05"/>
+            <value name="COM06"/>
+            <value name="COM07"/>
+            <value name="COM08"/>
+            <value name="COM09"/>
+            <value name="COM10"/>
+            <value name="COM11"/>
+            <value name="COM12"/>
+            <value name="COM13"/>
+            <value name="COM14"/>
+            <value name="COM15"/>
+            <value name="COM16"/>
+            <value name="COM17"/>
+            <value name="COM18"/>
+            <value name="COM19"/>
+            <value name="COM20"/>
+        </item>
+        <item key="10030" name="통신 BaudRate" value="select">
+            <value name="4800"/>
+            <value name="9600"/>
+            <value name="19200"/>
+            <value name="38400"/>
+            <value name="57600"/>
+            <value name="115200"/>
+            <value name="230400"/>
+        </item>
+        <item key="10040" name="서명패드 부착 위치" comment="signpad_yn" value="select">
+            <value name="단말기에" comment="N"/>
+            <value name="포스에" comment="Y"/>
+        </item>
+        <item key="10050" name="복합과세" comment="cpx_flag" value="select">
+            <value name="사용 안 함" comment="N"/>
+            <value name="사용" comment="Y"/>
+        </item>
+        <item key="10060" name="서명데이터 요청" comment="signopt" value="select">
+            <value name="사용 안 함" comment="N"/>
+            <value name="사용" comment="Y"/>
+        </item>
+        <item key="10070" name="전표출력설정" comment="prt_cd" value="select">
+            <value name="프린트 안함" comment="0"/>
+            <value name="프린트 1장 (고객용)" comment="1"/>
+            <value name="프린트 2장 (고객용, 가맹점/카드사용)" comment="2"/>
+            <value name="프린트 3장 (고객용, 가맹점용, 카드사용)" comment="3"/>
+        </item>
+        <item key="10080" name="전표문구설정" comment="prtopt" value="select">
+            <value name="문구출력 안함" comment="0"/>
+            <value name="고객용 전표에 문구출력" comment="1"/>
+            <value name="가맹점/카드사용 전표에 문구출력" comment="2"/>
+            <value name="모든 전표에 문구출력" comment="3"/>
+        </item>
+        <item key="10081" name="전표문구-첫째줄" comment="prtmsg1" value="input"/>
+        <item key="10082" name="전표문구-둘째줄" comment="prtmsg2" value="input"/>
+        <item key="10083" name="전표문구-셋째줄" comment="prtmsg3" value="input"/>
+        <item key="10084" name="전표문구-넷째줄" comment="prtmsg4" value="input"/>
+    </section>
+</KBIZ_preferences>

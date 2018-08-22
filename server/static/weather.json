@@ -1,0 +1,1 @@
+var names = {"Partly Cloudy": "대체로 맑음" , "Mostly Sunny" : "대체로 맑음" ,"Mostly Cloudy" : "대체로 맑음" ,"Thunderstorms" : "뇌우", "Cloudy" : "흐림" ,"Scattered Showers" : "뇌우", "Scattered Thunderstorms" : "뇌우" }

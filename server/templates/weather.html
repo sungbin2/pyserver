@@ -1,0 +1,357 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+
+<style type="text/css">
+#calTitle *, #myCalender * { margin: 0px; padding: 0px; text-align: center; }
+#calTitle, #myCalender {
+	 margin: 0px; padding: 0px; text-align: center;
+	 font-family: '돋움', Dotum, AppleGothic, sans-serif; font-size: 15px;
+}
+
+#calTitle { margin-bottom: 5px; }
+#calTitle button { width: 26px; height: 16px; font-size: 9px; line-height: normal; }
+#calTitle span { width: auto; }
+
+#myCalender td {
+	 border: 1px solid #ccc; padding: 4px 5px 3px 5px; width: 300px; height: 100px;
+	 font-family: 돋움, Dotum, AppleGothic, sans-serif; font-size: 15px;
+	 text-align :right ; vertical-align: top;;
+}
+
+#myCalender td.week { height: 30px; text-align : center}
+
+#myCalender .blankLine td { border-width: 0; }
+
+</style>
+
+
+
+<div style=" width: 100%px; height: 230px;">
+    <!-- ↑＿  글씨체를 변경할 경우, 위의 width, height 값도 변경할 것 !! -->
+
+	 <div id="calTitle">
+
+		 <button id="prevYear" type="button" title="이전 해">◀</button>
+
+		 <span id="calYear"></span><span>년</span>
+
+		 <button id="nextYear" type="button" title="다음 해">▶</button>
+
+		 <button id="prevMonth" type="button" title="이전 달">◁</button>
+
+		 <span id="calMonth"></span>
+
+		 <button id="nextMonth" type="button" title="다음 달">▷</button>
+
+	 </div>
+
+	 <div id="myCalender"></div>
+
+</div>
+
+<script src="{{ url_for('static',filename='weather.json') }}"></script>
+<script type="text/javascript">
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/*                                                    변수 및 배열 설정하기 & 오늘 날짜값 가져오기                                  */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  var
+  myCalender   =  document.getElementById ( "myCalender" ) ,
+  spnCalYear   =  document.getElementById ( "calYear" ) ,
+  spnCalMonth =  document.getElementById ( "calMonth" ) ,
+  btnPrevYear   =  document.getElementById ( "prevYear" ) ,
+  btnNextYear   =  document.getElementById ( "nextYear" ) ,
+  btnPrevMonth =  document.getElementById ( "prevMonth" ) ,
+  btnNextMonth =  document.getElementById ( "nextMonth" );
+
+  var
+  arrMonths = [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ] ,
+  arrWeeks  = [ "일", "월", "화", "수", "목", "금", "토" ] ,
+  totalDays  = [ "31", "0", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" ];
+
+  var
+  d  =  new Date() ,
+  year   = d.getFullYear() ,
+  month = d.getMonth() ,
+  day    = d.getDate() ,
+  week = d.getDay() ,
+  txt = "";
+
+
+  /* ─────────────────────────────────────── */
+  /*                방문자가 사용중인, 브라우저의 정보를 가져와서,                                     */
+  /*                ie 7 이하 버전일 경우에만, if문 실행하기                                                */
+  /* ─────────────────────────────────────── */
+  if ( navigator.userAgent.indexOf( "Trident" ) < 0 && navigator.userAgent.indexOf( "MSIE" ) > 0 ) {
+        txt = "&nbsp;" ;
+        btnPrevMonth.style.marginLeft = "3px";
+}
+
+
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+  /*                                                              달력 만들기 함수 makeCalender                                           */
+  /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+  function makeCalender() {
+
+  /* ─────────────────────────────────────── */
+  /*                버튼 클릭시, "month 값"이 바뀌면, 버튼 기능 켜기                                   */
+  /* ─────────────────────────────────────── */
+  if ( month > 0 && month < 11 ) {
+        btnPrevMonth.disabled = false;
+        btnNextMonth.disabled = false;
+  }
+
+
+  /* ─────────────────────────────────────── */
+  /*                "span 태그"에 들어갈, 텍스트 설정하기                                                 */
+  /* ─────────────────────────────────────── */
+  spnCalYear.innerHTML = year;
+  spnCalMonth.innerHTML = arrMonths[ month ];
+
+
+  /* ─────────────────────────────────────── */
+  /*                2월에 대한, 윤년 설정하기                                                                    */
+  /* ─────────────────────────────────────── */
+  if (  ( (year % 4 == 0) && (year % 100 != 0) ) || (year % 400 == 0)  ) totalDays[1] = 29;
+  else totalDays[1] = 28;
+
+
+  /* ─────────────────────────────────────── */
+  /*                당월 첫째날(1일)에 대한, 요일값 구하기                                                 */
+  /* ─────────────────────────────────────── */
+  var
+  firstDate = new Date ( year, month, 1 ) ,
+  firstWeek = firstDate.getDay();
+
+
+  /* ─────────────────────────────────────── */
+  /*                당월 마지막 날의 날짜를 배열 "totalDays"에서 가져오기                         */
+  /* ─────────────────────────────────────── */
+  var lastDay = totalDays[ month ];
+
+
+  /* ─────────────────────────────────────── */
+  /*                새로운 "table"을 만들어서, "calTable"이라는 id를 붙여준 다음,                  */
+  /*                문서의 "myCalender"에 삽입하기                                                          */
+  /* ─────────────────────────────────────── */
+  var newTable = document.createElement ( "TABLE" );
+     newTable.setAttribute ( "id" , "calTable" );
+
+  myCalender.appendChild ( newTable );
+
+
+  /* ─────────────────────────────────────── */
+  /*                넨장할... ie 7 버전 이하에서는 "tbody" 태그가 반드시 있어야 함!!                */
+  /* ─────────────────────────────────────── */
+  var newTbody = document.createElement ( "TBODY" );
+       newTbody.setAttribute ( "id" , "calTbody" );
+
+  var calTable = document.getElementById ( "calTable" );
+       calTable.appendChild ( newTbody );
+
+
+  /* ─────────────────────────────────────── */
+  /*                달력에 필요한 "tr"을, 7개 만들어서                                                        */
+  /*                "calTbody"에 삽입하기                                                                        */
+  /* ─────────────────────────────────────── */
+  var calTbody = document.getElementById ( "calTbody" );
+
+  for ( var x = 1; x < 8; x++ ) {
+        newTr = document.createElement ( "TR" );
+        calTbody.appendChild ( newTr );
+  }
+
+
+  /* ─────────────────────────────────────── */
+  /*                달력에 필요한 "td"를, 49개 만들어서                                                      */
+  /*                각각의 "tr"에 삽입하기                                                                        */
+  /* ─────────────────────────────────────── */
+
+  var calTr = calTable.getElementsByTagName ( "tr" )[ 0 ];
+
+  for ( var y = 0; y < 49; y++ ) {
+        var newTd = document.createElement ( "TD" );
+             newTd.innerHTML = txt;
+
+
+        calTr = calTr.childNodes.length > 6 ? calTr.nextSibling : calTr; // "tr" 바꾸기
+        calTr.appendChild ( newTd );
+
+
+        /* ──────────────────────────────── */
+        /*        배열 "arrWeeks"에 있는, 각각의 값을, 첫번째 "tr"에 삽입하기        */
+        /* ──────────────────────────────── */
+        if ( y < 7 ) { newTd.innerHTML = arrWeeks[ y ];
+        newTd.setAttribute('class','week') }
+
+
+        /* ──────────────────────────────── */
+        /*        일요일을 빨간색으로 표시하기                                                 */
+        /* ──────────────────────────────── */
+        if ( newTd == calTr.firstChild ) newTd.style.color = "#f40000";
+  }
+
+
+    /* ─────────────────────────────────────── */
+  /*                숫자 넣기                                                                                          */
+  /* ─────────────────────────────────────── */
+
+  var calTd = calTable.getElementsByTagName ( "td" );
+  var newspan = document.createElement ( "SPAN" );
+
+  var firstPlace = 6 + firstWeek; // 숫자가 들어가게 될, 첫번째 위치 설정하기
+
+  for ( var z = 1; z < calTd.length; z++ ) {
+        var numCells = calTd[ firstPlace + z ];
+
+        if ( z <= lastDay ) {
+          numCells.innerHTML = z  + '<div id=d"' + z + '" style="float :left"><font size="2px"><img id="wimg' + z + '" ></div>' + '<div ><span id="wdesc' + z + '" ></div>'  + '<td><font color="blue">최고 <span id="wmin' + z + '" >' + '</span>℃</font><br/><font color="red">최저 <span id="wmax' + z + '" ></span>℃</font></font></td></div>'; }
+         // 각 달의 마지막 날짜까지만 숫자 집어넣기
+
+
+        /* ──────────────────────────────── */
+        /*        빈칸일 경우, 공백 글자를 하나 넣어주기                                    */
+        /* ──────────────────────────────── */
+        if ( calTd[ z ].hasChildNodes() == false ) calTd[ z ].innerHTML = txt;
+
+
+        /* ──────────────────────────────── */
+        /*        오늘 날짜가 들어간 칸을 표시해주기 (배경색을 넣음).                 */
+        /* ──────────────────────────────── */
+        var today = day > lastDay ? 1 : day;
+
+        if ( calTd[ z ].innerHTML == today )  calTd[ z ].style.backgroundColor = "#bad2ea";
+
+
+        /* ──────────────────────────────── */
+        /*        아래쪽, 비어있는 "TD"의 테두리 없애기                                         */
+        /*        숫자가 아닌, 공백 글자가 들어있는 칸을 감추는 효과.                         */
+        /* ──────────────────────────────── */
+        var calRows = calTd[ z ].parentNode;
+
+        if ( calRows != calTable.rows[ 1 ] )
+                if ( calRows.cells[ 0 ].innerHTML == txt ) calRows.className = "blankLine";
+
+}
+
+
+}
+
+makeCalender();
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/*                                      각각의 버튼 클릭시, 현재 달력을 삭제할 함수                                                  */
+/*                                      "parent"가 "childNode"를 가지고 있는 동안,                                                   */
+/*                                      "firstChild"를 잇따라 삭제해서, "childNode"를 모두 지우기                                */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+function deleteChildren ( parent ) {
+	 while ( parent.hasChildNodes() )    parent.removeChild ( parent.firstChild );
+}
+
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/*                                                                각각의 버튼에서, 실행될 함수                                             */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+btnPrevYear.onclick  = function()  { prevYear() ;load();  };
+btnNextYear.onclick  = function()  { nextYear() ;load();  };
+btnPrevMonth.onclick = function() { prevMonth() ;load();  };
+btnNextMonth.onclick = function() { nextMonth() ;load();  };
+
+
+function prevYear() {
+	 myCalender = myCalender;
+	 year -=1;
+
+	 // "deleteChildren" 함수를 실행한 후, "makeCalender" 함수 다시 실행하기
+	 deleteChildren ( myCalender );
+	 makeCalender();
+}
+
+
+function nextYear() {
+	 myCalender = myCalender;
+	 year +=1;
+
+	 deleteChildren ( myCalender );
+	 makeCalender();
+}
+
+
+function prevMonth() {
+	 myCalender = myCalender;
+	 month -=1;
+
+	 // "month"의 값이 음수일 경우, 버튼 기능을 차단하기
+	 if ( month < 0 ) {
+		 btnPrevMonth.disabled = true;
+		 month +=1;
+		 return month;
+	 }
+
+	 deleteChildren ( myCalender );
+	 makeCalender();
+}
+
+
+function nextMonth() {
+	 myCalender = myCalender;
+	 month +=1;
+
+	 // "month"의 값이 11을 넘어갈 경우, 버튼 기능을 차단하기
+	 if (month > 11) {
+		 btnNextMonth.disabled = true;
+		 month -=1;
+		 return month;
+	 }
+
+	 deleteChildren ( myCalender );
+	 makeCalender();
+}
+
+var forecast = [];
+var callbackFunction = function(data) {
+    forecast = data.query.results.channel;
+
+     load();
+
+}
+
+
+
+function load() {
+
+        var name1 = "";
+
+        for( var i in forecast ) {
+             var a = new Date(forecast[i].item.forecast.date).getMonth()
+             var b = new Date(forecast[i].item.forecast.date).getFullYear()
+             var t = new Date(forecast[i].item.forecast.date).getDate()
+            if( a == month && b == year){
+                document.getElementById('wmin'+t).innerHTML =  forecast[i].item.forecast.low
+                document.getElementById('wmax'+t).innerHTML =  forecast[i].item.forecast.high
+                document.getElementById('wdesc'+t).innerHTML = forecast[i].item.forecast.text
+                for( j in names ) {
+                    if( forecast[i].item.forecast.text == j ) {
+                        document.getElementById('wdesc' + t).innerHTML = names[j]
+                    }
+                }
+                var img = forecast[i].item.forecast.text.toLowerCase().replace(' ','')
+                var imgURL = "/static/image/weather/"+img+".png"
+                $("#wimg"+ t).attr("src", imgURL);
+            }
+        }
+}
+</script>
+<script src="https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where u='c' and woeid in (select woeid from geo.places(1) where text='seoul')&format=json&callback=callbackFunction"></script>
+
+
+
+
+{% endblock %}

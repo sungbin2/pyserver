@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD><IMG src="/image/s_icon.gif"> 본사코드 <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1hc imeEng" maxLength=4 size=4 name=hd_shop_cd></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 본사명 <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1h imeHan" size=14 name=hd_shop_nm></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 매장코드 <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1hc imeEng" maxLength=6 size=6 name=shop_cd></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 매장명 <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1h imeHan" size=14 name=shop_nm></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 용도
+ <SPAN id=divAjax_0_s_shop_pgm_type_fg style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(0,0); " id=SelectObj_0_0 name=s_shop_pgm_type_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>일반</OPTION> <OPTION value=1>외식</OPTION> <OPTION value=2>의류</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 상태
+ <SPAN id=divAjax_1_s_shop_stat_fg style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(1,0); " id=SelectObj_1_0 name=s_shop_stat_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>오픈</OPTION> <OPTION value=2>폐점</OPTION> <OPTION value=4>출고보류</OPTION> <OPTION value=9>데모</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> 검색줄수 <INPUT class=input1hr onkeydown="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" size=4 value=500 name=page_size></TD>
+<TD width=10></TD>
+<TD>
+<TABLE onclick="document.form1.page_no.value='1'; doAction('search','1'); fnResize();" style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD><IMG id=btn_l_bg src="/image/btn_black_l_bg.gif"></TD>
+<TD background=/image/btn_black_c_bg.gif><IMG src="/image/blank.gif" width=4 height=13><FONT color=#ffffff>조회</FONT><IMG src="/image/blank.gif" width=4 height=13></TD>
+<TD><IMG id=btn_r_bg src="/image/btn_black_r_bg.gif"></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD align=left><IMG src="/image/s_icon.gif"> 로컬POS여부 <SELECT name=s_LOCAL_POS_YN> <OPTION selected value="">-전체-</OPTION> <OPTION value=Y>로컬</OPTION> <OPTION value=N>ASP</OPTION></SELECT></TD>
+<TD align=right>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick=alert(mySheet1.Version); style="CURSOR: hand; COLOR: blue">IBSheet 버젼</FONT></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick="doDown('manual_virtual_login.pdf');" style="CURSOR: hand; COLOR: blue">IE 보안설정 매뉴얼</FONT></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick=alert(navigator.appVersion) style="CURSOR: hand; COLOR: blue">navigator.appVersion</FONT></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick=ie_version_check(true) style="CURSOR: hand; COLOR: blue">IE버젼확인</FONT></TD>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick=alert(navigator.platform); style="CURSOR: hand; COLOR: blue">IE 버스</FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE></FORM>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE id=TableNm1 height=550 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0 name="TableNm1">
+<TBODY>
+<TR bgColor=#ffffff vAlign=top>
+<TD height="100%" width="100%">
+  <div data-ax5grid="first-grid" data-ax5grid-config="{
+                                  header: { align: 'center' },
+                                  page: { display: false  }
+                            }" style="height: 100%;"></div>
+</TD></TR></TBODY></TABLE>
+
+
+
+ <script>
+var _data;
+var data0 = [];
+var gridList = [];
+
+
+$.getJSON("{{ url_for('_info_store_all') }}", function (json) {
+    _data = json;
+}).done(function () {
+
+     <!--document.getElementsByName('s')[0].value = _data.s-->
+    console.log(_data)
+
+    for (i in _data) data0.push( _data[i] )
+
+    load()
+
+})
+
+
+<!--$(function () {-->
+
+   <!--$('#btn_modify').click(function () {-->
+       <!--onModify("{{ url_for('_info_store') }}", store_id);-->
+   <!--});-->
+<!--});-->
+
+function load() {
+    firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "no", label: "No.", width: 70, align: "center" },
+                        {key: "본사코드", label: "본사코드", width: 70, align: "center" },
+                        {key: "본사명", label: "본사명", width: 70, align: "center" },
+                        {key: "매장코드", label: "매장코드", width: 70, align: "center" },
+                        {key: "매장명", label: "매장명", width: 80, align: "center",formatter: function(){
+                            return '<a onClick="loaditem('+this.item.매장코드+')"'+'>' + this.value + '</a>';
+                        }},
+                        {key: "로컬POS여부", label: "로컬POS여부", width: 70, align: "center" },
+                        {key: "용도구분", label: "용도", width: 70, align: "center" },
+                        {key: "상태구분", label: "상태", width: 70, align: "center" },
+                        {key: "대표자명", label: "대표자명", width: 70, align: "center" },
+                        {key: "전화번호", label: "전화번호", width: 70, align: "center" },
+                        {key: "휴대전화", label: "휴대전화", width: 70, align: "center" },
+                        {key: "관리업체명", label: "관리업체", width: 70, align: "center" },
+                        {key: "시스템오픈", label: "시스템오픈", width: 70, align: "center" },
+                        {key: "시스템폐점", label: "시스템폐점", width: 70, align: "center" },
+
+                    ]
+            });
+
+    n=0;
+    for ( i in data0 ) {
+        if ( gridList[n] == undefined ) gridList[n] = { 'i' : '' , '매장명' : '' , '용도' : '' , '상태' : '' , '매장수' : '' , '등록자' : '' , '등록일시' : '' , }
+
+        gridList[n]['매장코드'] = data0[i]['s']
+        gridList[n]['i'] = i
+        gridList[n]['no'] = n+1
+        gridList[n]['매장명'] = data0[i]['가게명']
+        gridList[n]['용도구분'] = '외식'
+        gridList[n]['상태구분'] = '오픈'
+        gridList[n]['매장수'] = 1
+        gridList[n]['등록자'] = 'hdpos'
+        gridList[n]['등록일시'] = ''
+
+    n++
+
+    }
+
+
+    firstGrid.setData(gridList);
+
+}
+
+
+function loaditem(item) {
+
+           console.log(item)
+
+           window.open("http://asp.van.or.kr:8081/storelogin/"+item,"tms","width=1024,height=768,toolbar=no,menubar=no,resizable");
+
+
+
+
+}
+
+</script>
+
+
+
+
+{% endblock %}

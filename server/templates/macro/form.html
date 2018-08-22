@@ -1,0 +1,225 @@
+{% macro title_block(header,subheader,icon) -%}
+    <h2 class="ui header">
+        <i class="{{ icon }} icon"></i>
+        <div class="content">
+            {{ header }}
+            <div class="sub header">{{ subheader }}</div>
+        </div>
+    </h2>
+
+    <div class="ui grid">
+        <div class="fifteen wide column">
+            {{ caller() }}
+        </div>
+    </div>
+    <br/>
+    <br/>
+{%- endmacro %}
+
+
+
+{% macro listing() -%}
+    <div class="ui form">
+        {% for each in form_types %}
+            {{ input(each['tag'],each['name']) }}
+        {% endfor %}
+    </div>
+{%- endmacro %}
+
+
+{% macro listing_edit() -%}
+    <div class="ui form">
+        <input type="hidden" name="no" value="{{ item["no"] if item["no"] else '' }}">
+
+        {% for each in form_types %}
+            {% if each['type']=='divider' %}
+                {{ divider(each['name']) }}
+
+            {% elif each['type']=='input' %}
+                {{ input(each['tag'],each['name'],writable=True) }}
+
+            {% elif each['type']=='checkbox' %}
+                {{ checkbox(each['tag'],each['name'],writable=True) }}
+
+            {% elif each['type']=='radio' %}
+                {{ radio(each['tag'],each['name'],each['l'],writable=True) }}
+
+            {% elif each['type']=='select' %}
+                {{ select(each['tag'],each['name'],each['l'],writable=True) }}
+
+            {% elif each['type']=='date' %}
+                {{ datepicker(each['tag'],each['name'],writable=True) }}
+
+            {% else %}
+                UNDEFINED VALUE!!! <br/>
+                UNDEFINED VALUE!!! <br/>
+                UNDEFINED VALUE!!! <br/>
+
+            {% endif %}
+        {% endfor %}
+    </div>
+{%- endmacro %}
+
+
+
+
+{% macro divider(title)-%}
+    <br/>
+    <br/>
+    <h2 class="ui horizontal divider header">
+        {{ title }}
+    </h2>
+    <br/>
+{%-endmacro %}
+
+
+
+
+
+
+{% macro fluid_labeled_input(title)-%}
+    <div class="ui fluid labeled input" style="margin: 2px">
+        <div class="ui label" style="width :240px; border-right:1px solid"> {{ title }} </div>
+        {{ caller() }}
+    </div>
+{%-endmacro %}
+
+
+{% macro input(tag,name,writable=False)-%}
+    {% call fluid_labeled_input(tag if tag else name) %}
+        <input type="text" name="{{ name }}" value="{{ item[name] if item[name] else '' }}"
+                {{ '' if writable else 'readonly' }} >
+    {% endcall %}
+{%-endmacro %}
+
+
+{% macro datepicker(tag,name,writable=False)-%}
+    {% call fluid_labeled_input(tag if tag else name) %}
+        <input class="datepickers" type="text" name="{{ name }}" value="{{ item[name] if item[name] else '' }}"
+                {{ '' if writable else 'readonly' }} >
+    {% endcall %}
+{%-endmacro %}
+
+
+
+
+
+
+{% macro checkbox(tag,name,writable=False)-%}
+    {% call fluid_labeled_input(tag if tag else name) %}
+        <div class="ui fluid selection dropdown"
+             style="border-left: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; padding-top: 9.5px;padding-bottom: 9.5px;">
+            <div class="inline fields" style="margin: 0px;">
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="hidden" name="{{ name }}" value="{{ item[name] if item[name] else '' }}">
+                        <input type="checkbox" name="checkbox_{{ name }}"
+                                {{ 'checked' if item[name]=="O" }} tabindex="0" class="hidden">
+                        <label>선택</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endcall %}
+{%- endmacro %}
+
+
+
+
+
+{% macro radio(tag,name,l,writable=False)-%}
+    {% call fluid_labeled_input(tag if tag else name) %}
+        <div class="ui fluid selection dropdown"
+             style="border-left: 0px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; padding-top: 9.5px;padding-bottom: 9.5px;">
+            <div class="inline fields" style="margin: 0px;">
+                {% for each_l in l %}
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="{{ name }}"
+                                   value="{{ each_l }}" {{ 'checked' if item[name]==each_l }}
+                                   tabindex="0" class="hidden">
+                            <label>{{ each_l }}</label>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endcall %}
+{%- endmacro %}
+
+
+
+
+{% macro select(tag,name,l,writable=False)-%}
+    {% call fluid_labeled_input(tag if tag else name) %}
+        <div class="ui fluid selection dropdown"
+             style="border-left: 0px;border-top-left-radius: 0px;border-bottom-left-radius: 0px;">
+            <input type="hidden" name="{{ name }}" value="{{ item[name] if item[name] else l[0] }}">
+            <i class="dropdown icon"></i>
+            <div class="default text">{{ item[name] if item[name] else l[0] }}</div>
+            <div class="menu">
+                {% for each_l in l %}
+                    <div class="item" data-value="{{ each_l }}">{{ each_l }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endcall %}
+{%- endmacro %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% macro modal_modify(header,url) -%}
+    <br/>
+    <button id="btn_modify" class="ui right floated button">수정</button>
+    <br/>
+    <div id="modal_modify" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            {{ header }}
+        </div>
+        <div class="content">
+            <form id="form_modify" class="ui form" action="" method="post">
+                {{ listing_edit() }}
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui positive right labeled icon button">
+                수정
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+        });
+
+        $('#btn_modify').click(function () {
+            $('#modal_modify')
+                .modal({
+                    onApprove: function () {
+                        onModify("{{url}}", null);
+                    }
+                })
+                .modal('setting', {autofocus: false})
+                .modal('show');
+        });
+    </script>
+{%- endmacro %}
+

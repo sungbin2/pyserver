@@ -1,0 +1,351 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<table width='100%' >
+    <tr>
+        <th style="color:white; background-color: #347efd;">
+         사원정보관리
+        </th>
+    </tr>
+</table>
+<div>
+
+<table border='0' cellpadding='0' cellspacing='0'>
+    <tr>
+        <td><img src='{{ url_for('static', filename='image/s_icon.gif') }}'> 사원번호 <input type='text' name='EMP_NO' value='' size='6'  maxlength='4' class='input1hc imeEng'></td>
+        <td width='10'></td>
+        <td><img src='{{ url_for('static', filename='image/s_icon.gif') }}'> 사원명   <input type='text' name='EMP_NM' value='' size='14' class='input1h imeHan'></td>
+        <td width='10'></td>
+        <td><img src='{{ url_for('static', filename='image/s_icon.gif') }}'> 사원아이디   <input type='text' name='USER_ID' value='' size='14' maxlength='12' class='input1hc imeEng' onKeydown="if(event.keyCode == 13) { doAction('search', '1'); }"></td>
+        <td width='10'></td>
+        <td><img src='{{ url_for('static', filename='image/s_icon.gif') }}'> 재직구분
+   </td>
+        <td width='10'><select name='재직상태'>
+                <option value='전체' selected>전체</option>
+                <option value='재직'>재직</option>
+                <option value='퇴직'>퇴직</option>
+            </select></td>
+        <td>
+        <button id="list" style="background-color :#4e4765;"> <font color='#ffffff'>조회</font>   </button><button id="excel" style="background-color :#4e4765;"><font color='#ffffff'>엑셀</font>  </button></td>
+    </tr>
+</table>
+
+
+</div>
+<div style="float:left; margin-left:0.5rem; margin-top:1rem;">
+
+<table style="width:290px; height:200px">
+    <tr><td>
+        <div data-ax5grid="first-grid" data-ax5grid-config="{
+                            header: { align: 'center' },
+                            page: { display: false  }
+                        }" style="height: 100%;"></div>
+
+
+    </td></tr>
+
+</table>
+
+
+
+</div>
+
+<div style="width: 69%;
+    float: right; margin-right:1rem">
+
+
+<table class="table classic" style="float:right;" height='28' border='0' cellpadding='0' cellspacing='0'>
+    <thead >
+    <tr ><th align="right">
+ <button style="background-color :#4e4765;" onclick="newrow()"> <font color='#ffffff'>신규등록</font>   </button><button style="background-color:#4e4765;" id="btn_modify1" onclick="save()"> <font color='#ffffff'>저장</font>  </button>
+    </tr></th>
+    </thead>
+</table>
+
+
+<form  id="form_modify" method='post'>
+    <input type='hidden' name='a' value=''>
+    <input type='hidden' name='i' value=''>
+    <input type='hidden' name='s' value=''>
+     <input type='hidden' name='isdel' value='X'>
+
+
+    <table width='100%' border='0' cellpadding='2' cellspacing='1' bgcolor='#CCD6BC'>
+        <tr>
+            <td bgcolor='#EEF1E8' width='15%' align='right'><font color=red>*</font>사원번호/명</td>
+            <td bgcolor='#E6EBDE' width='30%'>
+                <input type='text' name='직원번호' value='' size='4'  maxlength='4'  class='input1hc imeEng'>
+                <input type='text' name='직원명' value='' size='12' maxlength='12' class='input1h imeHan'>
+            </td>
+            <td bgcolor='#EEF1E8' width='15%' align='right'><font color=red>*</font>포스비밀번호</td>
+            <td bgcolor='#E6EBDE' width='40%'>
+
+        <span id='spanEmpPassInput'>
+
+        <input type='password' name='직원암호'  value='' size='10' maxlength='10' class='input1h imeEng'>
+        확인
+        <input type='password' name='직원암호2' value='' size='10' maxlength='10' class='input1h imeEng'>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>사원구분</td>
+            <td bgcolor='#E6EBDE'>
+               </td>
+            <td bgcolor='#EEF1E8' align='right'>사원직책</td>
+            <td bgcolor='#E6EBDE'>
+
+                &nbsp;<input type='button' onclick="fnCodeRegWin('203','EMP_CLASS_CD');" value='사원직책' class='button1'></td>
+        </tr>
+        <tr style='display:none;'>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>포스팅가능여부</td>
+            <td bgcolor='#E6EBDE'><select name='POSTING_YN'  >
+                <option value='N'>No</option>
+                <option value='Y' selected>Yes</option>
+            </select></td>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>주문가능여부</td>
+            <td bgcolor='#E6EBDE'><select name='ORDER_FG'  >
+                <option value='N'>No</option>
+                <option value='Y' selected>Yes</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>웹사용여부</td>
+            <td bgcolor='#E6EBDE'><select name='WEB_USE_YN' onchange="fnChangeWebUse()" >
+                <option value='Y' selected>Yes</option>
+                <option value='N'>No</option>
+            </select></td>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>퇴직구분</td>
+            <td bgcolor='#E6EBDE'><select name='재직상태' onchange="fnChangeUser(this.value)" >
+                <option value='재직' selected>재직</option>
+                <option value='퇴직'>퇴직</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'>웹사용자ID</td>
+            <td bgcolor='#E6EBDE'>
+                <input type='text' name='ori_USER_ID' value='' size='12' maxlength='12' class='input1hc imeEng' onkeydown="if(event.keyCode == 13) { fnDupCheck(); }">
+                <input type='button' value='중복검사' class='button1' onclick='fnDupCheck();'>
+            </td>
+            <td bgcolor='#EEF1E8' align='right'>비밀번호</td>
+            <td bgcolor='#E6EBDE'>
+
+        <span id='spanUserPassInput'>
+
+        <input type='password' name='ori_USER_PWD'  value='' size='10' maxlength='10' class='input1h imeEng'>
+        확인
+        <input type='password' name='ori_USER_PWD2' value='' size='10' maxlength='10' class='input1h imeEng'>
+        </span>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'>사원카드번호</td>
+            <td bgcolor='#E6EBDE'><input type='text' name='EMP_CARD_NO' value='' size='20' maxlength='20' class='input1 imeEng'></td>
+            <td bgcolor='#EEF1E8' align='right'>전화번호</td>
+            <td bgcolor='#E6EBDE'>
+                <input   type='text' name='TEL_NO1' value='' class='input1c imeEng' size='3' maxlength='3'>
+                - <input type='text' name='TEL_NO2' value='' class='input1c imeEng' size='4' maxlength='4'>
+                - <input type='text' name='TEL_NO3' value='' class='input1c imeEng' size='4' maxlength='4'>
+            </td>
+        </tr>
+        <!-- HP -->
+        <tr>
+            <td bgcolor='#EEF1E8' width='15%' align='right'>핸드폰번호</td>
+            <td bgcolor='#E6EBDE' width='85%' colspan='3'>
+                <input   type='text' name='HP_NO1' value='' class='input1c imeEng' size='3' maxlength='3'>
+                - <input type='text' name='HP_NO2' value='' class='input1c imeEng' size='4' maxlength='4'>
+                - <input type='text' name='HP_NO3' value='' class='input1c imeEng' size='4' maxlength='4'>
+        </tr>
+        <!-- HP -->
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'>주소</td>
+            <td bgcolor='#E6EBDE' colspan='3'>
+                <input          type='text'    name='POST_NO'       value=''  class='read1hc' size='5'  maxlength='6'  readonly>
+                <input          type='button'  value='우편번호찾기' class='button1'       onclick="fnAddrWin('form1','POST_NO','ADDR','ADDR_DTL');"><br>
+                <input          type='text'    name='ADDR'          value=''     class='read1h'  size='35' maxlength='60' readonly>
+                상세주소 <input type='text'    name='ADDR_DTL'      value='' class='input1h imeHan' size='34' maxlength='60' >
+            </td>
+        </tr>
+
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>SMS수신여부</td>
+            <td bgcolor='#E6EBDE' colspan='3'><select name='SMS_RECV_YN'  >
+                <option value='N'>No</option>
+                <option value='Y'>Yes</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' width='15%' align='right'>비고</td>
+            <td bgcolor='#E6EBDE' width='85%' colspan='3' height="50px"><textarea rows="2" cols="80" name='EMP_REMARK' class='input1 imeHan'></textarea></td>
+        </tr>
+        <tr>
+            <td bgcolor='#EEF1E8' align='right'><font color=red>*</font>초기화면항목</td>
+            <td bgcolor='#E6EBDE' colspan='3'><input type='checkbox' name='toppage_show' value='100' checked>매출분석 &nbsp; <input type='checkbox' name='toppage_show' value='200' checked>기타정보 &nbsp; <input type='hidden' name='TOPPAGE_NO_SHOW' value=''></td>
+        </tr>
+    </table>
+
+</td>
+</tr>
+</table>
+
+</form>
+
+</div>
+
+
+
+
+
+
+<script>
+
+
+
+
+var _data
+var gridList = [];
+var _url = "{{ url_for('_info_staff1') }}";
+var id = {{ store_id }};
+var firstGrid
+
+function load() {
+    $.getJSON("{{ url_for('_info_staff1') }}/"+"{{ store_id }}", function (json) {
+        _data = json;
+    }).done(function () {
+
+
+
+
+
+
+        firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "사원번호", label: "사원번호", width: 80, align: "center",formatter: function(){
+                            return '<a onClick=loaditem('+this.value+');>' + this.value + '</a>';
+                        }},
+                        {key: "사원명", label: "사원명", width: 60, align: "center" },
+                        {key: "웹사용자ID", label: "웹사용자ID", width: 80, align: "center" },
+                        {key: "퇴직구분", label: "퇴직구분", width: 60, align: "center" },
+                    ]
+        });
+
+
+        for ( i  in  _data ) {
+            if ( gridList[i] == undefined ) { gridList[i] = {} }
+            gridList[i]['사원번호'] = _data[i]['직원번호']
+            gridList[i]['사원명'] = _data[i]['직원명']
+            gridList[i]['웹사용자ID'] = _data[i]['직원번호']
+            gridList[i]['퇴직구분'] = _data[i]['재직상태']
+        }
+        firstGrid.setData(gridList);
+
+    })
+}
+
+load()
+
+
+function loaditem(item) {
+
+    for ( i in _data) {
+        if (item == _data[i]['직원번호'] ) {
+
+            $('input[name="i"]').val(_data[i]['i'])
+            $('input[name="s"]').val(_data[i]['s'])
+            $('input[name="직원번호"]').val(_data[i]['직원번호'])
+            $('input[name="직원명"]').val(_data[i]['직원명'])
+            $('input[name="직원암호"]').val(_data[i]['직원암호'])
+            $('input[name="직원암호2"]').val(_data[i]['직원암호'])
+
+
+        }
+    }
+}
+
+
+function newrow() {
+    $('input[name="i"]').val('신규')
+    $('input[name="s"]').val(_data[i]['s'])
+    $('input[name="직원번호"]').val('')
+    $('input[name="직원명"]').val('')
+    $('input[name="직원암호"]').val('')
+    $('input[name="직원암호2"]').val('')
+
+}
+
+function fnChangeUser(v) {
+    console.log(v)
+    if ( v == '퇴직' ) {
+        $('input[name="isdel"]').val('O')
+    }
+    else {
+
+        $('input[name="isdel"]').val('X')
+    }
+
+}
+
+
+
+
+function save() {
+    if ($('input[name="ㅑ"]').val() == null) {return 0;}
+    for ( i in _data) {
+        if ( $('input[name="i"]').val() == '신규' && $('input[name="직원번호"]').val() == _data[i]['직원번호'] ) {
+
+            return alert("직원번호가 중복되었습니다.");
+        }
+    }
+    if ($('input[name="직원암호"]').val() != $('input[name="직원암호2"]').val()) {return alert("포스비밀번호가 다릅니다.");}
+
+
+
+
+    var input = $('#form_modify').serialize()
+
+    console.log(input)
+
+    $.ajax({
+        method: "POST",
+        url: (_url + '/' + id ),
+        data: JSON.stringify(input)
+    })
+        .done(function (msg) {
+            if (msg == 'modified'){
+
+                console.log('modified');
+                load()
+                }
+
+    });
+
+}
+
+$('#list').on('click', function () {
+
+     gridList = [];
+
+     for ( i  in  _data ) {
+
+            if ( $('input[name="EMP_NO"]').val() == _data[i]['직원번호'] || $('input[name="EMP_NM"]').val() == _data[i]['직원명'] || $('input[name="USER_ID"]').val() == _data[i]['직원번호'] || $('select[name="재직상태"]').val() == _data[i]['재직상태']) {
+                if ( gridList[i] == undefined ) { gridList[i] = {} }
+                gridList[i]['사원번호'] = _data[i]['직원번호']
+                gridList[i]['사원명'] = _data[i]['직원명']
+                gridList[i]['웹사용자ID'] = _data[i]['직원번호']
+                gridList[i]['퇴직구분'] = _data[i]['재직상태']
+            }else if ( $('input[name="EMP_NO"]').val() == '' && $('input[name="EMP_NM"]').val() == '' && $('input[name="USER_ID"]').val() == '' && $('select[name="재직상태"]').val() == '전체' ) load();
+        }
+
+     console.log(gridList)
+     firstGrid.setData(gridList);
+
+});
+
+</script>
+
+
+
+
+{% endblock %}

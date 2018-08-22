@@ -1,0 +1,89 @@
+{% from 'macro/form.html' import listing_edit with context %}
+{% from 'macro/table_list.html' import table_list with context %}
+{% from 'macro/table_modal.html' import table_modal with context %}
+
+
+{% macro tabling(header,url,orderable=False) -%}
+
+    {{ table_list(header,url,orderable) }}
+    {{ table_modal(header,url,orderable) }}
+
+{%- endmacro %}
+
+
+
+
+
+
+
+
+{% macro THEAD(dic,orderable=False)-%}
+    <table id="juitbl" class=" ui very compact striped orange table ">
+        <thead>
+        <tr>
+            {% for each in dic %}
+                <th style="{% if each['width'] %}width:{{ each['width'] }}px;{% endif %}">
+                    {{ each['tag'] if each['tag'] else each['name'] }}
+                </th>
+            {% endfor %}
+            <th style="width:{{ '80' if orderable else '80' }}px;">액션</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+{%-endmacro %}
+{% macro TBODY(dic,orderable=False)-%}
+    <script data-jui="#juitbl" data-tpl="row" type="text/template">
+        <tr>
+            {% for each in dic %}
+                <td style="{% if each['width'] %}width:{{ each['width'] }}px;{% endif %}"><!={{ each['name'] }}!></td>
+            {% endfor %}
+            <td>
+                {% if orderable %}
+                    <button class=" ui mini basic icon button 위로 " data-idx="<!=idx!>">
+                        <i class=" arrow up icon "></i>
+                    </button>
+                    <button class=" ui mini basic icon button 아래로 " data-idx="<!=idx!>">
+                        <i class=" arrow down icon "></i>
+                    </button>
+                {% endif %}
+                <button class=" ui mini basic icon button 수정 " data-idx="<!=idx!>">
+                    <i class=" edit icon "></i>
+                </button>
+                <button class=" ui mini basic icon button 삭제 " data-idx="<!=idx!>">
+                    <i class=" eraser icon "></i>
+                </button>
+            </td>
+        </tr>
+    </script>
+{%-endmacro %}
+{% macro GETLIST(url)-%}
+    <script>
+        function juitbl_update() {
+            var for_show = [];
+            for (var i = 0; i < ichae_net.juitbl_data.length; i++) {
+                if (ichae_net.juitbl_data[i].enabled) {
+                    ichae_net.juitbl_data[i].idx = i;
+                    for_show.push(ichae_net.juitbl_data[i]);
+                }
+            }
+            ichae_net.juitbl.update(for_show);
+            var juitbl_td = $("#juitbl td");
+            for (var i = 0; i < juitbl_td.length; i++) {
+                if (juitbl_td[i].innerHTML == "O")
+                    juitbl_td[i].innerHTML = '<i class="green check circle icon"></i>';
+                else if (juitbl_td[i].innerHTML == "X")
+                    juitbl_td[i].innerHTML = '<i class="red ban icon"></i>';
+            }
+        }
+
+        jui.ready(["grid.table"], function (table) {
+            ichae_net.juitbl = table("#juitbl");
+            $.getJSON("{{url}}", {format: 'json'}, function (json) {
+                ichae_net.juitbl_data = json;
+            }).done(function () {
+                juitbl_update();
+            });
+        });
+    </script>
+{%-endmacro %}

@@ -1,0 +1,515 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD align=left>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD> 본사코드 <INPUT  maxLength=4 size=4 name='본사코드'></TD>
+<TD width=5></TD>
+<TD> 본사명 <INPUT  maxLength=30 size=14 name='본사명'></TD>
+<TD width=5></TD>
+<TD> 매장코드 <INPUT  maxLength=6 size=6 name='매장코드'></TD>
+<TD width=5></TD>
+<TD> 매장명 <INPUT  maxLength=30 size=14 name='매장명'></TD>
+<TD width=5></TD>
+<TD> 로컬POS여부 <SELECT name=s_local_pos_yn> <OPTION selected value="">-전체-</OPTION> <OPTION value=Y>로컬</OPTION> <OPTION value=N>ASP</OPTION></SELECT></TD>
+<TD width=5></TD>
+<TD> 검색줄수 <INPUT  size=4 value=100 name='검색줄수'></TD>
+<TD width=5></TD>
+<TD>
+<TABLE  style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD></TD>
+<TD ><FONT color=#ffffff>조회</FONT></TD>
+<TD></TD></TR></TBODY></TABLE></TD>
+<TD width=10></TD>
+<TD></TD>
+<TD width=10></TD>
+<TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD> 사업자번호 <INPUT  maxLength=10 size=10 name=biz_no></TD>
+<TD width=6></TD>
+<TD> 용도
+ <SELECT onchange="ajax_nextload(0,0); " id=SelectObj_0_0 name=s_shop_pgm_type_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>일반</OPTION> <OPTION value=1>외식</OPTION> <OPTION value=2>의류</OPTION></SELECT></SPAN>
+</TD>
+<TD width=6></TD>
+<TD> 상태
+ <SELECT onchange="ajax_nextload(1,0); " id=SelectObj_1_0 name=s_shop_stat_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>오픈</OPTION> <OPTION value=2>폐점</OPTION> <OPTION value=4>출고보류</OPTION> <OPTION value=9>데모</OPTION></SELECT></SPAN>
+
+</TD>
+<TD width=6></TD>
+<TD> 매장구분 <SELECT name=s_shop_franchise_yn> <OPTION selected value="">-전체-</OPTION> <OPTION value=Y>프렌차이즈</OPTION> <OPTION value=N>단독매장</OPTION></SELECT></TD>
+<TD width=6></TD>
+<TD> 등록일자구분 <SELECT onchange=fnIUDateChange(this.value); name=s_ins_upd_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=I>등록일</OPTION> <OPTION value=U>수정일</OPTION></SELECT></TD>
+<TD width=6></TD>
+<TD><FONT style="COLOR: red">* 메뉴권한은 매장환경설정에서 설정 가능합니다.</FONT></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE></FORM>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD align=right>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD> 설치잔여건수(ASP/로컬) : 0 / 0</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR vAlign=top>
+<TD width="35%" noWrap>
+<TABLE height="530px" cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0 name="">
+<TBODY>
+<TR bgColor=#ffffff vAlign=top>
+<TD height="100%" width="100%">
+   <div data-ax5grid="first-grid" data-ax5grid-config="{
+                           header: { align: 'center' },
+                           page: { display: false  }
+                       }" style="height: 100%;"></div>
+</TD></TR></TBODY></TABLE>
+<TD width=6 noWrap></TD>
+<TD vAlign=top noWrap>
+<TABLE id=TableNm1 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0>
+<TBODY>
+<TR bgColor=white>
+<TD>
+<table class="table classic" style="float:right;" height='28' border='0' cellpadding='0' cellspacing='0'>
+    <thead >
+    <tr ><th align="right">
+ <button style="background-color :#4e4765;" onclick="newrow()"> <font color='#ffffff'>신규등록</font>   </button><button style="background-color:#4e4765;" id="btn_modify1" onclick="save()"> <font color='#ffffff'>저장</font>  </button>
+    </tr></th>
+    </thead>
+</table>
+
+<form  id="form_modify" method='post'>
+    <input type='hidden' name='a' value=''>
+    <input type='hidden' name='i' value=''>
+     <input type='hidden' name='isdel' value='X'>
+
+<TABLE cellSpacing=1 cellPadding=1 width="100%" bgColor=#ccd6bc border=0><COLGROUP>
+<COL style="BACKGROUND-COLOR: #eef1e8">
+<COL style="BACKGROUND-COLOR: #e6ebde">
+<COL style="BACKGROUND-COLOR: #eef1e8">
+<COL style="BACKGROUND-COLOR: #e6ebde"></COLGROUP>
+<TBODY>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>매장코드</TD>
+<TD width="35%" colSpan=3><input type='hidden' name='s' value=''><INPUT class=read1hc readOnly maxLength=6 size=6 value='신규' name='s1'> </TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>매장명</TD>
+<TD width="35%"><INPUT class="input1 imeHan" maxLength=30 size=25 value='' name='가게명'></TD>
+<TD width="15%" align=right><FONT color=red>*</FONT>대표자명</TD>
+<TD width="35%"><INPUT class="input1 imeHan" maxLength=12 size=12 value='' name='대표자'></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>매장형태</TD>
+<TD width="35%"><SELECT onchange="" name='가맹여부'><OPTION selected value='단독점포'>[0] 단독점포</OPTION></SELECT></TD>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">매장그룹</TD>
+<TD width="35%"><SELECT onchange="" name=SHOP_GROUP_CD><OPTION selected value=000>[000] 기본</OPTION></SELECT></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>사업자번호</TD>
+<TD width="35%"><INPUT id="storecode1" class=input1c maxLength=12 size=12 value='' name='사업자번호' >  <INPUT id="storecode" onclick=fnDuplicationCheck(); class=button1 type=button value=중복체크 style="display:inline;"> </TD>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">상호명</TD>
+<TD width="35%"><INPUT class="input1 imeHan" maxLength=30 size=30 value='' name='매장명'></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>업태</TD>
+<TD width="35%"><INPUT class="input1 imeHan" maxLength=30 size=30 value='' name='업태'></TD>
+<TD width="15%" align=right><FONT color=red>*</FONT>종목</TD>
+<TD width="35%"><INPUT class="input1 imeHan" maxLength=30 size=30 value='' name='업종'></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>전화번호</TD>
+<TD width="35%"><INPUT class=input1c maxLength=14 size=14 value='' name='전화'></TD>
+<TD width="15%" align=right>휴대폰</TD>
+<TD width="35%"><INPUT class=input1c maxLength=14 size=14 name='휴대폰'></TD></TR>
+<TR>
+<TD width="15%" align=right>팩스</TD>
+<TD width="35%"><INPUT class=input1c maxLength=15 size=15 name='팩스'></TD>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">지역</TD>
+<TD width="35%">
+<SPAN id=divAjax_0_AREA_CD style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(0,0); " id=SelectObj_0_0 name=AREA_CD> <OPTION selected value=001>서울</OPTION> <OPTION value=002>대구</OPTION> <OPTION value=003>부산</OPTION> <OPTION value=004>광주</OPTION> <OPTION value=005>대전</OPTION> <OPTION value=006>전주</OPTION> <OPTION value=007>원주</OPTION> <OPTION value=008>청주</OPTION> <OPTION value=009>충주</OPTION> <OPTION value=010>포항</OPTION> <OPTION value=012>수원</OPTION> <OPTION value=014>김해</OPTION> <OPTION value=015>인천</OPTION> <OPTION value=016>울산</OPTION> <OPTION value=017>창원</OPTION> <OPTION value=018>천안</OPTION> <OPTION value=022>춘천</OPTION> <OPTION value=023>제주</OPTION> <OPTION value=024>여수</OPTION> <OPTION value=028>진주</OPTION> <OPTION value=033>순천</OPTION> <OPTION value=035>마산</OPTION> <OPTION value=036>군산</OPTION> <OPTION value=037>목포</OPTION> <OPTION value=039>구미</OPTION></SELECT></SPAN>
+</TD></TR>
+<TR height=24>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">매장상태구분</TD>
+<TD width="85%" colSpan=3><INPUT type=hidden value=1 name=B_SHOP_STAT_FG> <INPUT type=hidden value=1 name=SHOP_STAT_FG> <SELECT onchange=fnChangeStat(); disabled name=SHOP_STAT_FG2><OPTION selected value=1>[1] 오픈</OPTION><OPTION value=2>[2] 폐점</OPTION><OPTION value=4>[4] 출고보류</OPTION><OPTION value=9>[9] 데모</OPTION></SELECT> <SPAN id=span_sys_open style="DISPLAY: inline">&nbsp;&nbsp;&nbsp;&nbsp; 포스개점일자 <INPUT id=date2 class=read1hc style="CURSOR: hand" readOnly size=10 value='' name='개점일'></SPAN> <SPAN id=span_sys_close style="DISPLAY: none">&nbsp;&nbsp;&nbsp;&nbsp; 포스폐점일자 <INPUT id=date3 class=read1hc style="CURSOR: hand" readOnly size=10 value='' name=폐점일></SPAN> </TD></TR>
+<TR>
+<TD width="15%" align=right>E-mail</TD>
+<TD width="85%" colSpan=3><INPUT class="input1 imeEng" maxLength=30 size=30 name='이메일'></TD></TR>
+<TR>
+<TD width="15%" align=right>홈페이지</TD>
+<TD width="85%" colSpan=3>http:// <INPUT class="input1 imeEng" maxLength=50 size=40 name=HOMEPAGE></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT>주소</TD>
+<TD width="85%" colSpan=3><INPUT class=read1hc readOnly maxLength=6 size=5 value='' name='우편번호'> <INPUT onclick="sample6_execDaumPostcode()" class=button1 type=button value=우편번호찾기><BR><INPUT class=read1h readOnly maxLength=80 size=35 value="" name='주소'> 상세주소 <INPUT class="input1h imeHan" maxLength=60 size=30 value='' name='상세주소'> </TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">용도구분</TD>
+<TD width="35%"><INPUT type=hidden name=PGM_TYPE_FG><SELECT onchange=fnChangePGM();fnSetValidCheck(); disabled name=S_PGM_TYPE_FG><OPTION value=0>[0] 일반</OPTION><OPTION selected value=1>[1] 외식</OPTION><OPTION value=2>[2] 의류</OPTION></SELECT></TD>
+<TD colSpan=2 align=left><FONT color=red>(주의) 매장정보 저장 후 수정 불가능</FONT></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">브랜드 취급</TD>
+<TD width="35%"><INPUT type=hidden name=BRAND_MGR_YN><SELECT disabled name=S_BRAND_MGR_YN> <OPTION value=Y>취급</OPTION> <OPTION selected value=N>미취급</OPTION></SELECT></TD>
+<TD colSpan=2 align=left><FONT color=red>(주의) 매장정보 저장 후 수정 불가능</FONT></TD></TR>
+<TR style="DISPLAY: none">
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">판매마진 취급</TD>
+<TD width="35%"><INPUT type=hidden name=SALEMG_MGR_YN><SELECT disabled name=S_SALEMG_MGR_YN> <OPTION value=Y>취급</OPTION> <OPTION selected value=N>미취급</OPTION></SELECT></TD>
+<TD colSpan=2 align=left><FONT color=red>(주의) 매장정보 저장 후 수정 불가능</FONT></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">상품분류레벨</TD>
+<TD width="35%"><INPUT type=hidden value=1 name=B_CLS_MGR_LEVEL_FG><INPUT type=hidden name=CLS_MGR_LEVEL_FG>
+ <SPAN id=divAjax_1_S_CLS_MGR_LEVEL_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(1,0); " disabled id=SelectObj_1_0 name=S_CLS_MGR_LEVEL_FG> <OPTION value=3>[3] 대+중+소분류</OPTION> <OPTION value=2>[2] 대+중분류</OPTION> <OPTION selected value=1>[1] 대분류</OPTION></SELECT></SPAN>
+</TD>
+<TD colSpan=2 align=left><FONT color=red>(주의) 매장정보 저장 후 수정 불가능</FONT></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">관리밴사</TD>
+<TD width="35%"><INPUT type=hidden value=18 name=B_VAN_CORP_CD>
+ <SPAN id=divAjax_2_VAN_CORP_CD style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(2,0); " id=SelectObj_2_0 name=VAN_CORP_CD> <OPTION value="">일반</OPTION> <OPTION value=01>[01] KICC</OPTION> <OPTION value=02>[02] FDIK</OPTION> <OPTION value=03>[03] NICE</OPTION> <OPTION value=04>[04] SMARTRO</OPTION> <OPTION value=05>[05] STARVAN</OPTION> <OPTION value=06>[06] KSNET</OPTION> <OPTION value=07>[07] KIS</OPTION> <OPTION value=08>[08] JT-NET</OPTION> <OPTION value=09>[09] KCP</OPTION> <OPTION value=10>[10] KOCES</OPTION> <OPTION value=11>[11] KCB-현금</OPTION> <OPTION value=12>[12] KOVAN</OPTION> <OPTION value=13>[13] SPC</OPTION> <OPTION value=14>[14] KFTC</OPTION> <OPTION value=15>[15] KSNET-PG</OPTION> <OPTION value=16>[16] KOVAN-SECU</OPTION> <OPTION value=17>[17] SPC-SECU</OPTION> <OPTION selected value=18>[18] STARVAN-SECU</OPTION> <OPTION value=19>[19] KFTC-SECU</OPTION> <OPTION value=20>[20] FDK-SECU</OPTION> <OPTION value=21>[21] KICC-SECU</OPTION> <OPTION value=22>[22] KSNET_SECU</OPTION> <OPTION value=23>[23] SMARTRO_SECU</OPTION> <OPTION value=24>[24] KOCES_SECU</OPTION> <OPTION value=25>[25] KIS_SECU</OPTION> <OPTION value=26>[26] JT-NET_SECU</OPTION> <OPTION value=27>[27] KCP_SECU</OPTION> <OPTION value=28>[28] NICE_SECU</OPTION></SELECT></SPAN>
+</TD>
+<TD colSpan=2 align=left><FONT color=red>(주의) VAN사 설정아님. 관리밴사 소속매장을 의미함.</FONT></TD></TR>
+<TR style="DISPLAY: none">
+<TD colSpan=4><INPUT type=hidden value=10 name=SHOP_CLS_FG></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">관리업체</TD>
+<TD width="35%"><INPUT type=hidden value=1898 name=B_CORP_CD> <INPUT class=read1 readOnly type=hidden value=1898 name=CORP_CD> <INPUT class=read1 readOnly value=(DG)한국단말기 name=CORP_NM> </TD>
+<TD width="15%" align=right><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">설치업체</TD>
+<TD width="35%"><INPUT type=hidden value=1898 name=B_INST_CORP_CD> <INPUT type=hidden value=1898 name=INST_CORP_CD> <INPUT class=read1 readOnly value=(DG)한국단말기 name=INST_CORP_NM> </TD></TR>
+<TR>
+<TD width="15%" align=right><FONT color=red>*</FONT><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">로컬POS여부</TD>
+<TD width="35%"><SELECT onchange=fnLocalPosYN(); disabled name=LOCAL_POS_YN> <OPTION selected value=N>ASP</OPTION> <OPTION value=Y>로컬POS</OPTION></SELECT> <INPUT type=hidden value=N name=B_LOCAL_POS_YN> </TD>
+<TD width="15%" align=right></TD>
+<TD width="35%"></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">시스템 비고</TD>
+<TD height=50 width="85%" colSpan=3><TEXTAREA class="input1 imeHan" cols=80 name=SYS_REMARK></TEXTAREA></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">본사 비고</TD>
+<TD height=50 width="85%" colSpan=3><TEXTAREA class="input1 imeHan" cols=80 name=HD_REMARK></TEXTAREA></TD></TR>
+<TR>
+<TD width="15%" align=right><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">특이사항</TD>
+<TD height=50 width="85%" colSpan=3><TEXTAREA class=read1 cols=80 readOnly name=REPORT_REMARK></TEXTAREA></TD></TR></TBODY>
+
+</form>
+</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+</TD></TR></TBODY></TABLE>
+
+ <script>
+
+
+
+
+function fn_Remark(title,memo,memo2) {
+    alert(memo+memo2)
+}
+var storecode = false
+var _data;
+var data0 = [];
+var gridList = [];
+var _url = "{{ url_for('_info_store') }}";
+var id
+
+
+function gload() {
+
+    data0 = [];
+    gridList = [];
+
+    $.getJSON("{{ url_for('_info_store_all') }}", function (json) {
+        _data = json;
+    }).done(function () {
+
+         <!--document.getElementsByName('s')[0].value = _data.s-->
+        console.log(_data)
+
+        for (i in _data) data0.push( _data[i] )
+
+        load()
+
+    })
+
+}
+
+gload()
+newrow()
+
+<!--$(function () {-->
+
+   <!--$('#btn_modify').click(function () {-->
+       <!--onModify("{{ url_for('_info_store') }}", store_id);-->
+   <!--});-->
+<!--});-->
+
+function load() {
+    firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "매장명", label: "매장명", width: 80, align: "center",formatter: function(){
+                            return '<a onClick="loaditem('+this.item.i+')"'+'>' + this.value + '</a>';
+                        }},
+                        {key: "용도", label: "용도", width: 70, align: "center" },
+                        {key: "상태", label: "상태", width: 70, align: "center" },
+                        {key: "매장수", label: "매장수", width: 70, align: "center" },
+                        {key: "등록자", label: "등록자", width: 70, align: "center" },
+                        {key: "등록일시", label: "등록일시", width: 70, align: "center" },
+                    ]
+            });
+
+    n=0;
+    for ( i in data0 ) {
+        if ( gridList[n] == undefined ) gridList[n] = { 'i' : '' , '매장명' : '' , '용도' : '' , '상태' : '' , '매장수' : '' , '등록자' : '' , '등록일시' : '' , }
+        gridList[n]['i'] = i
+        gridList[n]['매장명'] = data0[i]['가게명']
+        gridList[n]['용도'] = '외식'
+        gridList[n]['상태'] = '오픈'
+        gridList[n]['매장수'] = 1
+        gridList[n]['등록자'] = 'hdpos'
+        gridList[n]['등록일시'] = ''
+
+
+    n++
+
+    }
+
+
+    firstGrid.setData(gridList);
+
+}
+
+
+function loaditem(item) {
+    console.log(item)
+    $('#storecode').css('display','none')
+    $('#storecode1').prop('readOnly',true)
+    storecode = true
+    for ( i in _data) {
+        if (item == i ) {
+            id = _data[i]['s']
+            $('input[name="i"]').val(_data[i]['i'])
+            $('input[name="s1"]').val(_data[i]['s'])
+            $('input[name="s"]').val(_data[i]['s'])
+            $('input[name="가게명"]').val(_data[i]['가게명'])
+            $('input[name="대표자"]').val(_data[i]['대표자'])
+            $('input[name="사업자번호"]').val(_data[i]['사업자번호'])
+            $('input[name="우편번호"]').val(_data[i]['우편번호'])
+            $('input[name="주소"]').val(_data[i]['주소'])
+            $('input[name="상세주소"]').val(_data[i]['상세주소'])
+            $('input[name="이메일"]').val(_data[i]['이메일'])
+            $('input[name="휴대폰"]').val(_data[i]['휴대폰'])
+            $('input[name="전화"]').val(_data[i]['전화'])
+            $('input[name="팩스"]').val(_data[i]['팩스'])
+            $('input[name="가맹여부"]').val(_data[i]['가맹여부'])
+            $('input[name="업태"]').val(_data[i]['업태'])
+            $('input[name="업종"]').val(_data[i]['업종'])
+
+        }
+    }
+}
+
+
+
+function newrow() {
+
+    id = 0
+    $('input[name="i"]').val('신규')
+    $('#storecode').css('display','inline')
+    $('#storecode1').prop('readOnly',false)
+    storecode = false;
+    $('input[name="s"]').val('0')
+    $('input[name="s1"]').val('신규')
+    $('input[name="가게명"]').val('')
+    $('input[name="매장명"]').val('')
+    $('input[name="대표자"]').val('')
+    $('input[name="사업자번호"]').val('')
+    $('input[name="우편번호"]').val('')
+    $('input[name="주소"]').val('')
+    $('input[name="상세주소"]').val('')
+    $('input[name="이메일"]').val('')
+    $('input[name="휴대폰"]').val('')
+    $('input[name="전화"]').val('')
+    $('input[name="팩스"]').val('')
+    $('input[name="가맹여부"]').val('')
+    $('input[name="업태"]').val('')
+    $('input[name="업종"]').val('')
+}
+
+function autoHypen(str){
+  str = str.replace(/[^0-9]/g, '');
+  var tmp = '';
+  if( str.length < 3){
+    return str;
+  }else if(str.length < 6){
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3);
+    return tmp;
+  }else if(str.length < 8){
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 2);
+    tmp += '-';
+    tmp += str.substr(5);
+    return tmp;
+  }else{
+    tmp += str.substr(0, 3);
+    tmp += '-';
+    tmp += str.substr(3, 2);
+    tmp += '-';
+    tmp += str.substr(5);
+    return tmp;
+  }
+  return str;
+}
+
+var storestr = document.getElementById('storecode1');
+storestr.onkeyup = function(event){
+        event = event || window.event;
+        var _val = this.value.trim();
+        this.value = autoHypen(_val) ;
+}
+
+function fnDuplicationCheck() {
+
+    if ( $('input[name="사업자번호"]').val() == "" ) return alert("사업자번호를 입력하세요.")
+    if ( $('input[name="사업자번호"]')[0].value.length != 12 ) return alert("사업자번호를 확인하세요.")
+    for ( i in _data) {
+        if ( $('input[name="사업자번호"]').val() == _data[i]['사업자번호'] ) {
+
+            return alert(_data[i]['사업자번호'] + " 사업자번호가 " + _data[i]['가게명'] + " 에서 사용중입니다.");
+        }
+    }
+
+    alert($('input[name="사업자번호"]').val()  + " 사업자번호가 등록가능합니다.")
+    storecode = true
+    $('#storecode1').prop('readOnly',true)
+    $('#storecode').css('display','none')
+
+}
+
+
+
+
+
+function save() {
+    if ($('input[name="i"]').val() == null) {return 0;}
+    if ($('input[name="가게명"]').val() == "") return alert("매장명을 입력하세요.")
+    if ($('input[name="대표자"]').val() == "") return alert("대표자명을 입력하세요.")
+    if ($('input[name="사업자번호"]').val() == "") return alert("사업자번호를 입력하세요.")
+    if ($('input[name="업태"]').val() == "") return alert("업태를 입력하세요.")
+    if ($('input[name="업종"]').val() == "") return alert("업종을 입력하세요.")
+    if ($('input[name="전화"]').val() == "") return alert("전화번호를 입력하세요.")
+    if ($('input[name="주소"]').val() == "") return alert("주소를 입력하세요.")
+
+
+
+
+    for ( i in _data) {
+        if (  storecode != true ) {
+
+            return alert("사업자번호 중복체크를 눌러 확인하세요.");
+        }
+    }
+
+
+
+
+    var input = $('#form_modify').serialize()
+
+    console.log(id)
+
+    $.ajax({
+        method: "POST",
+        url: (_url + '/' + id ),
+        data: JSON.stringify(input)
+    })
+        .done(function (msg) {
+            if (msg == 'modified'){
+
+                console.log('modified');
+                gload()
+                }
+
+    });
+
+}
+
+
+</script>
+
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                $('input[name="우편번호"]').val(data.zonecode)
+                $('input[name="주소"]').val(fullAddr)
+                // 커서를 상세주소 필드로 이동한다.
+                $('input[name="상세주소"]').focus()
+            }
+        }).open();
+    }
+</script>
+
+{% endblock %}

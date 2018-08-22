@@ -1,0 +1,633 @@
+    {% include 'includes.html' %}
+
+
+<BODY>
+
+ <button onclick="asave()" >저장</button>
+
+<form id="form_modify"  method="post">
+
+
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND>기본사항</LEGEND>
+<TABLE style="BORDER-SPACING: 1px" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[100] 포스 프로그램 구분
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_100 name=구분> <OPTION selected value=0>NetPOS</OPTION> <OPTION value=1>NvPos-전문점용</OPTION> <OPTION value=2>OKPOS(보안)</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>[5] 포스형태</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_101 name='5 | 선후불 설정'>
+    <!--<OPTION value=00>일반-유통업</OPTION> -->
+    <!--<OPTION value=01>일반-아울렛</OPTION> -->
+    <OPTION value=선불제>외식업-선불제</OPTION>
+    <OPTION selected value=후불제>외식업-후불제</OPTION>
+    <!--<OPTION value=04>외식업-푸드코트</OPTION> -->
+    <!--<OPTION value=05>전문점-의류/잡화</OPTION> -->
+    <!--<OPTION value=06>전문점-도서/음반</OPTION> -->
+    <!--<OPTION value=07>전문점-사우나</OPTION> -->
+    <!--<OPTION value=08>기타</OPTION>-->
+</SELECT></TD></TR>
+
+
+
+
+
+
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[108] 금액보정설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_108 name=금액보정설정> <OPTION value=0>보정안함</OPTION> <OPTION value=1>원단위-절사</OPTION> <OPTION selected value=2>원단위-반올림</OPTION> <OPTION value=3>원단위-절상</OPTION> <OPTION value=4>십원단위-절사</OPTION> <OPTION value=5>십원단위-반올림</OPTION> <OPTION value=6>십원단위-절상</OPTION> <OPTION value=7>백원단위-절사</OPTION> <OPTION value=8>백원단위-반올림</OPTION> <OPTION value=9>백원단위-절상</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[112] 매장상품생성설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_112 name=ENV_SET_VAL> <OPTION selected value=0>생성안함</OPTION> <OPTION value=1>생성함</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8>[100] 마감정산설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_113 name='100 | 영업마감 설정'> <OPTION selected value=수동>수동정산</OPTION> <OPTION value=자동>자동정산</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[117] 중간정산설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_117 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[128] 판매가-부가세포함여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_128 name=ENV_SET_VAL> <OPTION value=0>부가세-별도</OPTION> <OPTION selected value=1>부가세-포함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[132] 본사통제구분-판매가</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_132 name=ENV_SET_VAL> <OPTION value=0>본사통제</OPTION> <OPTION selected value=1>매장통제</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[135] 출고가-부가세포함여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_135 name=ENV_SET_VAL> <OPTION selected value=0>부가세-별도</OPTION> <OPTION value=1>부가세-포함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[137] [개발중] 재정산</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_137 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[138] 단골플러스 사용여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_138 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>사용함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[161] 프랜차이즈 본사 TID</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_161 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[175] 사원별코너관리</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_175 name=ENV_SET_VAL> <OPTION selected value=N>미사용</OPTION> <OPTION value=Y>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[198] 본사통제구분-상품포인트적립통제 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_198 name=ENV_SET_VAL> <OPTION selected value=0>본사통제</OPTION> <OPTION value=1>매장통제</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[241] NoCVM-사용', '<2017-09-20><BR>V20160906 이후 전 VAN 적용<BR>(FDIK 첫결제시 미적용)<BR>※ 단말기연동은 단말기에서 설정 필요')" style="CURSOR: pointer; COLOR: blue"><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[241] NoCVM-사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_241 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=50>사용-오만원</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[278] 로컬DB백업구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_278 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>마감정산후백업</OPTION> <OPTION value=2>개점처리후백업</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[528] 로컬DB-운영구분', '프로그램이 NvPos 인 경우, 포스개별DB세팅 권장.')" style="CURSOR: pointer; COLOR: blue"><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[528] 로컬DB-운영구분</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_528 name=ENV_SET_VAL> <OPTION selected value=0>매장통합DB운영</OPTION> <OPTION value=1>포스개별DB운영</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[632] 로그파일 기록 기간', '2012080101Ver이후 적용.')" style="CURSOR: pointer; COLOR: blue">[632] 로그파일 기록 기간</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_632 name=ENV_SET_VAL> <OPTION value=30>30 일 기록</OPTION> <OPTION value=7>7 일 기록</OPTION> <OPTION selected value=90>90 일 기록</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[651] 매출자료보관기간', '- Classic 로컬버전으로 사용시 미사용옵션 사용불가(미사용으로 세팅시 365일 적용됨).<BR><BR>- Classic 일반버전으로 전체옵션 사용가능.<BR><BR>- 인증버전은 30일, 90일 세팅가능(30일,90일외 세팅시 90일 적용됨).')" style="CURSOR: pointer; COLOR: blue">[651] 매출자료보관기간</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_651 name=ENV_SET_VAL> <OPTION value=000>미사용</OPTION> <OPTION value=030>30일 보관</OPTION> <OPTION value=090>90일 보관</OPTION> <OPTION value=180>180일 보관</OPTION> <OPTION selected value=365>365일 보관</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[656] 캐시비동글사용유무', 'KCP VAN만 적용')" style="CURSOR: pointer; COLOR: blue">[656] 캐시비동글사용유무</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_656 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[689] SURF-사용구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_689 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[733] 교환권 선출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_733 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[741] 로열티', '메뉴 \'매출관리 > 매출분석 > 매장별매출분석 > 매장순위탭\' 페이지에 로열티=순매출*로열티/100')" style="CURSOR: pointer; COLOR: blue"><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[741] 로열티</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_741 name=ENV_SET_VAL> <OPTION selected value=000>사용안함</OPTION> <OPTION value=001>1%</OPTION> <OPTION value=002>2%</OPTION> <OPTION value=003>3%</OPTION> <OPTION value=004>4%</OPTION> <OPTION value=005>5%</OPTION> <OPTION value=006>6%</OPTION> <OPTION value=007>7%</OPTION> <OPTION value=008>8%</OPTION> <OPTION value=009>9%</OPTION> <OPTION value=010>10%</OPTION> <OPTION value=011>11%</OPTION> <OPTION value=012>12%</OPTION> <OPTION value=013>13%</OPTION> <OPTION value=014>14%</OPTION> <OPTION value=015>15%</OPTION> <OPTION value=016>16%</OPTION> <OPTION value=017>17%</OPTION> <OPTION value=018>18%</OPTION> <OPTION value=019>19%</OPTION> <OPTION value=020>20%</OPTION> <OPTION value=021>21%</OPTION> <OPTION value=022>22%</OPTION> <OPTION value=023>23%</OPTION> <OPTION value=024>24%</OPTION> <OPTION value=025>25%</OPTION> <OPTION value=026>26%</OPTION> <OPTION value=027>27%</OPTION> <OPTION value=028>28%</OPTION> <OPTION value=029>29%</OPTION> <OPTION value=030>30%</OPTION> <OPTION value=031>31%</OPTION> <OPTION value=032>32%</OPTION> <OPTION value=033>33%</OPTION> <OPTION value=034>34%</OPTION> <OPTION value=035>35%</OPTION> <OPTION value=036>36%</OPTION> <OPTION value=037>37%</OPTION> <OPTION value=038>38%</OPTION> <OPTION value=039>39%</OPTION> <OPTION value=040>40%</OPTION> <OPTION value=041>41%</OPTION> <OPTION value=042>42%</OPTION> <OPTION value=043>43%</OPTION> <OPTION value=044>44%</OPTION> <OPTION value=045>45%</OPTION> <OPTION value=046>46%</OPTION> <OPTION value=047>47%</OPTION> <OPTION value=048>48%</OPTION> <OPTION value=049>49%</OPTION> <OPTION value=050>50%</OPTION> <OPTION value=051>51%</OPTION> <OPTION value=052>52%</OPTION> <OPTION value=053>53%</OPTION> <OPTION value=054>54%</OPTION> <OPTION value=055>55%</OPTION> <OPTION value=056>56%</OPTION> <OPTION value=057>57%</OPTION> <OPTION value=058>58%</OPTION> <OPTION value=059>59%</OPTION> <OPTION value=060>60%</OPTION> <OPTION value=061>61%</OPTION> <OPTION value=062>62%</OPTION> <OPTION value=063>63%</OPTION> <OPTION value=064>64%</OPTION> <OPTION value=065>65%</OPTION> <OPTION value=066>66%</OPTION> <OPTION value=067>67%</OPTION> <OPTION value=068>68%</OPTION> <OPTION value=069>69%</OPTION> <OPTION value=070>70%</OPTION> <OPTION value=071>71%</OPTION> <OPTION value=072>72%</OPTION> <OPTION value=073>73%</OPTION> <OPTION value=074>74%</OPTION> <OPTION value=075>75%</OPTION> <OPTION value=076>76%</OPTION> <OPTION value=077>77%</OPTION> <OPTION value=078>78%</OPTION> <OPTION value=079>79%</OPTION> <OPTION value=080>80%</OPTION> <OPTION value=081>81%</OPTION> <OPTION value=082>82%</OPTION> <OPTION value=083>83%</OPTION> <OPTION value=084>84%</OPTION> <OPTION value=085>85%</OPTION> <OPTION value=086>86%</OPTION> <OPTION value=087>87%</OPTION> <OPTION value=088>88%</OPTION> <OPTION value=089>89%</OPTION> <OPTION value=090>90%</OPTION> <OPTION value=091>91%</OPTION> <OPTION value=092>92%</OPTION> <OPTION value=093>93%</OPTION> <OPTION value=094>94%</OPTION> <OPTION value=095>95%</OPTION> <OPTION value=096>96%</OPTION> <OPTION value=097>97%</OPTION> <OPTION value=098>98%</OPTION> <OPTION value=099>99%</OPTION> <OPTION value=100>100%</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[825] 자동마감시간', 'HH:MM 형식으로 입력')" style="CURSOR: pointer; COLOR: blue">[825] 자동마감시간</FONT> <FONT color=red><B>*</B></FONT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[828] 대기내역유무에 따른 마감여부 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_828 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[831] 복합과세 금액보정', 'CLASSIC NICE VAN에 한하여 적용')" style="CURSOR: pointer; COLOR: blue">[831] 복합과세 금액보정</FONT> <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_831 name=ENV_SET_VAL> <OPTION selected value=0>과세처리</OPTION> <OPTION value=1>면세처리</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[835] SKT PUSH 사용여부(테스트) <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_835 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND>영수증설정</LEGEND>
+<TABLE style="BORDER-SPACING: 1px" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[150] 신용카드-전자서명용-회수용 출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_150 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[151] 신용카드-보관용 출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_151 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[524] 영수증출력구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_524 name=ENV_SET_VAL> <OPTION value=0>일반영수증 출력</OPTION> <OPTION value=1>개별영수증 출력</OPTION> <OPTION selected value=2>영수증 출력안함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[525] 구매내역 영수증발행 문의여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_525 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[585] 영수증 재발행</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_585 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[613] 임의등록전표출력', '2011-1026-01 이후 버전 적용')" style="CURSOR: pointer; COLOR: blue">[613] 임의등록전표출력</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_613 name=ENV_SET_VAL> <OPTION selected value=0>미출력</OPTION> <OPTION value=1>출력</OPTION> <OPTION value=2>조건출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[618] 신용카드전표출력순서', '2011-1109-01 이후 버전 적용.')" style="CURSOR: pointer; COLOR: blue">[618] 신용카드전표출력순서</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_618 name=ENV_SET_VAL> <OPTION selected value=0>고객용-&gt;회수용-&gt;보관용</OPTION> <OPTION value=1>회수용-&gt;보관용-&gt;고객용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[630] 현금영수증취소사유구분사용', '2012-0516 이후 버전<br>취소거래처리:자동으로 거래치소 구분자 처리<br>사유선택처리:사용자가 취소사유를 선택 처리<br>사용가능 VAN : KCP')" style="CURSOR: pointer; COLOR: blue">[630] 현금영수증취소사유구분사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_630 name=ENV_SET_VAL> <OPTION selected value=0>취소거래처리</OPTION> <OPTION value=1>사유선택처리</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[631] 임의등록기타카드처리', '신용카드 임의등록 시 기타카드로 처리')" style="CURSOR: pointer; COLOR: blue">[631] 임의등록기타카드처리</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_631 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[682] 영수증 출력순서<</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_682 name=ENV_SET_VAL> <OPTION selected value=0>신용전표-&gt;일반영수증</OPTION> <OPTION value=1>일반영수증-&gt;신용전표</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[710] 쿠폰 할인 상세 출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_710 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[719] 현금결제-영수증두장출력', '신OKPOS 전용 옵션. NICE VAN만 사용 가능.')" style="CURSOR: pointer; COLOR: blue">[719] 현금결제-영수증두장출력</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_719 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[722] 사이드 속성 메뉴 출력여부', '* [532] 환경설정 값이 단일선택인 경우 출력 불가.<br>* [554] 환경설정 값이 미출력인 경우 출력 불가.')" style="CURSOR: pointer; COLOR: blue">[722] 사이드 속성 메뉴 출력여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_722 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[821] 현금영수증-보관용 출력 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_821 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND>터치키</LEGEND>
+<TABLE style="BORDER-SPACING: 1px" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[280] 터치상품화면자동표기</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_280 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[514] 터치분류 메뉴 라인수', '라인수 재조정하면 바둑판형식으로 재정렬됨.')" style="CURSOR: pointer; COLOR: blue">[514] 터치분류 메뉴 라인수</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_514 name=ENV_SET_VAL> <OPTION value=1>1</OPTION> <OPTION selected value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[523] 터치메뉴 폰트크기</TD>
+<TD bgColor=#e6ebde><SELECT onchange=fnEnv523(this); id=ENV_SET_VAL_523 name=ENV_SET_VAL> <OPTION value=09>9 폰트크기</OPTION> <OPTION value=10>10 폰트크기</OPTION> <OPTION selected value=11>11 폰트크기</OPTION> <OPTION value=12>12 폰트크기</OPTION> <OPTION value=13>13 폰트크기</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(0); type=checkbox name=chk_ShowHide> 회원</LEGEND>
+<TABLE id=table_0 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[109] 회원관리설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_109 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION> <OPTION value=2>SM-CRM연동</OPTION> <OPTION value=3>야놀자-CRM연동</OPTION> <OPTION value=4>KIS-CRM연동</OPTION> <OPTION value=5>PUSHMEN-CRM연동</OPTION> <OPTION value=6>로이스-CRM연동</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[120] 회원카드사용구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_120 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[121] 회원카드번호설정-시작위치</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_121 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><INPUT type=hidden value=U name=PROC_FG><INPUT type=hidden value=122 name=ENV_SET_CD><INPUT type=hidden value=회원카드번호설정-자리수 name=ENV_SET_NM><INPUT type=hidden value=S name=DISPLAY_YN><INPUT type=hidden name=H_ENV_SET_VAL><INPUT type=hidden value=Y name=DIRECT_INPUT_YN><INPUT type=hidden name=DEFAULT_CD><INPUT type=hidden value=* name=B_ENV_SET_VAL><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[122] 회원카드번호설정-자리수<INPUT type=hidden name=B_ENV_VAL_NM><INPUT type=hidden value=회원 name=B_ENV_GRP_NM><INPUT type=hidden value=A20 name=B_ENV_GRP_CD></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_122 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[181] 회원포인트사용승인처리', '2012-0704 이후 버전<br>NETPOS만 적용. <br>미사용시, 매출 반영 후 포인트 차감. <br>사용시 포인트 사용 즉시 차감.')" style="CURSOR: pointer; COLOR: blue">[181] 회원포인트사용승인처리</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_181 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[184] 통합회원구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_184 name=ENV_SET_VAL> <OPTION selected value=0>통합회원</OPTION> <OPTION value=1>단독회원</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[281] 회원카드-프리픽스</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_281 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[536] 회원카드-체크디지트사용여부', '회원카드에 체크디지트번호가 들어간 경우에만 사용')" style="CURSOR: pointer; COLOR: blue">[536] 회원카드-체크디지트사용여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_536 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[696] 회원조회조건구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_696 name=ENV_SET_VAL> <OPTION selected value=0>회원카드번호</OPTION> <OPTION value=1>회원명</OPTION> <OPTION value=2>연락처</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[699] 상품,회원 조회순서', '*NetPOS 외식 전용 옵션.<br>판매창에서 회원카드 리딩시 특정카드가<br>바코드 체계에 걸려 상품조회가 되는 현상으로 기능 추가')" style="CURSOR: pointer; COLOR: blue">[699] 상품,회원 조회순서</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_699 name=ENV_SET_VAL> <OPTION selected value=0>상품 우선 조회</OPTION> <OPTION value=1>회원 우선 조회</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[732] 회원-미등록카드사용</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_732 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[830] 회원카드-32자리사용 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_830 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(1); type=checkbox name=chk_ShowHide> 배달</LEGEND>
+<TABLE id=table_1 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[111] 배달관리사용구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_111 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>배달사용</OPTION> <OPTION value=2>배달사용-주문시주소입력</OPTION> <OPTION value=3>간편배달(개발중)</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[533] 배달전표 출력구분 </TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_533 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>배달처리시 출력</OPTION> <OPTION value=2>주문시 출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[541] 배달전표-고객용 출력여부 </TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_541 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[542] 배달전표-배달원용 출력여부 </TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_542 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[576] 배달자 사용구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_576 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>최초주문만</OPTION> <OPTION value=2>주문시마다</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[577] 단순배달처리</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_577 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION> <OPTION value=2>조건사용</OPTION> <OPTION value=3>단순입금(개발중)</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[827] 배달I/F사용 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_827 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>사용함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[836] 배달주문-테이블순서 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_836 name=ENV_SET_VAL> <OPTION selected value=0>빈테이블접수</OPTION> <OPTION value=1>순차접수</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[854] 부릉 I/F 사용 여부 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_854 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[855] 바로고 I/F 사용 여부 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_855 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(2); type=checkbox name=chk_ShowHide> 전자저울</LEGEND>
+<TABLE id=table_2 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[231] 저울-프리픽스</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_231 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=20>20-프리픽스</OPTION> <OPTION value=21>21-프리픽스</OPTION> <OPTION value=22>22-프리픽스</OPTION> <OPTION value=23>23-프리픽스</OPTION> <OPTION value=26>26-프리픽스</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[233] 저울-금액보정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_233 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>원단위-절사</OPTION> <OPTION value=2>원단위-반올림</OPTION> <OPTION value=3>원단위-절상</OPTION> <OPTION value=4>십원단위-절사</OPTION> <OPTION value=5>십원단위-반올림</OPTION> <OPTION value=6>십원단위-절상</OPTION> <OPTION value=7>백원단위-절사</OPTION> <OPTION value=8>백원단위-반올림</OPTION> <OPTION value=9>백원단위-절상</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[273] 저울바코드구성</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_273 name=ENV_SET_VAL> <OPTION selected value=00>미사용</OPTION> <OPTION value=01>Pfx+상품(4)+금액(6)</OPTION> <OPTION value=02>Pfx+상품(5)+금액(5)</OPTION> <OPTION value=03>Pfx+상품(4)+중량(5)+금액(6)</OPTION> <OPTION value=04>Pfx+상품(3)+중량(3)+금액(4)</OPTION> <OPTION value=05>Pfx+상품(7)+중량(5)+금액(7)</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(3); type=checkbox name=chk_ShowHide> 사원카드</LEGEND>
+<TABLE id=table_3 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[123] 사원카드사용구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_123 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[124] 사원카드번호설정-시작위치</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_124 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[125] 사원카드번호설정-자리수</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_125 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[180] 사원카드결제사용', '2012-0516 이후 버전<br>아워홈 : 아워홈 급식서버를 이용하여 결제<br>회원연동 : ASP 회원정보와 사원카드번호를 연동하여 회원포인트 결제')" style="CURSOR: pointer; COLOR: blue">[180] 사원카드결제사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_180 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>아워홈</OPTION> <OPTION value=2>회원연동</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(4); type=checkbox name=chk_ShowHide> 입장/퇴장(바코드)</LEGEND>
+<TABLE id=table_4 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[627] 퇴장-기준시간', '20120509Ver 이후 사용 가능. 입장 후 경과 시간의 기준.')" style="CURSOR: pointer; COLOR: blue">[627] 퇴장-기준시간</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_627 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=120>120분(2시간)</OPTION> <OPTION value=150>150분(2시간30분)</OPTION> <OPTION value=180>180분(3시간)</OPTION> <OPTION value=210>210분(3시간30분)</OPTION> <OPTION value=240>240분(4시간)</OPTION> <OPTION value=30>30분</OPTION> <OPTION value=60>60분(1시간)</OPTION> <OPTION value=90>90분(1시간30분)</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[628] 퇴장-초과시간기준', '20120509Ver 이후 사용 가능. 입장 후 기준시간을 초과한 시간에 대한 기준')" style="CURSOR: pointer; COLOR: blue">[628] 퇴장-초과시간기준</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_628 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>1분</OPTION> <OPTION value=10>10분</OPTION> <OPTION value=120>120분(2시간)</OPTION> <OPTION value=15>15분</OPTION> <OPTION value=20>20분</OPTION> <OPTION value=3>3분</OPTION> <OPTION value=30>30분</OPTION> <OPTION value=5>5분</OPTION> <OPTION value=60>60분(1시간)</OPTION> <OPTION value=ZZ>멀티선택</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[629] 퇴장-초과시간에 대한 추가금액', '20120509Ver 이후 사용 가능. ex)10분초과시 500원 추가. 500입력')" style="CURSOR: pointer; COLOR: blue">[629] 퇴장-초과시간에 대한 추가금액</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_629 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[677] 퇴장-초과시간-상품코드', 'NetPos, 신OKPOS(플레이타임전용) - 싯가상품코드 입력')" style="CURSOR: pointer; COLOR: blue">[677] 퇴장-초과시간-상품코드</FONT><INPUT type=hidden name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_677 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[739] 입장권 출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_739 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[833] 재입장 가능 여부 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_833 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(5); type=checkbox name=chk_ShowHide> 특이매장옵션</LEGEND>
+<TABLE id=table_5 style="BORDER-SPACING: 1px;display: none;" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[200] 배달요금 맵핑상품코드 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_200 class=input1 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[247] 개별DB-반품시서버조회</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_247 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[282] 특이사항-업체구분', '업체별 특이사항 발생에 따른 업체구분자 값')" style="CURSOR: pointer; COLOR: blue">[282] 특이사항-업체구분</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_282 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>푸드마켓</OPTION> <OPTION value=10>POPBAR</OPTION> <OPTION value=11>그램그램</OPTION> <OPTION value=12>다음카카오</OPTION> <OPTION value=13>Play Time</OPTION> <OPTION value=14>YG푸드</OPTION> <OPTION value=15>커피베이</OPTION> <OPTION value=16>아름다운가게</OPTION> <OPTION value=17>커피에반하다</OPTION> <OPTION value=18>쥬씨</OPTION> <OPTION value=19>센트럴시티</OPTION> <OPTION value=2>다채원(전용)</OPTION> <OPTION value=3>영동식품(버드나무)</OPTION> <OPTION value=4>퍼시픽랜드</OPTION> <OPTION value=5>국순당</OPTION> <OPTION value=6>빈스앤베리즈</OPTION> <OPTION value=7>칸투칸</OPTION> <OPTION value=8>Garden5</OPTION> <OPTION value=9>CJ오쇼핑</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[535] ERP매장코드', '인터페이스 용도로 사용함.')" style="CURSOR: pointer; COLOR: blue">[535] ERP매장코드</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_535 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[537] POS-수발주기능-구분', 'POS 메인패널에서 수발주버튼 기능 구분')" style="CURSOR: pointer; COLOR: blue">[537] POS-수발주기능-구분</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_537 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>IBK e모아-땅땅치킨용</OPTION> <OPTION value=2>김가네</OPTION> <OPTION value=3>모스트이엔씨</OPTION> <OPTION value=4>한화푸디스트</OPTION> <OPTION value=5>삼미유통</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[544] POS-업체로고설정구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_544 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>KCP</OPTION> <OPTION value=2>KOCES</OPTION> <OPTION value=3>OK-CASHBAG</OPTION> <OPTION value=4>휴먼리테일</OPTION> <OPTION value=5>한주정보통신</OPTION> <OPTION value=6>NICE</OPTION> <OPTION value=7>KIS</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[545] 아워홈-급식서버-IP</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_545 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[546] 아워홈-급식서버-DB</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_546 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[547] 아워홈-점코드</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_547 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><<FONT onclick="fn_Remark(this,'[548] 업체별인터페이스여부', '인터페이스 사용여부')" style="CURSOR: pointer; COLOR: blue">[548] 업체별인터페이스여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_548 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=H194>칸타타</OPTION> <OPTION value=H523>국순당</OPTION> <OPTION value=HCXO>DFD 패션</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[549] 외환결제-사용여부(개발중)', '현금결제창에서 외국화폐 결제처리기능 사용여부')" style="CURSOR: pointer; COLOR: blue">[549] 외환결제-사용여부(개발중)</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_549 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[551] 외환결제-금액보정구분(개발중)', '외환결제시 환율에 의해 계산된 금액에 대한 끝전 보정처리')" style="CURSOR: pointer; COLOR: blue">[551] 외환결제-금액보정구분(개발중)</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_551 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>동전금액-반올림</OPTION> <OPTION value=2>동전금액-절상</OPTION> <OPTION value=3>동전금액-절사</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[557] 도매사코드(OB만)', 'OB도매사 시스템으로 집계되는 매장만 설정할것<br>단, OB도매사 시스템으로 집계되는 매장이 있는 본사의 경우 999999로 셋팅할것')" style="CURSOR: pointer; COLOR: blue">[557] 도매사코드(OB만)</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_557 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[672] PAYCO-사용', '<2017-09-20><BR>KCP,NICE,KOCES,SMATRO,FDIK,SPC,DAOU,KIS 가능')" style="CURSOR: pointer; COLOR: blue">[672] PAYCO-사용</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_672 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[705] Cat단말연동-단말기전표출력', '<2017-09-20><BR>외식환경 탭 > [240]VAN-승인방식 CAT으로 사용시<BR>KIS,SPC,JTNET,KCP,DAOU만 가능<BR>Classic전용')" style="CURSOR: pointer; COLOR: blue">[705] Cat단말연동-단말기전표출력</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_705 name=ENV_SET_VAL> <OPTION selected value=0>전표출력</OPTION> <OPTION value=1>출력안함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[738] 코코넛 I/F 사용여부', '개발중입니다!!개발중입니다!!')" style="CURSOR: pointer; COLOR: blue">[738] 코코넛 I/F 사용여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_738 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[763] 멤버쉽ID <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_763 class=input1 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[764] 멤버쉽TID <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_764 class=input1 name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[765] 대표쿠폰코드 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_765 class=input1 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[768] 외환결제 소숫점사용', '달러 사용시 센트 관리')" style="CURSOR: pointer; COLOR: blue">[768] 외환결제 소숫점사용</FONT> <FONT color=red><B>*</B></FONT><INPUT type=hidden value=사용함 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_768 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>사용함</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[817] PAYCO(SPC단말기연동전용)사인패드 종류', 'SPC 단말기 연동버전 PAYCO 사용 매장 전용')" style="CURSOR: pointer; COLOR: blue">[817] PAYCO(SPC단말기연동전용)사인패드 종류</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_817 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>시리얼 Type</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[818] PAYCO(SPC단말기연동전용)사인패드 포트', 'SPC 단말기 연동버전 PAYCO 사용 매장 전용')" style="CURSOR: pointer; COLOR: blue">[818] PAYCO(SPC단말기연동전용)사인패드 포트</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_818 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=01>ComPort-01</OPTION> <OPTION value=02>ComPort-02</OPTION> <OPTION value=03>ComPort-03</OPTION> <OPTION value=04>ComPort-04</OPTION> <OPTION value=05>ComPort-05</OPTION> <OPTION value=06>ComPort-06</OPTION> <OPTION value=07>ComPort-07</OPTION> <OPTION value=08>ComPort-08</OPTION> <OPTION value=09>ComPort-09</OPTION> <OPTION value=10>ComPort-10</OPTION> <OPTION value=11>ComPort-11</OPTION> <OPTION value=12>ComPort-12</OPTION> <OPTION value=13>ComPort-13</OPTION> <OPTION value=14>ComPort-14</OPTION> <OPTION value=15>ComPort-15</OPTION> <OPTION value=16>ComPort-16</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[819] PAYCO(SPC단말기연동전용)사인패드 속도', 'SPC 단말기 연동버전 PAYCO 사용 매장 전용')" style="CURSOR: pointer; COLOR: blue">[819] PAYCO(SPC단말기연동전용)사인패드 속도</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_819 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>4800</OPTION> <OPTION value=2>9600</OPTION> <OPTION value=3>14400</OPTION> <OPTION value=4>19200</OPTION> <OPTION value=5>38400</OPTION> <OPTION value=6>56700</OPTION> <OPTION value=7>115200</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[860] 코너별외상사용여부', 'KN NICE전용')" style="CURSOR: pointer; COLOR: blue">[860] 코너별외상사용여부</FONT> <FONT color=red><B>*</B></FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_860 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[864] 주차서버IP <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_864 class=input1 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND>기타사항</LEGEND>
+<TABLE style="BORDER-SPACING: 1px" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[118] OK캐쉬백설정</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_118 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION> <OPTION value=2>직승인</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[171] 상품권판매구분', '단독매장은 사용(일련번호) 선택불가')" style="CURSOR: pointer; COLOR: blue">[171] 상품권판매구분</FONT><INPUT type=hidden value=사용(일련번호) name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_171 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용(일반)</OPTION> <OPTION value=2>사용(일련번호)</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[176] 매장입고시수량변경</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_176 name=ENV_SET_VAL> <OPTION value=A>자동입고</OPTION> <OPTION value=N>변경불가</OPTION> <OPTION selected value=Y>변경가능</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[279] 에누리처리구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_279 name=ENV_SET_VAL> <OPTION selected value=0>총금액에누리</OPTION> <OPTION value=1>상품별에누리</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[283] 의류잡화-품명표기방식', '2010-0621 버젼부터 2,3,4 선택가능')" style="CURSOR: pointer; COLOR: blue">[283] 의류잡화-품명표기방식</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_283 name=ENV_SET_VAL> <OPTION value=0>품번코드 표기</OPTION> <OPTION value=1>스타일명+칼라+사이즈</OPTION> <OPTION value=2>스타일명+칼라명+사이즈</OPTION> <OPTION value=3>스타일명+칼라+사이즈명</OPTION> <OPTION selected value=4>스타일명+칼라명+사이즈명</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[284] 돈통열림기록관리여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_284 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[285] 돈통열림옵션 사용여부', '2013012801 Ver 이후 사용가능. NETPOS 전용')" style="CURSOR: pointer; COLOR: blue">[285] 돈통열림옵션 사용여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_285 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>현금 결제시에만 열림</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[289] 복합결제시 돈통열림옵션<INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_289 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[543] 이전일자결제변경사용</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_543 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[550] 주차권발행여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_550 name=ENV_SET_VAL> <OPTION selected value=0>미발행</OPTION> <OPTION value=1>발행</OPTION> <OPTION value=2>조건발행</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[553] 여행사관리</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_553 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[558] 이용권-보관용출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_558 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[559] 이용권-제출용출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_559 name=ENV_SET_VAL> <OPTION selected value=0>출력안함</OPTION> <OPTION value=1>출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[560] 단순현금 선결제시 영수증발행 문의여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_560 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[562] 상품별매출현황 소계 출력구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_562 name=ENV_SET_VAL> <OPTION value=0>분류+코너</OPTION> <OPTION selected value=1>분류</OPTION> <OPTION value=2>코너</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[563] 여행사 단가 미적용상품 처리구분<</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_563 name=ENV_SET_VAL> <OPTION selected value=0>일반단가적용</OPTION> <OPTION value=1>적용안함</OPTION> <OPTION value=2>조건적용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[566] 은련카드사용', 'NEW VAN 모듈 사용인 경우에만 정상작동!<br>KCP, KICC, KSNET, KOVAN, SMARTRO,KIS,SPC,NICE 만 사용가능.')" style="CURSOR: pointer; COLOR: blue">[566] 은련카드사용</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM><</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_566 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[567] BC Loyalty 사용(테스트)</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_567 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[572] 상품단가-통화구분', '매장 상품마스터의 단가에 대한 통화구분')" style="CURSOR: pointer; COLOR: blue">[572] 상품단가-통화구분</FONT><INPUT type=hidden value=달러(USD) name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_572 name=ENV_SET_VAL> <OPTION selected value=0>원화(KRW)</OPTION> <OPTION value=10>달러(USD)</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[573] 사이드메뉴코드길이', '선택그룹및분류길이-선택상품길이 (설정값을 2Byte-3Byte 이외로 정하려면 포스버젼이 2011년 6월 7일 이후 버젼이어야 함)')" style="CURSOR: pointer; COLOR: blue">[573] 사이드메뉴코드길이</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_573 name=ENV_SET_VAL> <OPTION value=2>2Byte-3Byte</OPTION> <OPTION selected value=6>6Byte-3Byte</OPTION> <OPTION value=610>6Byte-10Byte</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[581] 마감정산시 중간마감 전표출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_581 name=ENV_SET_VAL> <OPTION selected value=0>미출력</OPTION> <OPTION value=1>출력</OPTION> <OPTION value=2>조건출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[583] IC카드 사용', 'KFTC전용-NEW Van모듈 전용-NetPos전용-2013061101Ver이후 적용.')" style="CURSOR: pointer; COLOR: blue">[583] IC카드 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_583 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[594] 출고요청일자선택', '출고요청일자선택이 불가능일 경우 오늘을 포함하여 이후날짜중 출고요청이 가능한 가장 작은 날짜로 세팅됨.')" style="CURSOR: pointer; COLOR: blue">[594] 출고요청일자선택</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_594 name=ENV_SET_VAL> <OPTION value=N>선택불가</OPTION> <OPTION selected value=Y>선택가능</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[595] 입수(상품정보)활용', '상품등록시 입수를 입력할지 여부')" style="CURSOR: pointer; COLOR: blue">[595] 입수(상품정보)활용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_595 name=ENV_SET_VAL> <OPTION selected value=N>사용안함</OPTION> <OPTION value=Y>사용함</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[596] 레시피사용여부', '레시피 사용 여부를 표시')" style="CURSOR: pointer; COLOR: blue">[596] 레시피사용여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_596 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>레시피 조정 사용</OPTION> <OPTION value=2>레시피 수불 사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[610] 판매창 숫자판 만원버튼사용', '판매창에서 나타나는 숫자판에 00 대신에 만원 버튼으로 대체표기 여부 2011-10-14일 이후 버젼부터 적용됨')" style="CURSOR: pointer; COLOR: blue">[610] 판매창 숫자판 만원버튼사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_610 name=ENV_SET_VAL> <OPTION selected value=0>00 버튼사용</OPTION> <OPTION value=1>만 버튼사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[615] NEW VAN 모듈 사용', '2011-1109-01 이후 버전 적용')" style="CURSOR: pointer; COLOR: blue">[615] NEW VAN 모듈 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_615 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[617] 대기번호표 2장출력', '2011-1109-01 이후 버전 적용')" style="CURSOR: pointer; COLOR: blue">[617] 대기번호표 2장출력</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_617 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[619] 할부승인금액체크', '2012-0306-01 이후 버전 적용.')" style="CURSOR: pointer; COLOR: blue">[619] 할부승인금액체크</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_619 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[620] 일시불승인금액체크', '사용 - 천원 이하 금액 카드승인 불가<BR>미사용 - 천원 이하 금액 카드승인 가능')" style="CURSOR: pointer; COLOR: blue">[620] 일시불승인금액체크</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_620 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[621] 국민 payOn 사용', '2012-0306-01 이후 버전 적용 : KOCES 전용.<br>( “사용 - NOCVM” 은 카드사 별도 계약 가맹점 전용 입니다. )')" style="CURSOR: pointer; COLOR: blue">[621] 국민 payOn 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_621 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용-NOCVM</OPTION> <OPTION value=2>사용-서명포함</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[622] 다음멤버쉽사용', '2012-0312-01 이후 버전 적용.')" style="CURSOR: pointer; COLOR: blue">[622] 다음멤버쉽사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_622 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[623] 싸인패드창 확인버튼사용', '2012-0418-01 이후 버전 적용 : <br>1. KOVAN 전용<br>2. NEW VAN 모듈 -> 사용')" style="CURSOR: pointer; COLOR: blue">[623] 싸인패드창 확인버튼사용</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_623 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[625] 외상입금시 초과금액 허용여부', '2012062001이후적용. NETPOS 만 적용가능')" style="CURSOR: pointer; COLOR: blue">[625] 외상입금시 초과금액 허용여부</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_625 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[638] [오류 사용금지]위해상품판매차단사용', '※오류에 대해 원인분석중이며, 7월초에 오픈 예정.<br><br>위해의약품시스템 확산정책에 대하여 현재 관련부처에서 검토중으로 인해 설치 연기 요청')" style="CURSOR: pointer; COLOR: blue">[638] [오류 사용금지]위해상품판매차단사용</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_638 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[639] 한국공항공사 I/F 계약번호', '한국공항공사 상업시설 매출관리 인터페이스용으로<BR>해당 매장과 공항공사간의 계약번호를 입력하여 사용한다.<BR> 공항공사와의 I/F를 하지 않는 매장에서는 해당 항목에 값을 넣지 않는다.<BR>한국공항공사 계약번호는 10자리 값입니다.<BR><BR><<주의사항>><BR>한국공항공사 실서버로 연결되어져 있으니 실 사용매장에서만 입력하여 주십시오.')" style="CURSOR: pointer; COLOR: blue">[639] 한국공항공사 I/F 계약번호</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_639 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[640] TRS 사용 - Kicc', '관세청-외국인 부가세 환급 서비스(Tax Refund Service) For KICC')" style="CURSOR: pointer; COLOR: blue">[640] TRS 사용 - Kicc</FONT><INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_640 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[641] TRS TID - Kicc', 'TRS TID For KICC<BR>KICC 실서버로 연결되어 있으니 실사용 매장만 사용하여 주십시오.')" style="CURSOR: pointer; COLOR: blue">[641] TRS TID - Kicc</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_641 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[643] 기능키 주차권 입력문구', '※2013022801이후 적용. NetPOS 만 적용가능.<br><br><b>기능키 주차권</b>에 표시될 문구를 입력합니다. <br> ex) 3시간 3천원 할인권<br><br><b><font color=red>※본 옵션은 기능키로 설정된 주차권 버튼에서만 사용가능합니다.<br>　[550] 주차권발행여부 와는 상관이 없습니다.</font></b>')" style="CURSOR: pointer; COLOR: blue">[643] 기능키 주차권 입력문구</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_643 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[644] 예술의전당 주차권 바코드규칙', '※2013030701이후 적용. NetPOS 만 적용가능.<br><br><b>기능키 주차권</b>에 인쇄될 바코드규칙을 입력합니다. <br>ex) 023110723 <br><br><b><font color=red>※본 옵션은 예술의전당 전용입니다.</font></b>')" style="CURSOR: pointer; COLOR: blue">[644] 예술의전당 주차권 바코드규칙</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_644 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[645] 결제수단별 매출현황 현금영수증 표시', '※2013032701이후 적용. NetPOS 만 적용가능.<br><br><b>결제수단별 매출현황</b>에 현금과 현금영수증을 구분하여 보여줍니다. <br>')" style="CURSOR: pointer; COLOR: blue">[645] 결제수단별 매출현황 현금영수증 표시</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_645 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[646] 예술의전당 고객관리연동 사용', '※2013061101이후 적용. NetPOS 만 적용가능.<br><br><b>NetPOS 자체 회원 사용 불가. <br>')" style="CURSOR: pointer; COLOR: blue">[646] 예술의전당 고객관리연동 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_646 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[647] TRS 출력구분', '※2013042901이후 적용. NetPOS 만 적용가능.')" style="CURSOR: pointer; COLOR: blue">[647] TRS 출력구분</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_647 name=ENV_SET_VAL> <OPTION selected value=0>모두 출력</OPTION> <OPTION value=1>관세청 제출용만 출력</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[648] [개발중]모바일바코드 사용', '개발중입니다!!개발중입니다!!')" style="CURSOR: pointer; COLOR: blue">[648] [개발중]모바일바코드 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_648 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[649] [개발중]모바일바코드-제휴사ID', '개발중입니다!!개발중입니다!!')" style="CURSOR: pointer; COLOR: blue">[649] [개발중]모바일바코드-제휴사ID</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_649 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[650] [개발중]모바일바코드 기타결제', '개발중입니다!!개발중입니다!!')" style="CURSOR: pointer; COLOR: blue">[650] [개발중]모바일바코드 기타결제</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_650 class=input1 value="다날바통, 금결원직불, 모바일상품권" name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[653] 기부 결제금액 - Kovan', '※2013112001이후 적용. NetPOS 만 적용가능.<br>KOVAN전용. 기부 결제 시 기본 금액 설정.')" style="CURSOR: pointer; COLOR: blue">[653] 기부 결제금액 - Kovan</FONT></TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_653 class=input1 value=500 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[654] 기부 출력구분 - Kovan', '※2013112001이후 적용. NetPOS 만 적용가능.<br>KOVAN전용. 기부결제 후 모두 출력할 건지 고객용만 선택할건지 지정.')" style="CURSOR: pointer; COLOR: blue">[654] 기부 출력구분 - Kovan</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_654 name=ENV_SET_VAL> <OPTION value=0>모두 출력</OPTION> <OPTION selected value=1>고객용 출력</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[688] 영수증쿠폰 발행여부', '* KIS 전용. 2015011201 이상 버전에서 사용 가능')" style="CURSOR: pointer; COLOR: blue">[688] 영수증쿠폰 발행여부</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_688 name=ENV_SET_VAL> <OPTION value=0>미사용</OPTION> <OPTION selected value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[700] 수수료관리 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_700 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[701] KIS밴 ShopNet 사용', '_KisShopNetSocket.exe 실행시킬지 여부 - ShopNet.exe 를 실행시킨다.')" style="CURSOR: pointer; COLOR: blue">[701] KIS밴 ShopNet 사용</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_701 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[702] 모바일쿠폰 결제 선택', '658번 연동기능')" style="CURSOR: pointer; COLOR: blue">[702] 모바일쿠폰 결제 선택</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_702 name=ENV_SET_VAL> <OPTION selected value=0>교환권</OPTION> <OPTION value=1>금액권</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[735] 레저큐 I/F ID</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_735 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[747] 상품조회조건구분</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_747 name=ENV_SET_VAL> <OPTION selected value=0>상품코드</OPTION> <OPTION value=1>상품명</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[760] 행운이벤트 사용설정</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_760 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[824] 매출현황-0원매출 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_824 name=ENV_SET_VAL> <OPTION selected value=0>미포함</OPTION> <OPTION value=1>포함</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[842] 회원포인트 문자 발송', '회원포인트 적립, 사용, 취소 시 문자 발송')" style="CURSOR: pointer; COLOR: blue">[842] 회원포인트 문자 발송</FONT> <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_842 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(6); type=checkbox name=chk_ShowHide> 기타</LEGEND>
+<TABLE id=table_6 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[480] 터치분류 폰트명(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_480 class=input1 value=굴림체 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[481] 터치분류 폰트크기(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_481 class=input1 value=9 name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[482] 터치분류 폰트스타일(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_482 name=ENV_SET_VAL> <OPTION selected value=0>없음</OPTION> <OPTION value=1>굵게</OPTION> <OPTION value=2>기울기</OPTION> <OPTION value=3>굵게+기울기</OPTION> <OPTION value=4>밑줄</OPTION> <OPTION value=5>굵게+밑줄</OPTION> <OPTION value=6>기울기+밑줄</OPTION> <OPTION value=7>굵게+기울기+밑줄</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[483] 터치분류 폰트컬러(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_483 class=input1 value=255,255,255 name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[484] 터치분류 배경컬러(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_484 class=input1 value=39,52,105 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[490] 터치키 상품 폰트명(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_490 class=input1 value=굴림체 name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[491] 터치키 상품 폰트크기(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_491 class=input1 value=9 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[492] 터치키 상품 폰트스타일(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_492 name=ENV_SET_VAL> <OPTION selected value=0>없음</OPTION> <OPTION value=1>굵게</OPTION> <OPTION value=2>기울기</OPTION> <OPTION value=3>굵게+기울기</OPTION> <OPTION value=4>밑줄</OPTION> <OPTION value=5>굵게+밑줄</OPTION> <OPTION value=6>기울기+밑줄</OPTION> <OPTION value=7>굵게+기울기+밑줄</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[493] 터치키 상품 폰트컬러(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_493 class=input1 value=255,255,255 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[494] 터치키 가격 폰트명(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_494 class=input1 value=굴림체 name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[495] 터치키 가격 폰트크기(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_495 class=input1 value=9 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[496] 터치키 가격 폰트스타일(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_496 name=ENV_SET_VAL> <OPTION selected value=0>없음</OPTION> <OPTION value=1>굵게</OPTION> <OPTION value=2>기울기</OPTION> <OPTION value=3>굵게+기울기</OPTION> <OPTION value=4>밑줄</OPTION> <OPTION value=5>굵게+밑줄</OPTION> <OPTION value=6>기울기+밑줄</OPTION> <OPTION value=7>굵게+기울기+밑줄</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[497] 터치키 가격 폰트컬러(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_497 class=input1 value=255,255,255 name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[498] 터치키 배경컬러(개발중_조작금지)</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_498 class=input1 value=80,93,160 name=ENV_SET_VAL></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(7); type=checkbox name=chk_ShowHide> CCTV</LEGEND>
+<TABLE id=table_7 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[286] CCTV사용여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_286 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[287] CCTV HOST</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_287 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[288] CCTV PORT</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_288 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(8);  type=checkbox name=chk_ShowHide> CCTV(FOCUS)</LEGEND>
+<TABLE id=table_8 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[752] CCTV사용여부<INPUT type=hidden value=사용 name=B_ENV_VAL_NM></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_752 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[753] CCTV HOST</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_753 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[754] CCTV PORT</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_754 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[755] CCTV ID</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_755 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[756] CCTV PASSWORD</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_756 class=input1 value=* name=ENV_SET_VAL></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(9);  type=checkbox name=chk_ShowHide> 선불카드</LEGEND>
+<TABLE id=table_9 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[726] 선불카드 사용 여부</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_726 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>Value Card</OPTION> <OPTION value=2>KP Card</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[727] 선불카드 TID</TD>
+<TD bgColor=#e6ebde><INPUT id=ENV_SET_VAL_727 class=input1 value=* name=ENV_SET_VAL></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[728] 선불카드 충전 승인 형태</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_728 name=ENV_SET_VAL> <OPTION value=0>본사 승인</OPTION> <OPTION selected value=1>매장 승인</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8>&nbsp;</TD>
+<TD bgColor=#e6ebde>&nbsp;</TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND><INPUT onclick=fn_ShowHide(10); type=checkbox name=chk_ShowHide> 모바일오더</LEGEND>
+<TABLE id=table_10 style="BORDER-SPACING: 1px; DISPLAY: none" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[745] YAP 모바일오더 <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_745 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[861] SOP사용여부', 'KN NICE전용')" style="CURSOR: pointer; COLOR: blue">[861] SOP사용여부</FONT> <FONT color=red><B>*</B></FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_861 name=ENV_SET_VAL> <OPTION selected value=0>사용안함</OPTION> <OPTION value=1>사용함</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+<FIELDSET style="PADDING-BOTTOM: 5px; PADDING-TOP: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 5px"><LEGEND>출력</LEGEND>
+<TABLE style="BORDER-SPACING: 1px" cellSpacing=1 cellPadding=2 width="100%" bgColor=#ccd6bc border=0>
+<TBODY>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[664] 정산서-결제수단별-수량/금액-출력</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_664 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[666] 출력물로그저장', '※2014062601이후 적용.')" style="CURSOR: pointer; COLOR: blue">[666] 출력물로그저장</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_666 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD></TR>
+<TR>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'[667] 정산서-반품건수표시', '※2014062601이후 적용.')" style="CURSOR: pointer; COLOR: blue">[667] 정산서-반품건수표시</FONT></TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_667 name=ENV_SET_VAL> <OPTION selected value=0>미사용</OPTION> <OPTION value=1>사용</OPTION></SELECT></TD>
+<TD bgColor=#eef1e8><FONT onclick="fn_Remark(this,'','개발중')" style="CURSOR: pointer; COLOR: blue">[697] 정산서-결제수단별매출 0원 매출 표기</TD>
+<TD bgColor=#e6ebde><SELECT id=ENV_SET_VAL_697 name=ENV_SET_VAL> <OPTION value=0>미표기</OPTION> <OPTION selected value=1>표기</OPTION></SELECT></TD></TR></TBODY></TABLE></FIELDSET>
+
+ </form>
+
+
+
+<script>
+
+function fn_ShowHide(n) {
+    console.log($('#table_'+n).css('display'))
+    if ( $('#table_'+n).css('display') == 'inline' )    { $('#table_'+n).css('display','none') }
+    else {  $('#table_'+n).css('display','inline') }
+}
+
+
+
+
+function fn_Remark(title,memo,memo2) {
+    alert(memo+memo2)
+}
+
+
+
+$.getJSON("{{ url_for('_system_data' ) }}/"+"{{ store_id }}", function (json) {
+    _data = json;
+
+}).done(function () {
+
+    console.log(_data)
+
+
+});
+
+
+var _url = "{{ url_for('_system_conf1') }}";
+var id = {{ store_id }}
+
+function asave() {
+
+    var input = $('#form_modify').serialize()
+
+    console.log(input)
+
+
+    $.ajax({
+        method: "POST",
+        url: (_url + '/' + id ),
+        data: JSON.stringify(input)
+    }).done(function (msg) {
+        console.log(msg);
+        if (msg == 'modified'){
+
+                    console.log('modified');
+                    }
+
+    });
+
+};
+</script>
+
+

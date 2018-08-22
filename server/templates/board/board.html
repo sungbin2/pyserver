@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<table width='100%' >
+    <tr>
+        <th style="color:white; background-color: #347efd;">
+         게시판
+        </th>
+    </tr>
+</table>
+<FORM name=formAJAX action=/common/jsp/select_qry.jsp><INPUT id=select_source type=hidden value=/etc/communication/bbs010.jsp name=select_source> <INPUT id=select_idx size=100 type=hidden name=select_idx> <INPUT id=select_objidx size=100 type=hidden name=select_objidx> <INPUT id=select_name size=100 type=hidden name=select_name> <INPUT id=select_value size=100 type=hidden name=select_value> <INPUT id=select_option size=100 type=hidden name=select_option> <INPUT id=select_query size=100 type=hidden name=select_query> <INPUT id=select_title size=100 type=hidden name=select_title> <INPUT id=select_change size=100 type=hidden name=select_change> <INPUT id=select_etc size=100 type=hidden name=select_etc> </FORM>
+
+<FORM method=post name=form1 action=bbs011.jsp><!-- IBFrame 을 위한 변수 선언 (필수)--><INPUT type=hidden value=etc.communication.bbs010 name=S_CONTROLLER> <INPUT type=hidden value=search name=S_METHOD> <INPUT type=hidden value=|NTC_CD|NTC_SEQ_NO|NTC_TITLE|NTC_READ_YN|NTC_VIEW_CNT|NTC_REPLY_CNT|NTC_APPR_FG|NTC_TARGET_FG|NTC_HD_SHOP_CD|NTC_OGN_CD|NTC_OGN_NM|NTC_USER_NM|ST_ED_DATE|SURVEY_YN| name=S_SAVENAME> <!-- IBFrame 을 위한 변수 선언 (선택)--><INPUT type=hidden name=S_FORWARD> <INPUT type=hidden name=S_TREECOL> <INPUT type=hidden value=1 name=SHEETSEQ> <INPUT type=hidden name=FROM_WHERE> <INPUT type=hidden name=NTC_SEQ_NO> <INPUT type=hidden value=10 name=NTC_CD> <INPUT type=hidden name=SURVEY_YN> <INPUT type=hidden value=1 name=NTC_APPR_FG> <INPUT type=hidden name=BUSINESS_DEPT_CD> <INPUT type=hidden value=1 name=page_no> <INPUT type=hidden name=date_fg>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD width="100%" noWrap>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD align=left>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD><IMG src="/image/s_icon.gif"> 조회구분 <SELECT name=search_field> <OPTION selected value=T>제목</OPTION> <OPTION value=C>내용</OPTION> <OPTION value=TC>제목+내용</OPTION> <OPTION value=U>작성자</OPTION></SELECT> <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); return false; }" class="input1h imeHan" size=16 name=search_str></TD>
+<TD width=10></TD><!-- 팝업게시판추가사항 JungHyoju 13.07.15 -->
+<TD><IMG src="/image/s_icon.gif"> 열람구분 <SELECT name=read_yn> <OPTION selected value="">-전체-</OPTION> <OPTION value=N>미열람</OPTION> <OPTION value=Y>열람</OPTION></SELECT></TD>
+<TD width=10></TD><!--  -->
+<TD><IMG src="/image/s_icon.gif"> 조회갯수 <SELECT name=page_size> <OPTION value=10>10</OPTION> <OPTION selected value=20>20</OPTION> <OPTION value=30>30</OPTION> <OPTION value=50>50</OPTION> <OPTION value=100>100</OPTION></SELECT></TD>
+<TD width=10></TD>
+<TD>
+<button id="list" style="background-color :#4e4765;"> <font color='#ffffff'>조회</font>   </button><button id="write" style="background-color :#4e4765;"><font color='#ffffff'>글쓰기</font>  </button></TD>
+<TD align=right>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE height=30 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0 name="">
+<TBODY>
+<TR bgColor=#ffffff vAlign=top>
+<TD height="100%" width="100%">
+
+</TD></TR></TBODY></TABLE>
+<DIV id=PAGEBUTTON>
+<TABLE style="MARGIN-TOP: 2px" cellSpacing=0 cellPadding=0 align=center border=0>
+<TBODY>
+<TR>
+<TD aling="center">
+<TABLE cellSpacing=2 cellPadding=2 align=center border=0>
+<TBODY>
+<TR vAlign=bottom>
+<TD align=left>&nbsp;&nbsp;<IMG border=0 src="https://asp.netusys.com/image/blank.gif" width=11 height=11>&nbsp;<IMG border=0 src="https://asp.netusys.com/image/blank.gif" width=11 height=11>&nbsp;</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE></FORM>
+
+
+{% endblock %}

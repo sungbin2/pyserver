@@ -1,0 +1,123 @@
+     {% include 'includes.html' %}
+
+
+    {% from 'macro/form2.html' import TITLE_BLOCK,FORM,FORM_MODAL %}
+    {% from 'macro/table.html' import THEAD,TBODY,GETLIST %}
+
+
+    {% set HEADER_ = '프린터' %}
+    {% set URL_ = url_for('_system_printer_',sid=store_id)  %}
+
+
+    {% call TITLE_BLOCK(HEADER_,'','print') %}
+        {{ THEAD(thead,False) }}
+        {{ TBODY(thead,False) }}
+        {{ GETLIST(URL_) }}
+        {{ FORM_MODAL(HEADER_,form_types) }}
+
+        <br/>
+        <button id="btn_save" class="ui right floated green button">
+            <i class="save icon"></i> 저장
+        </button>
+        <button id="btn_add" class="ui right floated olive button">
+            추가
+        </button>
+        <br/>
+        <br/>
+
+    {% endcall %}
+
+
+    <script>
+        $(function () {
+            $('#btn_add').click(function () {
+                ichae_net.juitbl_data.push({
+                    'idx': null,
+                    'enabled': true,
+                    '프린터명': '새 프린터 ' + (ichae_net.juitbl_data.length + 1),
+                    '모델명': '기본',
+                    '연결기기명': '{{defnet}}',
+                    'network_id': 0,
+                    '통신포트': 'COM01',
+                    '통신속도': '9600',
+                    '영수증': 'X',
+                    '고객주문서': 'X',
+                    '주방주문서': 'X'
+                });
+                juitbl_update();
+            });
+            $('#btn_save').click(function () {
+                $.ajax({
+                    method: "POST",
+                    url: '{{ URL_ }}',
+                    data: JSON.stringify(ichae_net.juitbl_data)
+                })
+                    .done(function (msg) {
+                        if (msg == 'modified')
+                            window.location.replace('{{ URL_ }}');
+                        else
+                            alert("alert:" + msg);
+                    });
+            });
+            $(document).on('click', 'button.삭제', function () {
+                var _idx = $(this).data('idx');
+                ichae_net.juitbl_data[_idx].enabled = false;
+                juitbl_update();
+            });
+
+
+            $(document).on('click', 'button.수정', function () {
+                var _idx = $(this).data('idx');
+                var _data = ichae_net.juitbl_data[_idx];
+                initialize_form();
+                for (var each in _data) {
+                    var target_input = $("input[name='{0}']".format(each));
+
+                    if (target_input.parent().hasClass('checkbox')) {
+                        if (_data[each] == 'O')
+                            target_input.parent().checkbox('check');
+                        else
+                            target_input.parent().checkbox('uncheck');
+                    }
+                    else if (target_input.next().hasClass('dropdown icon')) {
+                        target_input.parent().dropdown('set selected', _data[each]);
+                    }
+                    else
+                        target_input.val(_data[each]);
+
+                }
+                $("#extra").val(_idx);
+                $('#modal_modify')
+                    .modal('setting', {autofocus: false})
+                    .modal('show');
+            });
+
+
+            $('#modal_modify').modal({
+                onApprove: function () {
+                    var r = $('.ui.form').form('validate form');
+                    for (var i in r)
+                        if (r[i] == false)
+                            return false;
+
+                    var itera = $('#form_modify').serializeArray();
+                    var trgt = ichae_net.juitbl_data[Number($("#extra").val())];
+
+                    for (var each in itera) {
+                        if (!itera[each]['name'].includes('checkbox_'))
+                            trgt[itera[each]['name']] = itera[each]['value'];
+                    }
+                    juitbl_update();
+                }
+            });
+
+
+        });
+    </script>
+
+
+
+
+
+
+

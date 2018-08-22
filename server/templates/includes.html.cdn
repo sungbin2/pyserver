@@ -1,0 +1,23 @@
+<script>window.ichae_net = {};</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"/>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.css"/>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jui-core@2.0.4/dist/core.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jui@2.0.3/dist/ui.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jui-grid@2.0.2/dist/grid.min.js"></script>
+{#<script src="https://cdn.jsdelivr.net/npm/jui-chart@2.0.4/dist/chart.min.js"></script>#}
+
+
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>#}
+
+
+<script src="{{ url_for('static',filename='shared.js') }}"></script>
+<script src="{{ url_for('static',filename='String.Format.js') }}"></script>

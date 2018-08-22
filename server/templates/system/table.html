@@ -1,0 +1,339 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% from 'macro/form.html'    import title_block, listing_edit with context %}
+    <script src="{{ url_for('static',filename='TBL.js') }}"></script>
+
+
+    {% call title_block('테이블','','utensils') %}
+
+        {#        {{ tabling('테이블',url_for('_system_table')) }}#}
+
+        <div class="ui pointing menu">
+            {% for each_l in gl %}
+                <a class="item {{ 'active' if each_l.id==selected }}" data-id="{{ each_l.id }}"
+                   href="{{ url_for('_system_table',group_id=each_l.id) }}">
+                    {{ each_l.그룹명 }}
+                </a>
+            {% endfor %}
+            <div class="right menu">
+                <a id="btn_auto" class="item"><i class="th icon"></i>자동배치</a>
+                <a id="btn_save" class="item"><i class="save icon"></i>저장</a>
+                <a id="btn_add" class="item"><i class="plus circle icon"></i>버튼추가</a>
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <div class="ui orange segment"
+                 id="floor"
+                 style="width:{{ TABLEBORDER_WIDTH }}px;height:{{ TABLEBORDER_HEIGHT }}px;padding:0px;margin:auto">
+            </div>
+        </div>
+
+    {% endcall %}
+
+
+
+
+
+    <div id="modal_delete" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            삭제확인
+        </div>
+        <div class="content">
+            삭제하시겠습니까?
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui ok red right labeled icon button">
+                삭제
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_save" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            저장확인
+        </div>
+        <div class="content">
+            저장하시겠습니까?
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui positive right labeled icon button">
+                저장
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_modify" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            수정하기
+        </div>
+        <div class="content">
+            <form id="form_modify" class="ui form" action="" method="post">
+                {{ listing_edit() }}
+                <div class="ui error message"></div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div id="button_modify" class="ui positive right labeled icon button">
+                수정<i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal_auto" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            자동배치
+        </div>
+        <div class="content">
+            <b>자동배치시 기존 테이블 정보는 삭제됩니다.</b>
+            <form id="form_auto" class="ui form" action="">
+                <div class="four fields">
+                    <div class="field">
+                        <label>상하칸수</label>
+                        <input type="text" name="autorow" value="4">
+                    </div>
+                    <div class="field">
+                        <label>좌우칸수</label>
+                        <input type="text" name="autocol" value="4">
+                    </div>
+                    <div class="field">
+                        <label>간격</label>
+                        <input type="text" name="autorowgap" value="5">
+                    </div>
+                    {#                    <div class="field">#}
+                    {#                        <label>좌우간격</label>#}
+                    {#                        <input type="text" name="autocolgap" value="5">#}
+                    {#                    </div>#}
+                </div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui positive right labeled icon button">
+                자동배치
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        var _data = [];
+        var _url = "{{url_for('_system_table',group_id=selected)}}";
+
+
+        $(function () {
+            $.getJSON(_url, function (json) {
+                _data = json;
+            }).done(function () {
+                redraw();
+            })
+
+
+            $('#btn_add').click(function () {
+                _data.push(new TBL('새 테이블', 5, 5, 100, 100));
+                redraw();
+            });
+            $('#btn_save').click(function () {
+                var _id = $(this).data('id');
+                $('#modal_save')
+                    .modal({
+                        onApprove: function () {
+                            $.ajax({
+                                method: "PUT",
+                                url: _url,
+                                data: JSON.stringify(_data)
+                            })
+                                .done(function (msg) {
+                                    if (msg == 'modified')
+                                        window.location.replace(_url);
+                                    else
+                                        alert("alert:" + msg);
+                                });
+                        }
+                    })
+                    .modal('show');
+            });
+            $('#btn_auto').click(function () {
+                var _id = $(this).data('id');
+                $('#modal_auto')
+                    .modal({
+                        onApprove: function () {
+                            if (!parseInt($("input[name='autorow']").val())) {
+                                alert("상하칸: 올바른 숫자를 입력해주시기 바랍니다");
+                                return false;
+                            }
+                            if (!parseInt($("input[name='autocol']").val())) {
+                                alert("좌우칸: 올바른 숫자를 입력해주시기 바랍니다");
+                                return false;
+                            }
+                            if (!parseInt($("input[name='autorowgap']").val())) {
+                                alert("간격: 올바른 숫자를 입력해주시기 바랍니다");
+                                return false;
+                            }
+                            /*if (!parseInt($("input[name='autocolgap']").val())) {
+                                alert("좌우간격: 올바른 숫자를 입력해주시기 바랍니다");
+                                return false;
+                            }*/
+
+                            var row = parseInt($("input[name='autorow']").val());
+                            var col = parseInt($("input[name='autocol']").val());
+                            var gap = parseInt($("input[name='autorowgap']").val());
+                            var fWidth = $("#floor").width();
+                            var fHeight = $("#floor").height();
+                            var cWidth = Math.floor((fWidth - (gap * (col + 1))) / col);
+                            var cHeight = Math.floor((fHeight - (gap * (row + 1))) / row);
+
+                            var pos_top = [];
+                            var pos_bottom = [];
+                            var pos_left = [];
+                            var pos_right = [];
+
+                            for (var i = 0; i < row; i++) {
+                                pos_top.push((i * (cHeight + gap)) + gap);
+                                pos_bottom.push((i * (cHeight + gap)) + cHeight + gap);
+                            }
+                            for (var i = 0; i < col; i++) {
+                                pos_left.push((i * (cWidth + gap)) + gap);
+                                pos_right.push((i * (cWidth + gap)) + cWidth + gap);
+                            }
+
+
+                            for (var _index = 0; _index < _data.length; _index++) {
+                                _data[_index].isdel = 'O';
+                            }
+
+                            cnt_num = 0;
+                            for (var i = 0; i < row; i++) {
+                                for (var j = 0; j < col; j++) {
+                                    _data.push(TBL(++cnt_num + '번 테이블', pos_left[j], pos_top[i], cWidth, cHeight));
+                                }
+                            }
+                            redraw();
+
+                        }
+                    })
+                    .modal('show');
+            });
+
+
+        });
+
+        function redraw() {
+            $("#floor").empty();
+            var no = 0;
+            for (var i in _data) {
+                var temp = _data[i];
+                if (temp.isdel == 'X') {
+                    $new_tbl = $('<div class="ui segment"> <div class="ui top attached label">HTML</div> </div>');
+                    $new_tbl.data('i', i).css({
+                        "left": temp.x,
+                        "top": temp.y,
+                        "width": temp.width,
+                        "height": temp.height,
+                        "position": "absolute",
+                        "margin": 0,
+                        "padding": 0
+                    }).resizable({
+                        minWidth: 100, minHeight: 100, containment: "parent", stop: function () {
+                            AfterMove($(this));
+                        }
+                    }).draggable({
+                        cancel: ".ui.top.attached.label", containment: "parent", stop: function () {
+                            AfterMove($(this));
+                        }
+                    });
+                    $new_tbl.children('.label').html(++no + ' | ' + temp.name +
+                        ('<div class="ui top right attached label" style="margin:0px;">' +
+                            '<i class="pencil alternate 링크 icon 수정" data-id="{0}"></i> ' +
+                            '<i class="close 링크 icon 삭제" data-id="{0}"></i> ' +
+                            '</div>').format(i));
+                    $("#floor").append($new_tbl);
+                    temp.번호 = no;
+                }
+            }
+
+            $(document).on('click', 'i.수정', function () {
+                var _id = $(this).data('id');
+                var a_data = _data[_id];
+                for (var each in a_data) {
+                    var each_ = $("input[name='{0}']".format(each));
+                    if (each_.parent().hasClass('checkbox')) {
+                        if (a_data[each] == 'O')
+                            each_.parent().checkbox('check');
+                        else
+                            each_.parent().checkbox('uncheck');
+                    }
+                    else if (each_.next().hasClass('dropdown icon')) {
+                        each_.parent().dropdown('set selected', a_data[each]);
+                    }
+                    else
+                        each_.val(a_data[each]);
+                }
+
+                $('#modal_modify')
+                    .modal({
+                        onApprove: function () {
+                            // onDelete("{{ url }}", _id);
+                            _data[_id].name = $("input[name='name']").val();
+                            redraw();
+                        }
+                    })
+                    .modal('show');
+            });
+
+            $(document).on('click', 'i.삭제', function () {
+                var _id = $(this).data('id');
+                $('#modal_delete')
+                    .modal({
+                        onApprove: function () {
+                            // onDelete("{{ url }}", _id);
+                            _data[_id].isdel = 'O';
+                            redraw();
+                        }
+                    })
+                    .modal('show');
+            });
+
+        }
+
+        function AfterMove(o) {
+            var temp = _data[o.data('i')];
+            temp.x = o.position().left;
+            temp.y = o.position().top;
+            temp.width = o.width();
+            temp.height = o.height();
+            {#JSON.parse(JSON.stringify(temp))#}
+            for (var i in _data) {
+                var against = _data[i];
+                if (o.data('i') != i) {
+                    if (collision_detection(temp, against)) {
+                    }
+                }
+            }
+        }
+    </script>
+
+
+{% endblock %}
+
+

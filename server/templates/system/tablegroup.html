@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% from 'macro/form.html'    import title_block with context %}
+    {% from 'macro/table.html'    import tabling with context %}
+
+
+    {% call title_block('테이블 그룹','','clone outline') %}
+
+        {{ tabling('테이블 그룹',url_for('_system_tablegroup'),orderable=True) }}
+
+    {% endcall %}
+
+{% endblock %}
+
+

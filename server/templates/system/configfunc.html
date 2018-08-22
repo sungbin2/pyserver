@@ -1,0 +1,220 @@
+{% include 'ax5.html' %}
+
+
+
+<link rel="stylesheet" href="{{ url_for('static',filename='griddata.css') }} ">
+
+<table  style="border :1px solid white; width : 100%">
+<table class="func" style="float:left;width: 45%;" >
+    <tr>
+        <th>
+         포스
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <div data-ax5grid="first-grid" data-ax5grid-config="{
+                       header: { align: 'center' },
+                         page: { display: false  },
+                         sortable: true,
+                    }" style="height:350;"></div>
+        </td>
+
+    </tr>
+
+</table>
+<table class="func" style="width: 54%;  " >
+    <tr>
+        <th>
+         기능 <button id="btn_reset" >포스기능 일괄셋팅</button><button  style="float: right" onclick="save()">저장</button>
+        </th>
+    </tr>
+    <tr>
+        <td>
+            <div data-ax5grid="second-grid" data-ax5grid-config="{
+                        header: { align: 'center' },
+                         page: { display: false  },
+                         sortable: true,
+                         <!--showRowSelector: true,-->
+                    }" style="height:350;"></div>
+        </td>
+
+    </tr>
+
+</table>
+  </table>
+
+<script src="{{ url_for('static',filename='FUNC.js') }}"></script>
+<script src="{{ url_for('static',filename='funcreset.json') }}"></script>
+<script type="text/javascript">
+
+
+
+var data0 = {};
+var gridList1 = [];
+var gridList2 = [];
+var firstGrid = 0; var secondGrid = 0;
+var set = [];
+var sfunc = ""
+var _url = "{{url_for('_system_config')}}";
+var id = {{ store_id }};
+console.log("store",id);
+
+$.getJSON("{{ url_for('_system_config' ) }}/"+"{{ store_id }}", function (json) {
+    _data = json;
+
+}).done(function () {
+    posno = [];
+    for ( each in _data) {
+        posno.push(each)
+    }
+
+    for( i in _data['01'] ) {
+        data0[i] = _data['01'][i]
+    }
+    grid1load()
+
+    load()
+});
+
+function grid1load() {
+    for(i in data0) {
+        gridList1[i] = {};
+        gridList1[i]['포스번호'] = posno[0]
+        gridList1[i]['기능구분'] = data0[i].text
+        gridList1[i]['배열구분'] = ""
+        gridList1[i]['기능건수'] = data0[i]['func'].length
+        gridList1[i]['등록건수'] = 0
+
+        for(j in data0[i]['func'] ) {
+            if (data0[i]['func'][j].use_yn == 'y') {
+                gridList1[i]['등록건수'] += 1
+            }
+        }
+
+
+    }
+}
+
+function func(fn) {
+    gridList2 = [];
+    sfunc = fn
+    for(i in data0 ) {
+        if ( fn == data0[i].text ) {
+            for(j in data0[i]['func'] ) {
+
+                gridList2[j] = {};
+                gridList2[j]['no'] = data0[i]['func'][j].no
+                gridList2[j]['value'] = data0[i]['func'][j].value
+                gridList2[j]['text'] = data0[i]['func'][j].text
+                gridList2[j]['use_yn'] = data0[i]['func'][j].use_yn
+            }
+        }
+    }
+    secondGrid.setData(gridList2);
+
+}
+
+function load() {
+
+
+        firstGrid = new ax5.ui.grid({
+            target: $('[data-ax5grid="first-grid"]'),
+            columns: [
+                {key: "포스번호", label: "포스번호", width: 80, align: "center" },
+                {key: "기능구분", label: "기능구분", width: 100 , align: "left" ,formatter: function(){
+                    return '<a onClick=func("' + this.value + '"); >' + this.value + '</a>';
+                }},
+                {key: "배열구분", label: "배열구분", width: 80, align: "center"},
+                {key: "기능건수", label: "기능건수", width: 80 ,align: "center"},
+                {key: "등록건수", label: "등록건수", width: 80 ,align: "center"},
+                ],
+            body: {  mergeCells: ["포스번호"] }
+
+        });
+
+         secondGrid = new ax5.ui.grid({
+            target: $('[data-ax5grid="second-grid"]'),
+            header: { selector: true },
+            columns: [
+                {key: "no", label: "No.", width: 80, align: "center" },
+                {key: "value", label: "기능번호", width: 80, align: "center" },
+                {key: "text", label: "기능명", width: 260, align: "center"},
+                {key: "use_yn", label : "<input name='use_yn' type='checkbox' onClick='checkall(this.name)' >사용" , width: 80, align :"center" , sortable: false, editor: {
+                        type: "checkbox", config: {height: 17, trueValue: "y", falseValue: "n"}
+                    }},
+                ],
+
+        });
+
+        firstGrid.setData(gridList1);
+
+}
+
+function checkall(namex){
+
+    if ( $('input[name='+namex+']').is(":checked") == true ) {
+       for ( i =0; i< gridList2.length; i ++ ) {
+            secondGrid.setValue(i, namex ,"y")
+       }
+    }else {
+        for ( i =0; i< gridList2.length; i ++ ) {
+            secondGrid.setValue(i, namex ,"n")
+       }
+    }
+
+}
+
+function save() {
+
+        for(k in data0){
+            if( sfunc == data0[k].text ){
+
+                var idx = data0[k].func.length
+                data0[k].func = secondGrid.getList()
+
+            }
+        }
+        $.ajax({
+            method: "POST",
+            url: (_url + '/' + id ),
+            data: JSON.stringify(_data)
+        })
+            .done(function (msg) {
+                if (msg == 'modified') {
+                    alert("저장되었습니다");
+                     grid1load()
+                     firstGrid.setData(gridList1);
+                      }
+                else
+                    alert("alert:" + msg);
+        });
+
+}
+
+$('#btn_reset').click(function () {
+     var bool = confirm("모든 포스의 기능이 관리자가 설정한 값으로 세팅됩니다. \n매장환경및 포스환경설정값에 따라 포스기능이 상이할 수 있습니다.\n계속하시겠습니까?")
+     if(bool){
+
+            $.ajax({
+                method: "POST",
+                url: (_url + '/' + id ),
+                data: JSON.stringify(_datareset)
+            })
+                .done(function (msg) {
+                    if (msg == 'modified') {
+                        alert("저장되었습니다");
+                        load();
+                        <!--window.location.replace(_url);-->
+                          }
+                    else
+                        alert("alert:" + msg);
+            });
+
+     }else { alert("취소하셨습니다.")  }
+
+});
+
+</script>
+
+

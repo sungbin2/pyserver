@@ -1,0 +1,18 @@
+
+
+
+{% macro validating( form_types ) -%}
+    <script>
+        $('.ui.form').form({
+            fields: {
+        {% for each in form_types %}
+            {% if each.valid %}
+                {{ each.name }}: '{{ each.valid }}',
+            {% endif %}
+        {% endfor %}
+
+        }
+        })
+        ;
+    </script>
+{%- endmacro %}

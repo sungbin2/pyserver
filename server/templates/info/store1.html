@@ -1,0 +1,242 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<FORM name=form1><!-- IBFrame 을 위한 변수 선언 (필수)--><INPUT type=hidden value=sysadmin.shop.shop030 name=S_CONTROLLER> <INPUT type=hidden name=S_METHOD> <INPUT type=hidden name=S_SAVENAME> <!-- IBFrame 을 위한 변수 선언 (선택)--><INPUT type=hidden name=S_FORWARD> <INPUT type=hidden name=S_TREECOL> <INPUT type=hidden name=SHEETSEQ> <INPUT id=list type=hidden name=list> <INPUT type=hidden value=S name=r_ogn_fg> <INPUT type=hidden value=1 name=page_no>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR height=25>
+<TD width="100%">
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD> 본사코드 <INPUT  maxLength=4 size=4 name=s_HD_SHOP_CD></TD>
+<TD width=5></TD>
+<TD> 본사명 <INPUT  maxLength=30 size=14 name=s_HD_SHOP_NM></TD>
+<TD width=5></TD>
+<TD> 매장코드 <INPUT  maxLength=6 size=6 name=s_SHOP_CD></TD>
+<TD width=5></TD>
+<TD> 매장명 <INPUT  maxLength=30 size=14 name=s_SHOP_NM></TD>
+<TD width=5></TD>
+<TD> 사업자번호 <INPUT  maxLength=10 size=10 name=biz_no></TD>
+<TD width=5></TD>
+<TD> 검색줄수 <INPUT  size=4 value='' name=page_size></TD>
+<TD width=5></TD>
+<TD>
+<TABLE  style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD></TD>
+<TD ><FONT color=#ffffff>조회</FONT></TD>
+<TD></TD></TR></TBODY></TABLE></TD>
+<TD width=5></TD>
+<TD>
+<TABLE  style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD></TD>
+<TD ><FONT color=#ffffff>SMS전송</FONT></TD>
+<TD></TD></TR></TBODY></TABLE></TD>
+<TD width=5></TD>
+<TD>
+<TABLE  style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD></TD>
+<TD><FONT color=#ffffff>엑셀</FONT></TD>
+<TD></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR height=25>
+<TD style="DISPLAY: none"><INPUT type=hidden name=s_CORP_CD></TD>
+<TD> 용도
+ <SPAN id=divAjax_0_s_PGM_TYPE_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(0,0); " id=SelectObj_0_0 name=s_PGM_TYPE_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>일반</OPTION> <OPTION value=1>외식</OPTION> <OPTION value=2>의류</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 상태
+ <SPAN id=divAjax_1_s_SHOP_STAT_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(1,0); " id=SelectObj_1_0 name=s_SHOP_STAT_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>오픈</OPTION> <OPTION value=2>폐점</OPTION> <OPTION value=4>출고보류</OPTION> <OPTION value=9>데모</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 브랜드취급&nbsp;<SELECT name=s_BRAND_MGR_YN> <OPTION selected value="">-전체-</OPTION> <OPTION value=Y>Y</OPTION> <OPTION value=N>N</OPTION></SELECT></TD>
+<TD width=10></TD>
+<TD> 상품분류
+ <SPAN id=divAjax_2_s_CLS_MGR_LEVEL_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(2,0); " id=SelectObj_2_0 name=s_CLS_MGR_LEVEL_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>대분류</OPTION> <OPTION value=2>대+중분류</OPTION> <OPTION value=3>대+중+소분류</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 밴사
+ <SPAN id=divAjax_3_s_VAN_CD style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(3,0); " id=SelectObj_3_0 name=s_VAN_CD> <OPTION selected value="">-전체-</OPTION> <OPTION value=01>KICC</OPTION> <OPTION value=02>FDIK</OPTION> <OPTION value=03>NICE</OPTION> <OPTION value=04>SMARTRO</OPTION> <OPTION value=05>STARVAN</OPTION> <OPTION value=06>KSNET</OPTION> <OPTION value=07>KIS</OPTION> <OPTION value=08>JT-NET</OPTION> <OPTION value=09>KCP</OPTION> <OPTION value=10>KOCES</OPTION> <OPTION value=11>KCB-현금</OPTION> <OPTION value=12>KOVAN</OPTION> <OPTION value=13>SPC</OPTION> <OPTION value=14>KFTC</OPTION> <OPTION value=15>KSNET-PG</OPTION> <OPTION value=16>KOVAN-SECU</OPTION> <OPTION value=17>SPC-SECU</OPTION> <OPTION value=18>STARVAN-SECU</OPTION> <OPTION value=19>KFTC-SECU</OPTION> <OPTION value=20>FDK-SECU</OPTION> <OPTION value=21>KICC-SECU</OPTION> <OPTION value=22>KSNET_SECU</OPTION> <OPTION value=23>SMARTRO_SECU</OPTION> <OPTION value=24>KOCES_SECU</OPTION> <OPTION value=25>KIS_SECU</OPTION> <OPTION value=26>JT-NET_SECU</OPTION> <OPTION value=27>KCP_SECU</OPTION> <OPTION value=28>NICE_SECU</OPTION></SELECT></SPAN>
+</TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR height=25>
+<TD> 프로그램
+ <SPAN id=divAjax_4_s_PROGRAM_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(4,0); " id=SelectObj_4_0 name=s_PROGRAM_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>NetPOS</OPTION> <OPTION value=1>NvPos-전문점용</OPTION> <OPTION value=2>OKPOS(보안)</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 사입상품
+ <SPAN id=divAjax_5_s_SAIP_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(5,0); " id=SelectObj_5_0 name=s_SAIP_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>생성안함</OPTION> <OPTION value=1>생성함</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 코너
+ <SPAN id=divAjax_6_s_CORNER_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(6,0); " id=SelectObj_6_0 name=s_CORNER_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>코너-미사용</OPTION> <OPTION value=1>매장단위승인</OPTION> <OPTION value=2>코너개별승인</OPTION> <OPTION value=3>포스별승인</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 판매가통제
+ <SPAN id=divAjax_7_s_PRICE_MGR_FG style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(7,0); " id=SelectObj_7_0 name=s_PRICE_MGR_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>본사통제</OPTION> <OPTION value=1>매장통제</OPTION></SELECT></SPAN>
+</TD><!-- //2013.08.05 junghyoju 매장포스버전내용 추가  -->
+<TD width=10></TD>
+<TD> 포스버전 <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1hc imeEng" maxLength=8 size=8 name=s_POS_VER_01> ~ <INPUT onkeypress="if(event.keyCode == 13) { document.form1.page_no.value='1'; doAction('search','1'); }" class="input1hc imeEng" maxLength=8 size=8 name=s_POS_VER_02></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR height=25>
+<TD> 기간&nbsp;<SELECT onchange=fnCalendarHidden(this) name=s_TERM_FG> <OPTION selected value="">-전체-</OPTION> <OPTION value=L>최종로그인</OPTION> <OPTION value=O>시스템오픈</OPTION> <OPTION value=C>시스템폐점</OPTION></SELECT>
+<DIV id=Calendar style="DISPLAY: none"><INPUT onclick=fnShowCal2(1); id=date1_1 class=read1hc style="CURSOR: hand" readOnly size=10 value=2018-08-06 name=date1_1> - <INPUT onclick=fnShowCal2(1); id=date1_2 class=read1hc style="CURSOR: hand" readOnly size=10 value=2018-08-06 name=date1_2> <IMG onclick=fnShowCal2(1); style="CURSOR: hand" src="/image/calendar/calendar_btn.gif"><INPUT id=date_period1 type=hidden value=366 name=date_period1></DIV></TD>
+<TD width=10></TD>
+<TD> 로컬POS여부&nbsp;<SELECT name=s_LOCAL_POS_YN> <OPTION selected value="">-전체-</OPTION> <OPTION value=Y>로컬</OPTION> <OPTION value=N>ASP</OPTION></SELECT></TD>
+<TD width=10></TD>
+<TD> 단골플러스사용유무&nbsp;
+ <SPAN id=divAjax_8_s_ENV_138 style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(8,0); " id=SelectObj_8_0 name=s_ENV_138> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>사용안함</OPTION> <OPTION value=1>사용함</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> NO CVM &nbsp;<SELECT name=s_NO_CVM> <OPTION selected value="">-전체-</OPTION> <OPTION value=A>적용</OPTION> <OPTION value=B>적용가능</OPTION> <OPTION value=C>적용불가</OPTION></SELECT></TD>
+<TD width=10></TD>
+<TD> 유지보수사용여부 &nbsp;<SELECT name=s_REPAIR_YN> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>사용</OPTION> <OPTION value=0>미사용</OPTION></SELECT></TD></TR></TBODY></TABLE></FORM></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE id=TableNm1 height=550 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0 name="TableNm1">
+<TBODY>
+<TR bgColor=#ffffff vAlign=top>
+<TD height="100%" width="100%">
+
+       <div data-ax5grid="first-grid" data-ax5grid-config="{
+                                  header: { align: 'center' },
+                                  page: { display: false  }
+                            }" style="height: 100%;"></div>
+
+</TD></TR></TBODY></TABLE>
+
+
+
+
+ <script>
+var _data;
+var data0 = [];
+var gridList = [];
+
+
+$.getJSON("{{ url_for('_info_store_all') }}", function (json) {
+    _data = json;
+}).done(function () {
+
+     <!--document.getElementsByName('s')[0].value = _data.s-->
+    console.log(_data)
+
+    for (i in _data) data0.push( _data[i] )
+
+    load()
+
+})
+
+
+<!--$(function () {-->
+
+   <!--$('#btn_modify').click(function () {-->
+       <!--onModify("{{ url_for('_info_store') }}", store_id);-->
+   <!--});-->
+<!--});-->
+
+function load() {
+    firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "no", label: "No.", width: 70, align: "center" },
+                        {key: "본사코드", label: "본사코드", width: 70, align: "center" },
+                        {key: "본사명", label: "본사명", width: 70, align: "center" },
+                        {key: "매장코드", label: "매장코드", width: 70, align: "center" },
+                        {key: "매장명", label: "매장명", width: 70, align: "center" },
+                        {key: "NOCVM", label: "NOCVM", width: 70, align: "center" },
+                        {key: "로컬POS여부", label: "로컬POS여부", width: 70, align: "center" },
+                        {key: "포스수", label: "포스수", width: 70, align: "center" },
+                        {key: "사업자번호", label: "사업자번호", width: 70, align: "center" },
+                        {key: "대표자명", label: "대표자명", width: 70, align: "center" },
+                        {key: "전화번호", label: "전화번호", width: 70, align: "center" },
+                        {key: "휴대전화", label: "휴대전화", width: 70, align: "center" },
+                        {key: "체크박스", label: "체크박스", width: 70, align: "center" },
+                        {key: "상태구분", label: "상태구분", width: 70, align: "center" },
+                        {key: "용도구분", label: "용도구분", width: 70, align: "center" },
+                        {key: "브랜드취급", label: "브랜드취급", width: 70, align: "center" },
+                        {key: "상품분류", label: "상품분류", width: 70, align: "center" },
+                        {key: "관리업체코드", label: "관리업체코드", width: 70, align: "center" },
+                        {key: "관리업체명", label: "관리업체명", width: 70, align: "center" },
+                        {key: "밴사", label: "밴사", width: 70, align: "center" },
+                        {key: "사용POS", label: "사용POS", width: 70, align: "center" },
+                        {key: "매장포스버전", label: "매장포스버전", width: 70, align: "center" },
+                        {key: "코너사용구분", label: "코너사용구분", width: 70, align: "center" },
+                        {key: "판매가통제구분", label: "판매가통제구분", width: 70, align: "center" },
+                        {key: "로그인일자", label: "최종포스 로그인일자", width: 70, align: "center" },
+                        {key: "시스템오픈", label: "시스템오픈", width: 70, align: "center" },
+                        {key: "시스템폐점", label: "시스템폐점", width: 70, align: "center" },
+                        {key: "주소", label: "주소", width: 70, align: "center" },
+                        {key: "단골플러스사용여부", label: "단골플러스사용여부", width: 70, align: "center" },
+                        {key: "유지보수사용여부", label: "유지보수사용여부", width: 70, align: "center" },
+
+                    ]
+            });
+
+    n=0;
+    for ( i in data0 ) {
+        if ( gridList[n] == undefined ) gridList[n] = { 'i' : '' , '매장명' : '' , '용도' : '' , '상태' : '' , '매장수' : '' , '등록자' : '' , '등록일시' : '' , }
+
+        gridList[n]['i'] = i
+        gridList[n]['no'] = n+1
+        gridList[n]['매장명'] = data0[i]['가게명']
+        gridList[n]['용도'] = '외식'
+        gridList[n]['상태'] = '오픈'
+        gridList[n]['매장수'] = 1
+        gridList[n]['등록자'] = 'hdpos'
+        gridList[n]['등록일시'] = ''
+
+    n++
+
+    }
+
+
+    firstGrid.setData(gridList);
+
+}
+
+
+function loaditem(item) {
+   console.log(item)
+    for ( i in _data) {
+        if (item == i ) {
+
+            $('input[name="s"]').val(_data[i]['s'])
+            $('input[name="매장명"]').val(_data[i]['가게명'])
+            $('input[name="대표자"]').val(_data[i]['대표자'])
+            $('input[name="사업자번호"]').val(_data[i]['사업자번호'])
+
+
+        }
+    }
+}
+
+</script>
+
+
+
+{% endblock %}

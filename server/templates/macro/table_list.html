@@ -1,0 +1,57 @@
+{% macro table_list(header,url,orderable=False) -%}
+
+
+    <table id="juitbl" class=" ui very compact striped orange table">
+        <thead>
+        <tr>
+            {% for each in thead %}
+                <th style="{% if each['width'] %}width: {{ each['width'] }}px;{% endif %}">
+                    {{ each['tag'] if each['tag'] else each['name'] }}</th>
+            {% endfor %}
+            <th style="width: {{ '200' if orderable else '100' }}px;">
+                액션
+            </th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script data-jui="#juitbl" data-tpl="row" type="text/template">
+        <tr>
+            {% for each in thead %}
+                <td><!= {{ each['name'] }} !></td>
+            {% endfor %}
+            <td>
+                {% if orderable %}
+                    <button class="ui mini basic icon button 위로" data-id="<!= i !>">
+                        <i class="arrow up icon"></i>
+                    </button>
+                    <button class="ui mini basic icon button 아래로" data-id="<!= i !>">
+                        <i class="arrow down icon"></i>
+                    </button>
+                {% endif %}
+                {% if header!='네트워크' %}
+                <button class="ui mini basic icon button 수정" data-id="<!= i !>">
+                    <i class="edit icon"></i>
+                </button>
+                <button class="ui mini basic icon button 삭제" data-id="<!= i !>">
+                    <i class="eraser icon"></i>
+                </button>
+                {% endif %}
+            </td>
+        </tr>
+    </script>
+
+    <script>
+        jui.ready(["grid.table"], function (table) {
+            ichae_net.juitbl = table("#juitbl");
+            getList("{{ url }}");
+        });
+    </script>
+
+    <br/>
+    <button id="btn_add" class="ui right floated button">추가</button>
+    <br/>
+
+
+{%- endmacro %}

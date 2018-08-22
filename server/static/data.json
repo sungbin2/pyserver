@@ -1,0 +1,1007 @@
+data =
+{
+  "02": [
+    {
+      "no": 1,
+      "name": "01"
+    }
+  ],
+  "01": [
+    {
+      "no": 1,
+      "text": "영업관리",
+      "func": [
+        {
+          "no": 1,
+          "value": 101,
+          "text": "공지사항",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 102,
+          "text": "마감취소",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 103,
+          "text": "시재입출금",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 104,
+          "text": "시재점검",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 105,
+          "text": "외상입금",
+          "use_yn":"n"
+        },
+        {
+          "no": 6,
+          "value": 106,
+          "text": "사원근태",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 107,
+          "text": "판매원변경",
+          "use_yn":"n"
+        },
+        {
+          "no": 8,
+          "value": 108,
+          "text": "마감정산",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 109,
+          "text": "상품권판매",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 110,
+          "text": "중간정산",
+          "use_yn":"n"
+        },
+        {
+          "no": 11,
+          "value": 111,
+          "text": "준비금등록",
+          "use_yn":"y"
+        },
+        {
+          "no": 12,
+          "value": 112,
+          "text": "기사출금",
+          "use_yn":"y"
+        },
+        {
+          "no": 13,
+          "value": 113,
+          "text": "매출 I/F",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 2,
+      "text": "테이블-일반",
+      "func": [
+        {
+          "no": 1,
+          "value": 201,
+          "text": "이동",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 202,
+          "text": "분할",
+          "use_yn":"n"
+        },
+        {
+          "no": 3,
+          "value": 203,
+          "text": "단체",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 204,
+          "text": "예약관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 205,
+          "text": "대기접수",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 206,
+          "text": "웹정보",
+          "use_yn":"n"
+        },
+        {
+          "no": 7,
+          "value": 207,
+          "text": "영수증관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 208,
+          "text": "재출력",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 209,
+          "text": "환전",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 210,
+          "text": "간이영수증",
+          "use_yn":"y"
+        },
+        {
+          "no": 11,
+          "value": 211,
+          "text": "판매현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 12,
+          "value": 212,
+          "text": "주문서조회",
+          "use_yn":"y"
+        },
+        {
+          "no": 13,
+          "value": 213,
+          "text": "10GaZi",
+          "use_yn":"n"
+        },
+        {
+          "no": 14,
+          "value": 214,
+          "text": "SALT",
+          "use_yn":"y"
+        },
+        {
+          "no": 15,
+          "value": 215,
+          "text": "영수증쿠폰",
+          "use_yn":"y"
+        },
+        {
+          "no": 16,
+          "value": 216,
+          "text": "근태관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 17,
+          "value": 217,
+          "text": "웹사이트접속",
+          "use_yn":"n"
+        }
+      ]
+    },
+    {
+      "no": 3,
+      "text": "테이블-배달",
+      "func": [
+        {
+          "no": 1,
+          "value": 301,
+          "text": "배달처리",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 302,
+          "text": "배달현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 303,
+          "text": "입금처리",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 304,
+          "text": "그릇회수",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 305,
+          "text": "판매현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 306,
+          "text": "환전",
+          "use_yn":"n"
+        },
+        {
+          "no": 7,
+          "value": 307,
+          "text": "영수증관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 308,
+          "text": "웹정보",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 309,
+          "text": "입출금현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 310,
+          "text": "전화번호목록",
+          "use_yn":"y"
+        },
+        {
+          "no": 11,
+          "value": 311,
+          "text": "웹사이트접속",
+          "use_yn":"y"
+        }
+      ]
+    },{
+      "no": 4,
+      "text": "주문취소관리",
+      "func": [
+        {
+          "no": 1,
+          "value": 401,
+          "text": "전체취소",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 402,
+          "text": "할인",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 403,
+          "text": "선택취소",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 404,
+          "text": "수량감소",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 405,
+          "text": "수량변경",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 5,
+      "text": "영수증관리",
+      "func": [
+        {
+          "no": 1,
+          "value": 501,
+          "text": "반품",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 502,
+          "text": "재출력",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 503,
+          "text": "결제변경",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 504,
+          "text": "회원적립",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 505,
+          "text": "OK캐쉬백",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 6,
+      "text": "일반-판매처리",
+      "func": [
+        {
+          "no": 1,
+          "value": 601,
+          "text": "상품조회",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 602,
+          "text": "재고조회",
+          "use_yn":"n"
+        },
+        {
+          "no": 3,
+          "value": 603,
+          "text": "타매장재고",
+          "use_yn":"n"
+        },
+        {
+          "no": 4,
+          "value": 604,
+          "text": "배달처리",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 605,
+          "text": "수표조회",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 606,
+          "text": "대기",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 607,
+          "text": "출력관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 608,
+          "text": "웹정보",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 609,
+          "text": "환전",
+          "use_yn":"n"
+        },
+        {
+          "no": 10,
+          "value": 610,
+          "text": "확장메뉴",
+          "use_yn":"y"
+        },
+        {
+          "no": 11,
+          "value": 611,
+          "text": "주문접수",
+          "use_yn":"y"
+        },
+        {
+          "no": 12,
+          "value": 612,
+          "text": "결제추가",
+          "use_yn":"y"
+        },
+        {
+          "no": 13,
+          "value": 613,
+          "text": "포장",
+          "use_yn":"y"
+        },
+        {
+          "no": 14,
+          "value": 614,
+          "text": "회원등록",
+          "use_yn":"y"
+        },
+        {
+          "no": 15,
+          "value": 615,
+          "text": "단가변경",
+          "use_yn":"y"
+        },
+        {
+          "no": 16,
+          "value": 616,
+          "text": "여행사조회",
+          "use_yn":"n"
+        },
+        {
+          "no": 17,
+          "value": 617,
+          "text": "예약조회",
+          "use_yn":"y"
+        },
+        {
+          "no": 18,
+          "value": 618,
+          "text": "발권(수량)",
+          "use_yn":"n"
+        },
+        {
+          "no": 19,
+          "value": 619,
+          "text": "배달접수",
+          "use_yn":"y"
+        },
+        {
+          "no": 20,
+          "value": 620,
+          "text": "중간계산서",
+          "use_yn":"y"
+        },
+        {
+          "no": 21,
+          "value": 621,
+          "text": "로열티쿠폰",
+          "use_yn":"n"
+        },
+        {
+          "no": 22,
+          "value": 622,
+          "text": "퇴실",
+          "use_yn":"y"
+        },
+        {
+          "no": 23,
+          "value": 623,
+          "text": "보관함출력",
+          "use_yn":"y"
+        },
+        {
+          "no": 24,
+          "value": 624,
+          "text": "다음단골",
+          "use_yn":"n"
+        },
+        {
+          "no": 25,
+          "value": 625,
+          "text": "입장(바코드)",
+          "use_yn":"n"
+        },
+        {
+          "no": 26,
+          "value": 626,
+          "text": "퇴장(바코드)",
+          "use_yn":"n"
+        },
+        {
+          "no": 27,
+          "value": 627,
+          "text": "TRS",
+          "use_yn":"y"
+        },
+        {
+          "no": 28,
+          "value": 628,
+          "text": "외상결제",
+          "use_yn":"y"
+        },
+        {
+          "no": 29,
+          "value": 629,
+          "text": "주차권",
+          "use_yn":"n"
+        },
+        {
+          "no": 30,
+          "value": 630,
+          "text": "예술의전당",
+          "use_yn":"n"
+        },
+        {
+          "no": 31,
+          "value": 631,
+          "text": "1mile",
+          "use_yn":"n"
+        },
+        {
+          "no": 32,
+          "value": 632,
+          "text": "NH비타민",
+          "use_yn":"n"
+        },
+        {
+          "no": 33,
+          "value": 633,
+          "text": "계열사할인",
+          "use_yn":"n"
+        },
+        {
+          "no": 34,
+          "value": 634,
+          "text": "회원검색",
+          "use_yn":"y"
+        },
+        {
+          "no": 35,
+          "value": 635,
+          "text": "재고폐기",
+          "use_yn":"n"
+        },
+        {
+          "no": 36,
+          "value": 636,
+          "text": "기부",
+          "use_yn":"n"
+        },
+        {
+          "no": 37,
+          "value": 637,
+          "text": "칸투칸쿠폰",
+          "use_yn":"n"
+        },
+        {
+          "no": 38,
+          "value": 638,
+          "text": "칸투칸AS",
+          "use_yn":"n"
+        },
+        {
+          "no": 39,
+          "value": 639,
+          "text": "전체포장",
+          "use_yn":"y"
+        },
+        {
+          "no": 40,
+          "value": 640,
+          "text": "입금/출금",
+          "use_yn":"y"
+        },
+        {
+          "no": 41,
+          "value": 641,
+          "text": "판매현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 42,
+          "value": 642,
+          "text": "SALT",
+          "use_yn":"n"
+        },
+        {
+          "no": 43,
+          "value": 643,
+          "text": "PAYCO",
+          "use_yn":"n"
+        },
+        {
+          "no": 44,
+          "value": 644,
+          "text": "상품등록",
+          "use_yn":"y"
+        },
+        {
+          "no": 45,
+          "value": 645,
+          "text": "교환",
+          "use_yn":"y"
+        },
+        {
+          "no": 46,
+          "value": 646,
+          "text": "영수증쿠폰",
+          "use_yn":"y"
+        },
+        {
+          "no": 47,
+          "value": 647,
+          "text": "SURF",
+          "use_yn":"n"
+        },
+        {
+          "no": 48,
+          "value": 648,
+          "text": "객층관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 49,
+          "value": 649,
+          "text": "웹사이트접속",
+          "use_yn":"y"
+        },
+        {
+          "no": 50,
+          "value": 650,
+          "text": "직전영수증",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 7,
+      "text": "매출현황",
+      "func": [
+        {
+          "no": 1,
+          "value": 701,
+          "text": "분류별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 702,
+          "text": "상품별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 703,
+          "text": "결제유형별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 704,
+          "text": "할인유형별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 705,
+          "text": "월별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 706,
+          "text": "정산현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 707,
+          "text": "시간대별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 708,
+          "text": "영수증별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 709,
+          "text": "상품별주문취소현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 710,
+          "text": "코너별매출현황",
+          "use_yn":"y"
+        },
+        {
+          "no": 11,
+          "value": 711,
+          "text": "시재입출금현황",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 8,
+      "text": "환경설정",
+      "func": [
+        {
+          "no": 1,
+          "value": 801,
+          "text": "포스별환경설정",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 802,
+          "text": "자료보관(백업)",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 803,
+          "text": "마스터수신설정",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 804,
+          "text": "단말기인증",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 805,
+          "text": "매출자료수신",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 806,
+          "text": "원격제어",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 807,
+          "text": "시스템로그전송",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 808,
+          "text": "포스데이터관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 809,
+          "text": "매출자료전송",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 810,
+          "text": "보안리더기무결성점검",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 9,
+      "text": "결제메뉴",
+      "func": [
+        {
+          "no": 1,
+          "value": 901,
+          "text": "곱빼기",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 902,
+          "text": "단순현금",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 903,
+          "text": "더치페이",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 904,
+          "text": "모바일바코드",
+          "use_yn":"n"
+        },
+        {
+          "no": 5,
+          "value": 905,
+          "text": "모바일쿠폰",
+          "use_yn":"n"
+        },
+        {
+          "no": 6,
+          "value": 906,
+          "text": "복합결제",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 907,
+          "text": "임의봉사료",
+          "use_yn":"n"
+        },
+        {
+          "no": 8,
+          "value": 908,
+          "text": "부분반품",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 909,
+          "text": "서비스",
+          "use_yn":"y"
+        },
+        {
+          "no": 10,
+          "value": 910,
+          "text": "신용카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 11,
+          "value": 911,
+          "text": "영수증관리",
+          "use_yn":"y"
+        },
+        {
+          "no": 12,
+          "value": 912,
+          "text": "은련카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 13,
+          "value": 913,
+          "text": "자사카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 14,
+          "value": 914,
+          "text": "제휴할인",
+          "use_yn":"y"
+        },
+        {
+          "no": 15,
+          "value": 915,
+          "text": "주문",
+          "use_yn":"y"
+        },
+        {
+          "no": 16,
+          "value": 916,
+          "text": "캐시비",
+          "use_yn":"y"
+        },
+        {
+          "no": 17,
+          "value": 917,
+          "text": "쿠폰",
+          "use_yn":"y"
+        },
+        {
+          "no": 18,
+          "value": 918,
+          "text": "회원포인트",
+          "use_yn":"y"
+        },
+        {
+          "no": 19,
+          "value": 919,
+          "text": "현금",
+          "use_yn":"y"
+        }
+      ]
+    },
+    {
+      "no": 10,
+      "text": "복합결제",
+      "func": [
+        {
+          "no": 1,
+          "value": 1001,
+          "text": "현금",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 1002,
+          "text": "신용카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 1003,
+          "text": "외상",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 1004,
+          "text": "회원포인트",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 1005,
+          "text": "사원카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 6,
+          "value": 1006,
+          "text": "제휴선할인카드",
+          "use_yn":"y"
+        },
+        {
+          "no": 7,
+          "value": 1007,
+          "text": "상품권",
+          "use_yn":"y"
+        },
+        {
+          "no": 8,
+          "value": 1008,
+          "text": "식권",
+          "use_yn":"y"
+        },
+        {
+          "no": 9,
+          "value": 1009,
+          "text": "제휴사용",
+          "use_yn":"n"
+        }
+      ]
+    },
+    {
+      "no": 11,
+      "text": "출력관리",
+      "func": [
+        {
+          "no": 1,
+          "value": 1101,
+          "text": "영수증출력",
+          "use_yn":"y"
+        },
+        {
+          "no": 2,
+          "value": 1102,
+          "text": "고개주문서",
+          "use_yn":"y"
+        },
+        {
+          "no": 3,
+          "value": 1103,
+          "text": "주방주문서",
+          "use_yn":"y"
+        },
+        {
+          "no": 4,
+          "value": 1104,
+          "text": "간이영수증",
+          "use_yn":"y"
+        },
+        {
+          "no": 5,
+          "value": 1105,
+          "text": "중간계산서",
+          "use_yn":"y"
+        }
+      ]
+    }
+
+  ]
+}

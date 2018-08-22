@@ -1,0 +1,11 @@
+{% macro dropdown(name, l) -%}
+    <div class="ui dropdown pointing item for_menu">
+        {{ name }}
+        <div class="menu">
+            {% for x in l %}
+                <a class="item " href="{{ url_for(x[1]) }}">{{ x[0] }}</a>
+            {% endfor %}
+        </div>
+    </div>
+
+{%- endmacro %}

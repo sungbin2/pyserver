@@ -1,0 +1,221 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% from 'macro/form2.html' import TITLE_BLOCK,FORM,FORM_MODAL %}
+    {% from 'macro/table.html' import THEAD,TBODY,GETLIST %}
+
+
+
+
+    {% set HEADER_='영수증서식' %}
+    {% set URL_=url_for('_system_receiptform') %}
+
+
+
+    {% call TITLE_BLOCK(HEADER_,'','file') %}
+        <br/>
+
+        <div class="ui top attached tabular menu">
+            <a class="active item" data-tab="영수증">영수증</a>
+            <a class="item" data-tab="간이영수증">간이영수증</a>
+            <a class="item" data-tab="고객주문서">고객주문서</a>
+            <a class="item" data-tab="주방주문서">주방주문서</a>
+        </div>
+        <div class="ui bottom attached active tab segment" data-tab="영수증">
+            <div class="ui form">
+                <div class="field">
+                    <label>"영수증"</label>
+                    <textarea rows="20" data-tab="영수증"></textarea>
+                </div>
+                <button class="ui olive button 초기화" data-tab="영수증">초기화</button>
+            </div>
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="간이영수증">
+            <div class="ui form">
+                <div class="field">
+                    <label>"간이영수증"</label>
+                    <textarea rows="20" data-tab="간이영수증"></textarea>
+                </div>
+                <button class="ui olive button 초기화" data-tab="간이영수증">초기화</button>
+            </div>
+
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="고객주문서">
+            <div class="ui form">
+                <div class="field">
+                    <label>"고객주문서"</label>
+                    <textarea rows="20" data-tab="고객주문서"></textarea>
+                </div>
+                <button class="ui olive button 초기화" data-tab="고객주문서">초기화</button>
+            </div>
+
+        </div>
+        <div class="ui bottom attached tab segment" data-tab="주방주문서">
+            <div class="ui form">
+                <div class="field">
+                    <label>"주방주문서"</label>
+                    <textarea rows="20" data-tab="주방주문서"></textarea>
+                </div>
+                <button class="ui olive button 초기화" data-tab="주방주문서">초기화</button>
+            </div>
+
+        </div>
+
+        <br/>
+        <button id="btn_save" class="ui right floated green button">
+            <i class="save icon"></i> 저장
+        </button>
+        <br/>
+        <br/>
+
+    {% endcall %}
+
+    <script>
+        var EOL = '\n';
+        var defaults = {
+            "영수증": [
+                "[_C]{dA/}영수증{/dA}{재출력}",
+                "[_C]",
+                "[_L][가게명] {가게명}",
+                "[_L][대표자] {대표자}",
+                "[_L][사업자번호] {사업자번호}",
+                "[_L][우편번호] {우편번호}",
+                "[_L][주소] {주소}",
+                "[_L][상세주소] {상세주소}",
+                "[_L][이메일] {이메일}",
+                "[_L][휴대폰] {휴대폰}",
+                "[_L][전화] {전화}",
+                "[_L][팩스] {팩스}",
+                "[_HLINE]=",
+                "[_J]상품명{sp}수량        금액",
+                "[_HLINE]-",
+                "[_LIST]{/상품명수량금액/}",
+                "[_HLINE]=",
+                "[_C]",
+                "[_C]{dW/}감사합니다{/dW}",
+                "[_CNF]"
+            ],
+            "간이영수증": [
+                "[_C]{dA/}영수증{/dA}{재출력}",
+                "[_C]",
+                "[_L][가게명] {가게명}",
+                "[_L][대표자] {대표자}",
+                "[_L][사업자번호] {사업자번호}",
+                "[_L][우편번호] {우편번호}",
+                "[_L][주소] {주소}",
+                "[_L][상세주소] {상세주소}",
+                "[_L][이메일] {이메일}",
+                "[_L][휴대폰] {휴대폰}",
+                "[_L][전화] {전화}",
+                "[_L][팩스] {팩스}",
+                "[_HLINE]=",
+                "[_LIST]{/항목명금액_간이영수증/}",
+                "[_HLINE]-",
+                "[_J]{dH/}받을금액{sp}{금액}{/dH}",
+                "[_J]{dH/}받은금액{sp}{금액}{/dH}",
+                "[_HLINE]=",
+                "[_C]",
+                "[_C]{dW/}감사합니다{/dW}",
+                "[_CNF]"
+            ],
+            "고객주문서": [
+                "[_C]{dA/}고객주문서{/dA}{재출력}",
+                "[_C]",
+                "[_J][주문번호] {dH/}{주문번호}{/dH}{sp}[테이블] {좌석}",
+                "[_J][주문자] {담당자}{sp}[손님수] {객수}",
+                "[_HLINE]=",
+                "[_J]상품명{sp}수량      구분",
+                "[_HLINE]-",
+                "[_LIST]{/상품명수량구분/}",
+                "[_HLINE]=",
+                "[_J][POS] {기기명}{sp}[주문일시] {주문일시}",
+                "[_C]",
+                "[_C]{dW/}감사합니다{/dW}",
+                "[_CNF]"
+            ],
+            "주방주문서": [
+                "[_C]{dA/}주방주문서{/dA}{재출력}",
+                "[_C]",
+                "[_J][주문번호] {dH/}{주문번호}{/dH}{sp}[테이블] {좌석}",
+                "[_J][주문자] {담당자}{sp}[손님수] {객수}",
+                "[_HLINE]=",
+                "[_J]상품명{sp}수량      구분",
+                "[_HLINE]-",
+                "[_LIST]{/상품명수량구분/}",
+                "[_HLINE]=",
+                "[_J][POS] {기기명}{sp}[주문일시] {주문일시}",
+                "[_C]",
+                "[_CNF]"
+            ]
+        };
+        var currents = {};
+
+        $(function () {
+            $('.menu .item').tab();
+
+
+            $.getJSON("{{ URL_ }}", function (json) {
+                currents = json;
+            }).done(function () {
+                var temp;
+
+                temp = "";
+                for (var each in currents["영수증"]) {
+                    temp += currents["영수증"][each] + EOL
+                }
+                $('textarea[data-tab="영수증"]').val(temp);
+
+                temp = "";
+                for (var each in currents["간이영수증"]) {
+                    temp += currents["간이영수증"][each] + EOL
+                }
+                $('textarea[data-tab="간이영수증"]').val(temp);
+
+                temp = "";
+                for (var each in currents["고객주문서"]) {
+                    temp += currents["고객주문서"][each] + EOL
+                }
+                $('textarea[data-tab="고객주문서"]').val(temp);
+
+                temp = "";
+                for (var each in currents["주방주문서"]) {
+                    temp += currents["주방주문서"][each] + EOL
+                }
+                $('textarea[data-tab="주방주문서"]').val(temp)
+            });
+
+
+            $('#btn_save').click(function () {
+                var parcel = {};
+                parcel["영수증"] = $('textarea[data-tab="영수증"]').val();
+                parcel["간이영수증"] = $('textarea[data-tab="간이영수증"]').val();
+                parcel["고객주문서"] = $('textarea[data-tab="고객주문서"]').val();
+                parcel["주방주문서"] = $('textarea[data-tab="주방주문서"]').val();
+
+                $.ajax({
+                    method: "POST",
+                    url: '{{URL_}}',
+                    contentType: "application/json",
+                    data: JSON.stringify(parcel)
+                })
+                    .done(function (msg) {
+                        if (msg == 'modified')
+                            window.location.replace('{{ URL_ }}');
+                        else
+                            alert("alert:" + msg);
+                    });
+            });
+
+            $(document).on('click', 'button.초기화', function () {
+                var _tab = $(this).data('tab');
+                var temp = "";
+                for (var each in defaults[_tab]) {
+                    temp += defaults[_tab][each] + EOL
+                }
+                $('textarea[data-tab="{0}"]'.format(_tab)).val(temp)
+            });
+
+        });
+
+
+    </script>
+{% endblock %}

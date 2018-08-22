@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" >
+
+
+    <!-- Site Properties -->
+    <title>KBIZPOS</title>
+    {% include 'includes.html' %}
+
+
+
+
+
+    <style type="text/css">
+        .ui.container {
+            width: auto!important;
+             margin-left: 0!important;
+             margin-right: 0!important;
+        }
+        .ui.grid.container { width :100%!important; }
+        body {
+            font-family: "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
+            font-size :13px ;
+            background-color: #FFFFFF;
+            overflow-y: hidden; overflow-x: hidden;
+        }
+
+        .ui.menu .item img.logo {
+            margin-right: 1.5em;
+        }
+
+        .main.container {
+            font-family: "돋움", dotum, "굴림", gulim, arial, helvetica, sans-serif;
+            font-size :13px ;
+            margin-top: 4em;
+
+        }
+
+        .ui.grid>.column:not(.row) {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+
+        .wireframe {
+            margin-top: 2em;
+        }
+
+        .ui.footer.segment {
+            position:fixed;
+            width:100%;
+            bottom:0;
+            padding: 0.5em 0em ;
+        }
+
+        i.링크 {
+            cursor: pointer;
+            opacity: .8;
+            -webkit-transition: opacity .1s ease;
+            transition: opacity .1s ease;
+        }
+
+        i.링크:hover {
+            opacity: 1 !important;
+        }
+
+        .red {
+          color : red!important;
+        }
+    </style>
+</head>
+<body class="jui">
+
+
+
+
+<div class="ui fixed inverted menu">
+    <a href="{{ url_for('_dashboard') }}" class="header item">
+        KBIZPOS
+    </a>
+    <!--<a href="{{ url_for('_dashboard') }}" class="olive item">-->
+        <!--대시보드-->
+    <!--</a>-->
+
+    <div class="ui fixed dropdown item">
+        시스템관리 <i class="dropdown"></i>
+        <div class="menu">
+          <div class="item">
+            <i class="dropdown "></i>
+           POS버전관리
+            <div class="menu">
+              <a class="item" href="#">재설치대상매장현황</a>
+              <a class="item" href="#">설치업체관리</a>
+              <a class="item" href="#">설치관리</a>
+            </div>
+          </div>
+          <div class="item">
+            <i class="dropdown "></i>
+            본사/매장마스터
+            <div class="menu">
+              <a class="item" href="#">본사정보관리</a>
+              <a class="item" href="{{ url_for('_info_store') }}">매장정보관리</a>
+              <a class="item" href="{{ url_for('_info_store1') }}">매장정보조회</a>
+              <a class="item" href="#">매장정보변경확인</a>
+              <a class="item" href="{{ url_for('_info_store3') }}">매장환경설정</a>
+              <a class="item" href="{{ url_for('_info_store4') }}">매장환경설정(작업중)</a>
+              <a class="item" href="{{ url_for('_info_storelogin') }}">버츄얼로그인</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="ui fixed dropdown item">
+        기초관리 <i class="dropdown "></i>
+        <div class="menu">
+          <div class="item">
+            <i class="dropdown "></i>
+            매장관리
+            <div class="menu">
+              <a class="item" href="#">패스워드변경</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="ui fixed dropdown item">
+        기타관리 <i class="dropdown "></i>
+        <div class="menu">
+          <div class="item">
+            <i class="dropdown "></i>
+            매뉴얼다운로드
+          </div>
+          <div class="item">
+            <i class="dropdown "></i>
+            시스템전용게시판
+          </div>
+          <div class="item">
+            <i class="dropdown "></i>
+            대리점게시판
+          </div>
+        </div>
+    </div>
+
+    <div class="right menu">
+        <a href="{{ url_for('_logout') }}" class="ui item">
+            로그아웃
+        </a>
+    </div>
+</div>
+
+<script>
+	window.onresize = function() { // no need to name the function if that is all you do in the event
+		// do not use interval if you do not need interval
+                // using quotes in a timeout/interval is an implicit EVAL and not good practice
+         if( window.outerWidth < 1024 || window.outerHeight < 768 ){
+		    window.setTimeout(resize,500);
+		    }
+
+	}
+	function resize() {
+
+		<!--window.moveTo(0, 0);-->
+		function a() {
+		window.resizeTo(1024, 768); }
+		window.onload(a());
+	}
+
+</script>
+
+<div class="jui ui main container">
+    {% block body %}{% endblock %}
+</div>
+
+
+<div class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui horizontal inverted small divided link list">
+            COPYRIGHT© 2017 BY [KBIZ], ALL RIGHTS RESERVED.
+        </div>
+    </div>
+</div>
+
+
+{% include 'semantic-ui-do.html' %}
+</body>
+</html>

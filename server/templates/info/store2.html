@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+
+
+ <script>
+var _data;
+var data0 = [];
+var gridList = [];
+
+
+$.getJSON("{{ url_for('_info_store_all') }}", function (json) {
+    _data = json;
+}).done(function () {
+
+     <!--document.getElementsByName('s')[0].value = _data.s-->
+    console.log(_data)
+
+    for (i in _data) data0.push( _data[i] )
+
+    load()
+
+})
+
+
+<!--$(function () {-->
+
+   <!--$('#btn_modify').click(function () {-->
+       <!--onModify("{{ url_for('_info_store') }}", store_id);-->
+   <!--});-->
+<!--});-->
+
+function load() {
+    firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "no", label: "No.", width: 70, align: "center" },
+                        {key: "본사코드", label: "본사코드", width: 70, align: "center" },
+                        {key: "본사명", label: "본사명", width: 70, align: "center" },
+                        {key: "매장코드", label: "매장코드", width: 70, align: "center" },
+                        {key: "매장명", label: "매장명", width: 70, align: "center" },
+                        {key: "NOCVM", label: "NOCVM", width: 70, align: "center" },
+                        {key: "로컬POS여부", label: "로컬POS여부", width: 70, align: "center" },
+                        {key: "포스수", label: "포스수", width: 70, align: "center" },
+                        {key: "사업자번호", label: "사업자번호", width: 70, align: "center" },
+                        {key: "대표자명", label: "대표자명", width: 70, align: "center" },
+                        {key: "전화번호", label: "전화번호", width: 70, align: "center" },
+                        {key: "휴대전화", label: "휴대전화", width: 70, align: "center" },
+                        {key: "체크박스", label: "체크박스", width: 70, align: "center" },
+                        {key: "상태구분", label: "상태구분", width: 70, align: "center" },
+                        {key: "용도구분", label: "용도구분", width: 70, align: "center" },
+                        {key: "브랜드취급", label: "브랜드취급", width: 70, align: "center" },
+                        {key: "상품분류", label: "상품분류", width: 70, align: "center" },
+                        {key: "관리업체코드", label: "관리업체코드", width: 70, align: "center" },
+                        {key: "관리업체명", label: "관리업체명", width: 70, align: "center" },
+                        {key: "밴사", label: "밴사", width: 70, align: "center" },
+                        {key: "사용POS", label: "사용POS", width: 70, align: "center" },
+                        {key: "매장포스버전", label: "매장포스버전", width: 70, align: "center" },
+                        {key: "코너사용구분", label: "코너사용구분", width: 70, align: "center" },
+                        {key: "판매가통제구분", label: "판매가통제구분", width: 70, align: "center" },
+                        {key: "로그인일자", label: "최종포스 로그인일자", width: 70, align: "center" },
+                        {key: "시스템오픈", label: "시스템오픈", width: 70, align: "center" },
+                        {key: "시스템폐점", label: "시스템폐점", width: 70, align: "center" },
+                        {key: "주소", label: "주소", width: 70, align: "center" },
+                        {key: "단골플러스사용여부", label: "단골플러스사용여부", width: 70, align: "center" },
+                        {key: "유지보수사용여부", label: "유지보수사용여부", width: 70, align: "center" },
+
+                    ]
+            });
+
+    n=0;
+    for ( i in data0 ) {
+        if ( gridList[n] == undefined ) gridList[n] = { 'i' : '' , '매장명' : '' , '용도' : '' , '상태' : '' , '매장수' : '' , '등록자' : '' , '등록일시' : '' , }
+
+        gridList[n]['i'] = i
+        gridList[n]['no'] = n+1
+        gridList[n]['매장명'] = data0[i]['가게명']
+        gridList[n]['용도'] = '외식'
+        gridList[n]['상태'] = '오픈'
+        gridList[n]['매장수'] = 1
+        gridList[n]['등록자'] = 'hdpos'
+        gridList[n]['등록일시'] = ''
+
+    n++
+
+    }
+
+
+    firstGrid.setData(gridList);
+
+}
+
+
+function loaditem(item) {
+   console.log(item)
+    for ( i in _data) {
+        if (item == i ) {
+
+            $('input[name="s"]').val(_data[i]['s'])
+            $('input[name="매장명"]').val(_data[i]['가게명'])
+            $('input[name="대표자"]').val(_data[i]['대표자'])
+            $('input[name="사업자번호"]').val(_data[i]['사업자번호'])
+
+
+        }
+    }
+}
+
+</script>
+
+
+
+{% endblock %}

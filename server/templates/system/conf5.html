@@ -1,0 +1,115 @@
+    {% include 'includes.html' %}
+
+
+ <button onclick="asave()" >저장</button>
+
+    <div data-ax5grid="first-grid" data-ax5grid-config="{
+                       header: { align: 'center' },
+                         page: { display: false  },
+                         sortable: true,
+                    }" style="height:400;"></div>
+
+
+
+
+<script>
+
+var firstGrid
+var gridList = [];
+var net = [];
+
+function load() {
+
+
+        firstGrid = new ax5.ui.grid({
+            target: $('[data-ax5grid="first-grid"]'),
+            columns: [
+                {key: "담당POS번호", label: "담당POS번호", width: 80, align: "center" },
+                {key: "idx", label: "프린터코드", width: 80, align: "center"},
+                {key: "프린터명", label: "프린터명", width: 80 ,align: "center"},
+                {key: "영수증", label: "영수증", width: 80 ,align: "center"},
+                {key: "고객주문서", label: "고객주문서", width: 80 ,align: "center"},
+                {key: "주방주문서", label: "주방주문서", width: 80 ,align: "center"},
+                {key: "모델명", label: "프린터종류", width: 80 ,align: "center"},
+                {key: "통신포트", label: "프린터포트", width: 80 ,align: "center"},
+                {key: "통신속도", label: "프린터속도", width: 80 ,align: "center"},
+                {key: "인쇄매수", label: "인쇄매수", width: 80 ,align: "center"},
+                {key: "TCP/IP", label: "TCP/IP", width: 80 ,align: "center"},
+                {key: "TCP/PORT", label: "TCP/PORT", width: 80 ,align: "center"},
+                {key: "enabled", label: "사용여부", width: 80 ,align: "center"},
+                ],
+
+        });
+
+
+
+        firstGrid.setData(gridList);
+
+}
+
+load()
+
+
+$.getJSON("{{ url_for('_system_data' ) }}/"+"{{ store_id }}", function (json) {
+    _data = json;
+
+}).done(function () {
+
+    console.log(net)
+    for ( i in _data['프린터'] ) {
+        net.push ( _data['프린터'][i] )
+    }
+
+    for ( i in net ) {
+        if (gridList[i] == undefined) gridList[i] = [];
+        gridList[i]['담당POS번호'] = '01'
+        gridList[i]['idx'] = net[i]['idx']
+        gridList[i]['프린터명'] = net[i]['프린터명']
+        gridList[i]['영수증'] = net[i]['영수증']
+        gridList[i]['고객주문서'] = net[i]['고객주문서']
+        gridList[i]['주방주문서'] = net[i]['주방주문서']
+        gridList[i]['모델명'] = net[i]['모델명']
+        gridList[i]['통신포트'] = net[i]['통신포트']
+        gridList[i]['통신속도'] = net[i]['통신속도']
+        gridList[i]['인쇄매수'] = '1'
+        gridList[i]['TCP/IP'] = ''
+        gridList[i]['TCP/PORT'] = ''
+        gridList[i]['enabled'] = net[i]['enabled']
+
+    }
+
+    firstGrid.setData(gridList);
+
+});
+
+
+var _url = "{{ url_for('_system_conf1') }}";
+var id = {{ store_id }}
+
+function asave() {
+
+
+
+        net = firstGrid.getList()
+
+        console.log(net)
+
+
+
+        <!--$.ajax({-->
+            <!--method: "POST",-->
+            <!--url: (_url + '/' + id ),-->
+            <!--data: JSON.stringify(_data)-->
+        <!--})-->
+            <!--.done(function (msg) {-->
+                <!--if (msg == 'modified') {-->
+                    <!--alert("저장되었습니다");-->
+                      <!--}-->
+                <!--else-->
+                    <!--alert("alert:" + msg);-->
+        <!--});-->
+
+
+};
+</script>
+

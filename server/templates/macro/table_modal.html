@@ -1,0 +1,129 @@
+{% from 'macro/validating.html' import validating with context %}
+{% from 'macro/form.html' import listing_edit with context %}
+{% macro table_modal(header,url,orderable=False) -%}
+
+
+    <div id="modal_modify" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            {{ header }}:
+            <span id="header_modify"></span>
+        </div>
+        <div class="content">
+            <form id="form_modify" class="ui form" action="" method="post">
+                {{ listing_edit() }}
+                <div class="ui error message"></div>
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div id="button_modify" class="ui positive right labeled icon button">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="modal_delete" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            삭제확인
+        </div>
+        <div class="content">
+            삭제하시겠습니까?
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui ok red right labeled icon button">
+                삭제
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(function () {
+            $('#modal_modify').modal({
+                onApprove: function () {
+                    var r = $('.ui.form').form('validate form');
+                    for (var i in r)
+                        if (r[i] == false)
+                            return false;
+                    var regexp_ip;
+                    if ($("input[name='ip']").length > 0)
+                        regexp_ip = $("input[name='ip']").val().replace(/\s/g, '');
+                    var regexp_port;
+                    if ($("input[name='port']").length > 0)
+                        regexp_port = $("input[name='port']").val().replace(/\s/g, '');
+                    $("input[name='ip']").val(regexp_ip);
+                    $("input[name='port']").val(regexp_port);
+
+                    if ($("input[name='i']").val() == '')
+                        onAdd("{{ url }}");
+                    else
+                        onModify("{{ url }}", $("input[name='i']").val());
+                }
+            });
+
+
+            $('#btn_add').click(function () {
+                var _id = '';
+                initialize_form();
+                $("input[name='ip']").val("127.0.0.1");
+                $("input[name='port']").val(63520);
+                $('#header_modify').html('추가하기');
+                $('#button_modify').html('추가<i class="checkmark icon"></i>');
+                $('#modal_modify')
+                    .modal('setting', {autofocus: false})
+                    .modal('show');
+            });
+
+
+            $(document).on('click', 'button.수정', function () {
+                var _id = $(this).data('id');
+                initialize_form();
+                onApply("{{url}}", _id);
+                $('#header_modify').html('수정하기');
+                $('#button_modify').html('');
+                $('#modal_modify')
+                    .modal('setting', {autofocus: false})
+                    .modal('show');
+            });
+
+
+            $(document).on('click', 'button.삭제', function () {
+                var _id = $(this).data('id');
+                $('#modal_delete')
+                    .modal({
+                        onApprove: function () {
+                            onDelete("{{ url }}", _id);
+                        }
+                    })
+                    .modal('show');
+            });
+
+
+
+            {% if orderable %}
+                $(document).on('click', 'button.위로', function () {
+                    var _id = $(this).data('id');
+                    onMoveUp("{{ url }}", _id);
+                });
+                $(document).on('click', 'button.아래로', function () {
+                    var _id = $(this).data('id');
+                    onMoveDown("{{ url }}", _id);
+                });
+
+            {% endif %}
+        });
+
+    </script>
+
+    {{ validating(form_types) }}
+
+{%- endmacro %}

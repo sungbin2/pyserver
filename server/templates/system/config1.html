@@ -1,0 +1,51 @@
+    {% include 'includes.html' %}
+
+    {% from 'macro/form.html'    import title_block,listing_edit with context %}
+
+
+    {% call title_block('기능설정','','tasks') %}
+        <form id="form_modify" class="ui form" action="" method="post">
+            <input type="hidden" name="store_id" value="{{ store_id }}">
+
+            {{ listing_edit() }}
+        </form>
+
+    {% endcall %}
+
+    <br/>
+    <button id="btn_modify" class="ui labeled icon right floated primary button">
+        <i class="save icon"></i>
+        저장하기
+    </button>
+    <br/>
+
+
+
+    <script>
+        $(function () {
+            var _id = $("input[name='id']").val();
+            var store_id = $("input[name='store_id']").val();
+            _log(store_id);
+            initialize_form();
+            onApply("{{ url_for('_system_config1') }}", store_id);
+
+            $('#btn_modify').click(function () {
+                <!--onModify("{{ url_for('_system_config1') }}", store_id);-->
+                $.ajax({
+                    method: "PUT",
+                    url: "{{ url_for('_system_config1') }}/"+"{{ store_id }}" ,
+                    data: $('#form_modify').serialize()
+                })
+                    .done(function (msg) {
+
+                    });
+
+
+
+            });
+        });
+    </script>
+
+
+
+

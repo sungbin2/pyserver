@@ -1,0 +1,256 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+
+
+
+<script src="{{ url_for('static',filename='weather.json') }}"></script>
+
+
+<table width='100%' height='1' border='0' cellpadding='0' cellspacing='0'><tr valign='top'><td width='20'  nowrap></td><td width='55%' nowrap><table width='100%' border='0' cellpadding='0' cellspacing='0' background='' >
+    <tr>
+        <td><table border='0' cellpadding='0' cellspacing='0'>
+            <tr>
+                <td><img src=''></td>
+                <td background='' valign='middle'><img src='' width='1' height='15'><b>시스템전용게시판</b><img src='' width='1' height='15'></td>
+                <td><img src=''></td>
+            </tr>
+        </table></td><td align='right'><a src='' onclick="" style='cursor:hand;'>more</a></td>
+    </tr>
+</table><table width='100%' height='1' border='0' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>
+    <table width='100%' height='2' border='0' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>
+    <td width='20'  nowrap></td><td width='45%' nowrap><table width='100%' border='0' cellpadding='0' cellspacing='0' background='' >
+    <tr>
+        <td><table border='0' cellpadding='0' cellspacing='0'>
+            <tr>
+                <td><img src=''></td>
+                <td background='' valign='middle'><img src='/image/blank.gif' width='1' height='15'><font color='black'><b>서울 날씨</b></font><img src='' width='1' height='15'></td>
+                <td><img src=''></td>
+            </tr>
+        </table></td><td align='right'><a href="{{ url_for('_weather') }}" style='cursor:hand;'>more</a></td>
+    </tr>
+</table>
+
+
+    <table width='100%' height='2' border='0' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>
+    <table><tr><td>   <table border='0' cellpadding='4' cellspacing='1' bgcolor='#cecece'>   <tr bgcolor='#ffffff' align='center'>   <td width='34%' nowrap><b>오늘</b> (<span id="wtm"> </span>)</td>   <td width='33%' nowrap><b>내일</b> (<span id="wtm1"> </span>)</td>   </tr>   <tr bgcolor='#ffffff' align='center'>   <td width='34%' nowrap><table border='0' cellpadding='0' cellspacing='0'><tr><td><img id='wimg' src='' width='70' height='70'></td><td width='10'></td><td><span id="wdesc" ></span></td></tr></table></td>   <td width='33%' nowrap><table border='0' cellpadding='0' cellspacing='0'><tr><td><img id='wimg1' src='' width='70' height='70'></td><td width='10'></td><td><span id="wdesc1" ></span></td></tr></table></td>   </tr><tr bgcolor='#ffffff' align='center'><td width='34%' nowrap>최저 <font color='#6CA6E5'><b><span id="wmin" ></span></b></font>℃ / 최고 <font color='#F65E08'><b><span id="wmax" ></span></b></font>℃</td><td width='33%' nowrap>최저 <font color='#6CA6E5'><b><span id="wmin1" ></span></b></font>℃ / 최고 <font color='#F65E08'><b><span id="wmax1" ></span></b></font>℃</td></tr>   </table></td><td>
+
+
+
+        <table border='0' cellpadding='' cellspacing='' bgcolor='#cecece'>   <tr bgcolor='#ffffff' align='center'>   <td nowrap></td>   </tr>   </table></td></tr></table></td><td width='20'  nowrap></td></tr></table>
+<table width='100%' height='6' border='0' cellpadding='0' cellspacing='0'><tr><td></td></tr></table>
+
+
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR vAlign=top>
+<TD width=20 noWrap></TD>
+<TD width="100%" noWrap>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" background=/image/bar_green_r_bg.gif border=0>
+<TBODY>
+<TR>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD><IMG src="/image/bar_green_l.gif"></TD>
+<TD vAlign=middle background=/image/bar_green_c_bg.gif><IMG src="/image/blank.gif" width=1 height=15><FONT color=white><B>일주간 매출발생</B></FONT><IMG src="/image/blank.gif" width=1 height=15></TD>
+<TD><IMG src="/image/bar_green_r.gif"></TD></TR></TBODY></TABLE></TD>
+<TD align=right></TD></TR></TBODY></TABLE>
+<TABLE height=1 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=1 cellPadding=2 width="100%" bgColor=#c0c0c0 border=0>
+<TBODY>
+<TR height=22 align=center bgColor=#e0e0e0>
+<TD width="12%">일자 </TD>
+<TD width="11%">2018-07-30 (월)</TD>
+<TD width="11%">2018-07-31 (화)</TD>
+<TD width="11%">2018-08-01 (수)</TD>
+<TD width="11%">2018-08-02 (목)</TD>
+<TD width="11%">2018-08-03 (금)</TD>
+<TD width="11%">2018-08-04 (<FONT color=blue>토</FONT>)</TD>
+<TD width="11%">2018-08-05 (<FONT color=red>일</FONT>)</TD>
+<TD width="11%">2018-08-06 (월)</TD></TR>
+<TR height=22 align=center bgColor=#ffffff>
+<TD bgColor=#e0e0e0 width="12%">매장수/매출건수 </TD>
+<TD width="11%"><FONT onclick=saleDtl(20180730) style="CURSOR: hand; COLOR: blue">122</FONT>/3,042</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180731) style="CURSOR: hand; COLOR: blue">123</FONT>/3,315</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180801) style="CURSOR: hand; COLOR: blue">125</FONT>/3,286</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180802) style="CURSOR: hand; COLOR: blue">126</FONT>/3,295</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180803) style="CURSOR: hand; COLOR: blue">124</FONT>/3,509</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180804) style="CURSOR: hand; COLOR: blue">113</FONT>/3,597</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180805) style="CURSOR: hand; COLOR: blue">102</FONT>/3,083</TD>
+<TD width="11%"><FONT onclick=saleDtl(20180806) style="CURSOR: hand; COLOR: blue">16</FONT>/147</TD></TR></TBODY></TABLE></TD>
+<TD width=20 noWrap></TD></TR></TBODY></TABLE>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR vAlign=top>
+<TD width=20 noWrap></TD>
+<TD width="100%" noWrap>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" background=/image/bar_green_r_bg.gif border=0>
+<TBODY>
+<TR>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD><IMG src="/image/bar_green_l.gif"></TD>
+<TD vAlign=middle background=/image/bar_green_c_bg.gif><IMG src="/image/blank.gif" width=1 height=15><FONT color=white><B>일주간 설치현황</B></FONT><IMG src="/image/blank.gif" width=1 height=15></TD>
+<TD><IMG src="/image/bar_green_r.gif"></TD></TR></TBODY></TABLE></TD>
+<TD align=right></TD></TR></TBODY></TABLE>
+<TABLE height=1 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=1 cellPadding=2 width="100%" bgColor=#c0c0c0 border=0>
+<TBODY>
+<TR height=22 align=center bgColor=#e0e0e0>
+<TD width="12%">일자 </TD>
+<TD width="11%">2018-07-30 (월)</TD>
+<TD width="11%">2018-07-31 (화)</TD>
+<TD width="11%">2018-08-01 (수)</TD>
+<TD width="11%">2018-08-02 (목)</TD>
+<TD width="11%">2018-08-03 (금)</TD>
+<TD width="11%">2018-08-04 (<FONT color=blue>토</FONT>)</TD>
+<TD width="11%">2018-08-05 (<FONT color=red>일</FONT>)</TD>
+<TD width="11%">2018-08-06 (월)</TD></TR>
+<TR height=22 align=center bgColor=#ffffff>
+<TD bgColor=#e0e0e0 width="12%">신규(ASP/로컬) </TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180730','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=1> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180730','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180731','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180731','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180801','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=1> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180801','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180802','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180802','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180803','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180803','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180804','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=1> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180804','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180805','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180805','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180806','1','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180806','1','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD></TR>
+<TR height=22 align=center bgColor=#ffffff>
+<TD bgColor=#e0e0e0 width="12%">재설치(ASP/로컬) </TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180730','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=4> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180730','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180731','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=6> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180731','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180801','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=2> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180801','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180802','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=4> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180802','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180803','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180803','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180804','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180804','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180805','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180805','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180806','2','N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180806','2','Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD></TR>
+<TR height=22 align=center bgColor=#ffffff>
+<TD bgColor=#e0e0e0 width="12%">합계(ASP/로컬) </TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180730','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=5> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180730','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180731','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=6> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180731','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180801','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=3> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180801','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180802','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=4> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180802','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180803','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180803','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180804','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=1> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180804','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180805','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180805','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD>
+<TD width="11%"><INPUT onclick="posInstDtl('20180806','' ,'N')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 30px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0> &nbsp;&nbsp;&nbsp;/ <INPUT onclick="posInstDtl('20180806','' ,'Y')" style="CURSOR: hand; BORDER-TOP: 0px solid; BORDER-RIGHT: 0px solid; WIDTH: 20px; BACKGROUND: white; BORDER-BOTTOM: 0px solid; COLOR: blue; TEXT-ALIGN: right; BORDER-LEFT: 0px solid" readOnly value=0></TD></TR></TBODY></TABLE></TD>
+<TD width=20 noWrap></TD></TR></TBODY></TABLE><!--세션시작--><!--corp_fg=C--><!--TokenVal=20d802d2-8e45-4e67-a581-eeb4e5b9b20b--><!--shop_cd=--><!--brand_mgr_yn=N--><!--shop_nm=--><!--salemg_mgr_yn=N--><!--ogn_group=A001--><!--env_set_300=--><!--point_stamp_nm=포인트--><!--ogn_cd=A001--><!--corp_cd=1898--><!--hd_shop_nm=운영시스템--><!--TokenKey=e5ee2d6e-929a-4149-bfd2-22708235363c--><!--env_set_100=--><!--pgm_type_fg=0--><!--cls_mgr_level_fg=1--><!--env_set_183=P--><!--hd_shop_cd=A001--><!--env_set_301=--><!--user_nm=단말기조합--><!--env_set_138=0--><!--ogn_nm=운영시스템--><!--env_set_184=0--><!--user_id=kbiz1022--><!--menu_user_id=kbiz1022--><!--ogn_fg=A--><!--SessionID(session.getId())=C277A409B099C86ACEDFF406764560C0--><!--MaxInactiveInterval=43200--><!--LocalHost=nvprweb1/10.200.101.21--><!--세션종료-->
+<FORM name=bannerForm><INPUT id=CONN_FG type=hidden name=CONN_FG> </FORM><IFRAME style="DISPLAY: none" height=500 width="90%" name=BlankFrm scrolling=yes></IFRAME><IFRAME style="DISPLAY: none" height=500 width="90%" name=BlankFrm2 scrolling=yes></IFRAME></BODY></HTML>
+<!--날씨 API-->
+<script>
+        var _data;var a=0 ,b=0;
+         var now = new Date();
+
+         var nowMonth = now.getMonth() + 1;
+         var nowDate = now.getDate();
+         var nowDate1 = now.getDate()+1;
+
+         var week = new Array('일', '월', '화', '수', '목', '금', '토');
+         var nowDay = now.getDay();
+         var nowDay1 = now.getDay()+1;
+
+        document.getElementById('wtm').innerHTML =  nowMonth + '월' + nowDate + '일 ,' + week[nowDay];
+        document.getElementById('wtm1').innerHTML =  nowMonth + '월' + nowDate1 + '일 ,' + week[nowDay1];
+
+
+var callbackFunction = function(data) {
+    var forecast = data.query.results.channel;
+
+    document.getElementById('wmin').innerHTML =  forecast[0].item.forecast.low
+    document.getElementById('wmax').innerHTML =  forecast[0].item.forecast.high
+    document.getElementById('wmin1').innerHTML = forecast[1].item.forecast.low
+    document.getElementById('wmax1').innerHTML = forecast[1].item.forecast.high
+    document.getElementById('wdesc1').innerHTML = forecast[1].item.forecast.text
+    document.getElementById('wdesc').innerHTML = forecast[0].item.forecast.text
+    for( i in names ) {
+        if( forecast[0].item.forecast.text == i || forecast[1].item.forecast.text == i) {
+            document.getElementById('wdesc').innerHTML = names[i]
+
+        }
+        if( forecast[1].item.forecast.text == i ) {
+            document.getElementById('wdesc1').innerHTML = names[i]
+        }
+
+    }
+
+    var img = forecast[0].item.forecast.text.toLowerCase().replace(' ','')
+    var img1 = forecast[1].item.forecast.text.toLowerCase().replace(' ','')
+    var imgURL = "/static/image/weather/"+img+".png"
+    $("#wimg").attr("src", imgURL);
+    var imgURL1 = "/static/image/weather/"+img1+".png"
+    $("#wimg1").attr("src", imgURL1);
+}
+</script>
+<script src="https://query.yahooapis.com/v1/public/yql?q=select item.forecast from weather.forecast where u='c' and woeid in (select woeid from geo.places(1) where text='seoul')&format=json&callback=callbackFunction"></script>
+<script type="text/javascript" src="{{ url_for('static',filename='gridList.js') }} "></script>
+<script>
+
+window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)',
+};
+
+
+var firstGrid
+
+function getDateStr(myDate){
+    return (myDate.getFullYear() + '-' + ("0" + (myDate.getMonth() + 1)).slice(-2)  + '-' + ("0" + myDate.getDate()).slice(-2));
+}
+
+function lastWeek() {
+  var d = new Date()
+  var dayOfMonth = d.getDate()
+  d.setDate(dayOfMonth - 7)
+  return getDateStr(d)
+}
+
+function lastMonth() {
+  var d = new Date()
+  var dayOfMonth = d.getDate()
+  d.setDate(dayOfMonth - 27)
+  return getDateStr(d)
+}
+
+function today() {
+  var d = new Date()
+  return getDateStr(d)
+}
+
+var dates = lastWeek()
+var datee = today()
+
+var gridList = [];
+var gridList1 = [];
+var data = {};
+var data1 = [];
+
+
+
+
+</script>
+
+
+{% endblock %}

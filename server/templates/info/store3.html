@@ -1,0 +1,299 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<FORM name=form0><!-- IBFrame 을 위한 변수 선언 (필수)--><INPUT type=hidden name=S_CONTROLLER> <INPUT type=hidden value='' name=S_METHOD> <INPUT type=hidden value='' name=S_SAVENAME> <!-- IBFrame 을 위한 변수 선언 (선택)--><INPUT type=hidden value='' name=S_FORWARD> <INPUT type=hidden name=S_TREECOL> <INPUT type=hidden value='' name=SHEETSEQ> <INPUT type=hidden value='' name=tree_root> <INPUT type=hidden value='' name=tree_procedure><INPUT type=hidden value='' name=tree_index> <INPUT type=hidden value='' name=tree_params> <INPUT type=hidden value=CLS_CD|CLS_NM|TREE1_CD|TREE1_NM name=tree_cols> <INPUT type=hidden value='' name=tree_show_cols> <INPUT type=hidden value='' name=p_HD_SHOP_CD> <INPUT type=hidden value='' name=p_PGM_TYPE_FG> <INPUT type=hidden value=1 name=p_CLS_MGR_LEVEL_FG> <INPUT type=hidden value=N name=p_BRAND_MGR_YN> <INPUT type=hidden value='' name=p_SHOP_CD> <INPUT type=hidden value='' name=p_SHOP_NM> <INPUT type=hidden value=0 name=s_vendor_fg> <INPUT type=hidden value=1 name=page_no>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD>
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR>
+<TD> 본사코드/명 <INPUT  maxLength=4 size=4 name=hd_shop_cd> <INPUT class="input1h imeHan" size=14 name=hd_shop_nm> </TD>
+<TD width=10></TD>
+<TD> 매장코드/명 <INPUT  maxLength=6 size=6 name=shop_cd> <INPUT class="input1h imeHan" size=14 name=shop_nm> </TD>
+<TD width=10></TD>
+<TD> 용도
+ <SPAN id=divAjax_0_s_shop_pgm_type_fg style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(0,0); " id=SelectObj_0_0 name=s_shop_pgm_type_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=0>일반</OPTION> <OPTION value=1>외식</OPTION> <OPTION value=2>의류</OPTION></SELECT></SPAN>
+</TD>
+<TD width=10></TD>
+<TD> 상태
+ <SPAN id=divAjax_1_s_shop_stat_fg style="OVERFLOW-Y: scroll"><SELECT onchange="ajax_nextload(1,0); " id=SelectObj_1_0 name=s_shop_stat_fg> <OPTION selected value="">-전체-</OPTION> <OPTION value=1>오픈</OPTION> <OPTION value=2>폐점</OPTION> <OPTION value=4>출고보류</OPTION> <OPTION value=9>데모</OPTION></SELECT></SPAN>
+</TD>
+<TD width=5></TD>
+<TD> 검색줄수 <INPUT size=4 value=100 name=page_size></TD>
+<TD width=5></TD>
+<TD>
+<TABLE style="CURSOR: pointer" cellSpacing=0 cellPadding=0 border=0>
+<TBODY>
+<TR vAlign=middle>
+<TD></TD>
+<TD ><FONT color=#ffffff>조회</FONT></TD>
+<TD></TD></TR></TBODY></TABLE></TD>
+<TD width=5></TD>
+<TD></TD>
+<TD width=5></TD>
+<TD></TD></TR></TBODY></TABLE></TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE></FORM>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" bgColor=#e9e9e9 border=0>
+<TBODY>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=27>
+<TD width=10></TD>
+<TD><IMG src="/image/s_icon.gif"> <FONT onclick="doDown('manual_pos_increase.pdf');" style="CURSOR: hand; COLOR: blue">포스 대수 추가 매뉴얼</FONT> </TD></TD>
+<TD width=10></TD></TR>
+<TR height=2>
+<TD colSpan=3></TD></TR>
+<TR height=1 bgColor=#d6d6d6>
+<TD colSpan=3></TD></TR></TBODY></TABLE>
+<TABLE height=6 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR vAlign=top>
+<TD width=190 noWrap>
+<TABLE height=550 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0 name="">
+<TBODY>
+<TR bgColor=#ffffff vAlign=top>
+<TD height="100%" width="100%">
+  <div data-ax5grid="first-grid" data-ax5grid-config="{
+                           header: { align: 'center' },
+                           page: { display: false  }
+                       }" style="height: 100%;"></div>
+
+
+</TD></TR></TBODY></TABLE>
+</TD>
+<TD width=6 noWrap></TD>
+<TD vAlign=top noWrap>
+<TABLE id=TableNm1 cellSpacing=1 cellPadding=4 width="100%" bgColor=#aaaaaa border=0>
+<TBODY>
+<TR bgColor=white>
+<TD>
+
+<table class="box" >
+    <tr>
+        <td>
+
+            <div class="ui top attached tabular menu" style="width:800px ;OVERFLOW: auto">
+                <a class="item active" data-tab="1">기능설정</a>
+                <a class="item " data-tab="2">네트워크</a>
+                <a class="item " data-tab="3">프린터</a>
+                <!--<a class="item " data-tab="4">환경설정</a>-->
+                <!--<a class="item " data-tab="5">외식환경</a>-->
+                <!--<a class="item " data-tab="6">포스</a>-->
+                <!--<a class="item " data-tab="7">포스기능</a>-->
+                <!--<a class="item " data-tab="8">주방프린터</a>-->
+                <!--<a class="item " data-tab="9">주방프린터-상품연결</a>-->
+                <!--<a class="item " data-tab="10">주방프린터-상품복사</a>-->
+                <!--<a class="item " data-tab="11">코드자릿수</a>-->
+                <!--<a class="item " data-tab="12">터치키복사</a>-->
+                <!--<a class="item " data-tab="13">메뉴권한</a>-->
+                <!--<a class="item " data-tab="14">메뉴권한(모바일)</a>-->
+            </div>
+
+
+        </td>
+
+    </tr>
+</table>
+
+<div class="ui bottom attached tab segment active  " data-tab="1">
+    <iframe name="con" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">
+</iframe>
+
+</div>
+
+<div class="ui bottom attached tab segment " data-tab="2">
+    <iframe name="net" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">
+</iframe>
+
+</div>
+
+<div class="ui bottom attached tab segment " data-tab="3">
+    <iframe name="prt" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">
+</iframe>
+
+</div>
+
+<!--<div class="ui bottom attached tab segment " data-tab="4">-->
+    <!--<iframe name="con1" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="5">-->
+    <!--<iframe name="con2" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="6">-->
+    <!--<iframe name="con3" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="7">-->
+<!--<iframe name="con4" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="8">-->
+    <!--<iframe name="con5" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="9">-->
+    <!--<iframe name="con6" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="10">-->
+    <!--<iframe name="con7" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="11">-->
+    <!--<iframe name="con8" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="12">-->
+    <!--<iframe name="con9" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+<!--<div class="ui bottom attached tab segment " data-tab="13">-->
+    <!--<iframe name="con10" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+
+
+<!--<div class="ui bottom attached tab segment " data-tab="14">-->
+    <!--<iframe name="con11" src="" frameborder="0" width="100%" height="480" marginwidth="0" marginheight="0">-->
+<!--</iframe>-->
+
+<!--</div>-->
+</TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+
+
+<script>
+$(function () {
+
+    $('.menu .item').tab();
+
+});
+
+
+</script>
+
+ <script>
+var _data;
+var data0 = [];
+var gridList = [];
+
+
+$.getJSON("{{ url_for('_info_store_all') }}", function (json) {
+    _data = json;
+}).done(function () {
+
+     <!--document.getElementsByName('s')[0].value = _data.s-->
+    console.log(_data)
+
+    for (i in _data) data0.push( _data[i] )
+
+    load()
+
+})
+
+
+<!--$(function () {-->
+
+   <!--$('#btn_modify').click(function () {-->
+       <!--onModify("{{ url_for('_info_store') }}", store_id);-->
+   <!--});-->
+<!--});-->
+
+function load() {
+    firstGrid = new ax5.ui.grid({
+                    target: $('[data-ax5grid="first-grid"]'),
+                    columns: [
+                        {key: "매장명", label: "매장명", width: 80, align: "center",formatter: function(){
+                            return '<a onClick="loaditem('+this.item.s+')"'+'>' + this.value + '</a>';
+                        }},
+                        {key: "용도", label: "용도", width: 70, align: "center" },
+                        {key: "상태", label: "상태", width: 70, align: "center" },
+
+                    ]
+            });
+
+    n=0;
+    for ( i in data0 ) {
+        if ( gridList[n] == undefined ) gridList[n] = { 'i' : '' , '매장명' : '' , '용도' : '' , '상태' : '' , '매장수' : '' , '등록자' : '' , '등록일시' : '' , }
+        gridList[n]['s'] = data0[i]['s']
+        gridList[n]['i'] = i
+        gridList[n]['no'] = n+1
+        gridList[n]['매장명'] = data0[i]['가게명']
+        gridList[n]['용도'] = '외식'
+        gridList[n]['상태'] = '오픈'
+        gridList[n]['매장수'] = 1
+        gridList[n]['등록자'] = 'hdpos'
+        gridList[n]['등록일시'] = ''
+
+    n++
+
+    }
+
+
+    firstGrid.setData(gridList);
+
+}
+
+
+function loaditem(item) {
+   console.log(item)
+    $('iframe[name="con"]')[0].src = "/system/conf/"+item
+    $('iframe[name="net"]')[0].src = "/system/network/"+item
+    $('iframe[name="prt"]')[0].src = "/system/printer/"+item
+    <!--$('iframe[name="con1"]')[0].src = "/system/conf1/"+item-->
+    <!--$('iframe[name="con2"]')[0].src = "/system/conf2/"+item-->
+    <!--$('iframe[name="con3"]')[0].src = "/system/conf3/"+item-->
+    <!--$('iframe[name="con4"]')[0].src = "/system/conf4/"+item-->
+    <!--$('iframe[name="con5"]')[0].src = "/system/conf5/"+item-->
+    <!--&lt;!&ndash;$('iframe[name="con6"]')[0].src = "/system/conf6/"+item&ndash;&gt;-->
+    <!--&lt;!&ndash;$('iframe[name="con7"]')[0].src = "/system/conf7/"+item&ndash;&gt;-->
+    <!--&lt;!&ndash;$('iframe[name="con8"]')[0].src = "/system/conf8/"+item&ndash;&gt;-->
+    <!--&lt;!&ndash;$('iframe[name="con9"]')[0].src = "/system/conf9/"+item&ndash;&gt;-->
+    <!--&lt;!&ndash;$('iframe[name="con10"]')[0].src = "/system/conf10/"+item&ndash;&gt;-->
+    <!--&lt;!&ndash;$('iframe[name="con11"]')[0].src = "/system/conf11/"+item&ndash;&gt;-->
+
+    <!--$('iframe').get(0).contentDocument.location.reload();-->
+
+
+}
+
+
+
+</script>
+
+
+
+{% endblock %}

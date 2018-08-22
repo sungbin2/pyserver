@@ -1,0 +1,135 @@
+{% macro TITLE_BLOCK(header,subheader,icon)-%}
+    <h2 class="ui header">
+        <i class="{{ icon }} icon"></i>
+        <div class="content">
+            {{ header }}
+            <div class="sub header">{{ subheader }}</div>
+        </div>
+    </h2>
+    <div class="ui grid">
+        <div class="fifteen wide column">
+            {{ caller() }}
+        </div>
+    </div>
+    <br/>
+    <br/>
+{%-endmacro %}
+
+
+{% macro FORM(dic)-%}
+    <div class="ui form">
+        {% for each in dic %}
+            {% if each['type']=='divider' %}
+                {{ DIVIDER(each['name']) }}
+            {% elif each['type']=='input' %}
+                {{ INPUT(each['tag'],each['name'],writable=True) }}
+            {% elif each['type']=='checkbox' %}
+                {{ CHECKBOX(each['tag'],each['name'],writable=each['writable'] if 'writable' in each else True) }}
+            {% elif each['type']=='radio' %}
+                {{ RADIO(each['tag'],each['name'],each['l'],writable=True) }}
+            {% elif each['type']=='select' %}
+                {{ SELECT(each['tag'],each['name'],each['l'],writable=True) }}
+            {% elif each['type']=='date' %}
+                {{ DATEPICKER(each['tag'],each['name'],writable=True) }}
+            {% else %}
+                UNDEFINED VALUE!!!<br/>
+                UNDEFINED VALUE!!!<br/>
+                UNDEFINED VALUE!!!<br/>
+            {% endif %}
+        {% endfor %}
+    </div>
+{%-endmacro %}
+
+
+{% macro LABEL(title)-%}
+    <div class="ui fluid labeled input" style="margin:2px">
+        <div class="ui label" style="width:240px;border-right:1px solid">{{ title }}</div>
+        {{ caller() }}
+    </div>
+{%-endmacro %}
+
+
+{% macro INPUT(tag,name,writable=False)-%}
+    {% call LABEL(tag if tag else name) %}
+        <input type="text" name="{{ name }}" value="" {{ '' if writable else 'readonly' }}>
+    {% endcall %}
+{%-endmacro %}
+
+
+{% macro CHECKBOX(tag,name,writable=False)-%}
+    {% call LABEL(tag if tag else name) %}
+        <div class="ui fluid selection dropdown"
+             style="
+                border-left:0px;
+                border-top-left-radius:0px;
+                border-bottom-left-radius:0px;
+                padding-top:9.5px;
+                padding-bottom:9.5px;"
+        >
+            <div class="inline fields" style="margin:0px;">
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="hidden" name="{{ name }}" value="">
+                        <input type="checkbox" name="checkbox_{{ name }}" {{ 'checked' }} tabindex="0"
+                               class="hidden" {{ 'disabled' if not writable }}>
+                        <label>선택</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endcall %}
+{%-endmacro %}
+
+
+{% macro SELECT(tag,name,l,writable=False)-%}
+    {% call LABEL(tag if tag else name) %}
+        <div class="ui fluid selection dropdown"
+             style="
+                border-left:0px;
+                border-top-left-radius:0px;
+                border-bottom-left-radius:0px;"
+        >
+            <input type="hidden" name="{{ name }}" value="">
+            <i class="dropdown icon"></i>
+            <div class="default text"></div>
+            <div class="menu">
+                {% for each_l in l %}
+                    <div class="item" data-value="{{ each_l }}">{{ each_l }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endcall %}
+{%-endmacro %}
+
+
+
+
+
+
+
+
+
+
+{% macro FORM_MODAL(header,form_types)-%}
+    <div id="modal_modify" class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            [수정하기] {{ header }}
+        </div>
+        <div class="content">
+            <form id="form_modify" class="ui form">
+                <input type="hidden" id="extra">
+                {{ FORM(form_types) }}
+            </form>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                취소
+            </div>
+            <div class="ui right labeled icon positive button">
+                수정
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+{%-endmacro %}
